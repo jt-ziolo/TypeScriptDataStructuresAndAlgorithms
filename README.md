@@ -4,10 +4,29 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ## Data Structures
 
+**Worst-Case Time Complexity**
+| Data Structure | Access | Search | Insert | Remove |
+|---|---|---|---|---|
+| Singly Linked List | O(n) | O(n) | O(1)[^1] | O(1)[^2] |
+
+[^1]: When the node prior to the target position is stored, or is the root node.
+[^2]: When the node to be removed is stored, or is the root node.
+
+**Expected-Case Time Complexity**
+(for those data structures where it differs from the worst-case)
+| Data Structure | Access | Search | Insert | Remove |
+|---|---|---|---|---|
+|   |   |   |   |   |
+
+**Worst-Case Space Complexity**
+(for data structures where it is a notable, distinguishing characteristic)
+| Data Structure | Access | Search | Insert | Remove |
+|---|---|---|---|---|
+|   |   |   |   |   |
+
+### Graph, Tree, and Heap
+
 - [ ] Weighted Graph (Adjacency List and Adjacency Matrix implementations)
-
-### Tree and Heap
-
 - [ ] Tree
 - [ ] Trie
 - [ ] B-Tree

@@ -19,6 +19,10 @@ export class List<T> {
     this.root = newRoot;
   }
 
+  removeBeginning() {
+    this.root = this.root?.child;
+  }
+
   get length() {
     let count = 0;
     let current = this.root;
@@ -43,10 +47,16 @@ export class List<T> {
     };
   }
 
-  // Made this method static since it doesn't rely upon the 
+  // Made this method static since it doesn't rely upon the
   // instance's state and is more of a utility function
   static insertAfter<E>(node: Node<E>, newNode: Node<E>) {
     newNode.child = node.child;
     node.child = newNode;
+  }
+
+  // Made this method static since it doesn't rely upon the
+  // instance's state and is more of a utility function
+  static removeAfter<E>(node: Node<E>) {
+    node.child = node.child?.child;
   }
 }
