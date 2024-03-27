@@ -46,7 +46,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ### Linked List
 
-- [ ] (Singly) Linked List
+- [x] (Singly) Linked List
 - [ ] Doubly Linked List
 - [ ] Skip List
 - [ ] Blockchain
