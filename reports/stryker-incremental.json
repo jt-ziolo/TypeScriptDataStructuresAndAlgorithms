@@ -1,0 +1,779 @@
+{
+  "files": {
+    "src/data-structures/linked-list.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "0",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"Example\"\nReceived: undefined\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:7:27)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 12,
+          "static": true,
+          "killedBy": [
+            "0"
+          ],
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 7
+            },
+            "start": {
+              "column": 24,
+              "line": 5
+            }
+          }
+        },
+        {
+          "id": "1",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).not.toBe(expected) // Object.is equality\n\nExpected: not 0\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:35:29)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 12,
+          "static": true,
+          "killedBy": [
+            "2"
+          ],
+          "coveredBy": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 15
+            },
+            "start": {
+              "column": 31,
+              "line": 13
+            }
+          }
+        },
+        {
+          "id": "2",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).not.toBeUndefined()\n\nReceived: undefined\n    at Object.toBeUndefined (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:59:27)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 12,
+          "static": true,
+          "killedBy": [
+            "5"
+          ],
+          "coveredBy": [
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 20
+            },
+            "start": {
+              "column": 37,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "3",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: undefined\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:36:25)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 5,
+          "static": false,
+          "killedBy": [
+            "2"
+          ],
+          "coveredBy": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "10"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 30
+            },
+            "start": {
+              "column": 16,
+              "line": 22
+            }
+          }
+        },
+        {
+          "id": "4",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).not.toBe(expected) // Object.is equality\n\nExpected: not 0\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:35:29)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 5,
+          "static": false,
+          "killedBy": [
+            "2"
+          ],
+          "coveredBy": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "10"
+          ],
+          "location": {
+            "end": {
+              "column": 33,
+              "line": 25
+            },
+            "start": {
+              "column": 12,
+              "line": 25
+            }
+          }
+        },
+        {
+          "id": "5",
+          "mutatorName": "EqualityOperator",
+          "replacement": "current === undefined",
+          "statusReason": "Error: expect(received).not.toBe(expected) // Object.is equality\n\nExpected: not 0\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:35:29)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 5,
+          "static": false,
+          "killedBy": [
+            "2"
+          ],
+          "coveredBy": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "10"
+          ],
+          "location": {
+            "end": {
+              "column": 33,
+              "line": 25
+            },
+            "start": {
+              "column": 12,
+              "line": 25
+            }
+          }
+        },
+        {
+          "id": "6",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Hit limit reached (100604/100600)",
+          "status": "Timeout",
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [
+            "2",
+            "5",
+            "6",
+            "10"
+          ],
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 28
+            },
+            "start": {
+              "column": 35,
+              "line": 25
+            }
+          }
+        },
+        {
+          "id": "7",
+          "mutatorName": "AssignmentOperator",
+          "replacement": "count -= 1",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: -1\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:36:25)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 4,
+          "static": false,
+          "killedBy": [
+            "2"
+          ],
+          "coveredBy": [
+            "2",
+            "5",
+            "6",
+            "10"
+          ],
+          "location": {
+            "end": {
+              "column": 17,
+              "line": 26
+            },
+            "start": {
+              "column": 7,
+              "line": 26
+            }
+          }
+        },
+        {
+          "id": "8",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "TypeError: Result of the Symbol.iterator method is not an object\n    at Object.list (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:46:21)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "4"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 44
+            },
+            "start": {
+              "column": 23,
+              "line": 32
+            }
+          }
+        },
+        {
+          "id": "9",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "TypeError: undefined is not a function\n    at Object._ (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:46:16)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "4"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 43
+            },
+            "start": {
+              "column": 12,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "10",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "TypeError: Iterator result undefined is not an object\n    at Object._ (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:46:16)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "4"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 8,
+              "line": 42
+            },
+            "start": {
+              "column": 14,
+              "line": 35
+            }
+          }
+        },
+        {
+          "id": "11",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 7\n+ Received  + 1\n\n- Array [\n-   999,\n-   998,\n-   997,\n-   996,\n-   995,\n- ]\n+ Array []\n    at Object.toEqual (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:124:33)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "11"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 36
+            },
+            "start": {
+              "column": 13,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "12",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading 'child')\n    at Object.child [as next] (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.ts:125:31)\n    at Object._ (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:46:16)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "4"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 36
+            },
+            "start": {
+              "column": 13,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "13",
+          "mutatorName": "EqualityOperator",
+          "replacement": "current !== undefined",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading 'child')\n    at Object.child [as next] (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.ts:125:31)\n    at Object._ (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:46:16)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "4"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 34,
+              "line": 36
+            },
+            "start": {
+              "column": 13,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "14",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading 'child')\n    at Object.child [as next] (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.ts:125:31)\n    at Object._ (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:46:16)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [
+            "4"
+          ],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 38
+            },
+            "start": {
+              "column": 36,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "15",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "Hit limit reached (202/200)",
+          "status": "Timeout",
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 50,
+              "line": 37
+            },
+            "start": {
+              "column": 18,
+              "line": 37
+            }
+          }
+        },
+        {
+          "id": "16",
+          "mutatorName": "BooleanLiteral",
+          "replacement": "false",
+          "statusReason": "Hit limit reached (202/200)",
+          "status": "Timeout",
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [
+            "4",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 48,
+              "line": 37
+            },
+            "start": {
+              "column": 44,
+              "line": 37
+            }
+          }
+        },
+        {
+          "id": "17",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 5\n+ Received  + 5\n\n  Array [\n-   999,\n-   998,\n-   997,\n-   996,\n-   995,\n+   undefined,\n+   undefined,\n+   undefined,\n+   undefined,\n+   undefined,\n  ]\n    at Object.toEqual (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:124:33)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [
+            "11"
+          ],
+          "coveredBy": [
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 39
+            },
+            "start": {
+              "column": 24,
+              "line": 39
+            }
+          }
+        },
+        {
+          "id": "18",
+          "mutatorName": "BooleanLiteral",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 7\n+ Received  + 1\n\n- Array [\n-   999,\n-   998,\n-   997,\n-   996,\n-   995,\n- ]\n+ Array []\n    at Object.toEqual (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:124:33)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [
+            "11"
+          ],
+          "coveredBy": [
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 53,
+              "line": 39
+            },
+            "start": {
+              "column": 48,
+              "line": 39
+            }
+          }
+        },
+        {
+          "id": "19",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 2\n    at Object.toBe (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\.stryker-tmp\\sandbox2531516\\src\\data-structures\\linked-list.test.ts:85:42)\n    at Promise.then.completed (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at _runTestsForDescribeBlock (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-circus@29.7.0\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms\\node_modules\\.pnpm\\jest-runner@29.7.0\\node_modules\\jest-runner\\build\\runTest.js:444:34)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [
+            "7"
+          ],
+          "coveredBy": [
+            "7"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 51
+            },
+            "start": {
+              "column": 58,
+              "line": 48
+            }
+          }
+        }
+      ],
+      "source": "export class Node<T> {\r\n  data: T;\r\n  child?: Node<T>;\r\n\r\n  constructor(data: T) {\r\n    this.data = data;\r\n  }\r\n}\r\n\r\nexport class List<T> {\r\n  root?: Node<T>;\r\n\r\n  constructor(root?: Node<T>) {\r\n    this.root = root;\r\n  }\r\n\r\n  insertBeginning(newRoot: Node<T>) {\r\n    newRoot.child = this.root;\r\n    this.root = newRoot;\r\n  }\r\n\r\n  get length() {\r\n    let count = 0;\r\n    let current = this.root;\r\n    while (current !== undefined) {\r\n      count += 1;\r\n      current = current.child;\r\n    }\r\n    return count;\r\n  }\r\n\r\n  [Symbol.iterator]() {\r\n    let current = this.root;\r\n    return {\r\n      next() {\r\n        if (current === undefined) {\r\n          return { value: undefined, done: true };\r\n        }\r\n        const result = { value: current, done: false };\r\n        current = current.child;\r\n        return result;\r\n      },\r\n    };\r\n  }\r\n\r\n  // Made this method static since it doesn't rely upon the \r\n  // instance's state and is more of a utility function\r\n  static insertAfter<E>(node: Node<E>, newNode: Node<E>) {\r\n    newNode.child = node.child;\r\n    node.child = newNode;\r\n  }\r\n}\r\n"
+    }
+  },
+  "schemaVersion": "1.0",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "testFiles": {
+    "src/data-structures/linked-list.test.ts": {
+      "tests": [
+        {
+          "id": "0",
+          "name": "singly linked list linked list node data is accessible",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 4
+            }
+          }
+        },
+        {
+          "id": "1",
+          "name": "singly linked list linked list nodes can be connected and traversed",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 8
+            }
+          }
+        },
+        {
+          "id": "2",
+          "name": "singly linked list constructor successfully assigns root node when one is provided",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 31
+            }
+          }
+        },
+        {
+          "id": "3",
+          "name": "singly linked list empty linked list returns a length of zero",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 38
+            }
+          }
+        },
+        {
+          "id": "4",
+          "name": "singly linked list empty linked list is not iterable",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 42
+            }
+          }
+        },
+        {
+          "id": "5",
+          "name": "singly linked list insertBeginning sets newRoot as the root for an empty linked list",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 50
+            }
+          }
+        },
+        {
+          "id": "6",
+          "name": "singly linked list with 3 elements linked list length is correct",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "7",
+          "name": "singly linked list with 3 elements insertAfter places newNode in correct position",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 77
+            }
+          }
+        },
+        {
+          "id": "8",
+          "name": "singly linked list with 3 elements insertBeginning places newRoot in correct position",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 86
+            }
+          }
+        },
+        {
+          "id": "9",
+          "name": "singly linked list with 3 elements insertBeginning sets newRoot's child to old root",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 94
+            }
+          }
+        },
+        {
+          "id": "10",
+          "name": "singly linked list with many elements linked list length is correct",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 112
+            }
+          }
+        },
+        {
+          "id": "11",
+          "name": "singly linked list with many elements can iterate through list",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 115
+            }
+          }
+        }
+      ],
+      "source": "import LinkedList = require(\"./linked-list\");\r\n\r\ndescribe(\"singly linked list\", () => {\r\n  test(\"linked list node data is accessible\", () => {\r\n    const listNode = new LinkedList.Node<string>(\"Example\");\r\n    expect(listNode.data).toBe(\"Example\");\r\n  });\r\n  test(\"linked list nodes can be connected and traversed\", () => {\r\n    const root = new LinkedList.Node<number>(0);\r\n    let last: LinkedList.Node<number> | undefined = undefined;\r\n    for (let i = 0; i < 10; i++) {\r\n      const next = new LinkedList.Node<number>(i + 1);\r\n      if (i == 0) {\r\n        root.child = next;\r\n        last = next;\r\n        continue;\r\n      }\r\n      last!.child = next;\r\n      last = next;\r\n    }\r\n    expect(root.data).toBe(0);\r\n    last = root;\r\n    let count = 0;\r\n    while (last.child !== undefined) {\r\n      expect(last.data).toBe(count);\r\n      last = last.child!;\r\n      count += 1;\r\n    }\r\n    expect(count).toBe(10);\r\n  });\r\n  test(\"constructor successfully assigns root node when one is provided\", () => {\r\n    const root = new LinkedList.Node<number>(10);\r\n    const list = new LinkedList.List<number>(root);\r\n    expect(list.length).not.toBe(0);\r\n    expect(list.length).toBe(1);\r\n    expect(list.root).toBe(root);\r\n  });\r\n  test(\"empty linked list returns a length of zero\", () => {\r\n    const list = new LinkedList.List();\r\n    expect(list.length).toBe(0);\r\n  });\r\n  test(\"empty linked list is not iterable\", () => {\r\n    const list = new LinkedList.List();\r\n    let count = 0;\r\n    for (const _ of list) {\r\n      count += 1;\r\n    }\r\n    expect(count).toBe(0);\r\n  });\r\n  test(\"insertBeginning sets newRoot as the root for an empty linked list\", () => {\r\n    const list = new LinkedList.List<number>();\r\n\r\n    expect(list.root).toBeUndefined();\r\n    expect(list.length).toBe(0);\r\n\r\n    list.insertBeginning(new LinkedList.Node<number>(0));\r\n\r\n    expect(list.root).not.toBeUndefined();\r\n    expect(list.root!.data).toBe(0);\r\n    expect(list.length).toBe(1);\r\n  });\r\n  describe(\"with 3 elements\", () => {\r\n    let list: LinkedList.List<number> | undefined;\r\n    beforeEach(() => {\r\n      list = new LinkedList.List<number>();\r\n      list.insertBeginning(new LinkedList.Node<number>(1));\r\n      let last = list.root!;\r\n      for (let i = 0; i < 2; i++) {\r\n        const next = new LinkedList.Node<number>(i + 1);\r\n        last.child = next;\r\n        last = next;\r\n      }\r\n    });\r\n    test(\"linked list length is correct\", () => {\r\n      expect(list!.length).toBe(3);\r\n    });\r\n    test(\"insertAfter places newNode in correct position\", () => {\r\n      LinkedList.List.insertAfter(\r\n        // @ts-expect-error test setup ensures not undef\r\n        list.root.child,\r\n        new LinkedList.Node<number>(400),\r\n      );\r\n      // @ts-expect-error test setup ensures not undef\r\n      expect(list.root.child.child.data).toBe(400);\r\n    });\r\n    test(\"insertBeginning places newRoot in correct position\", () => {\r\n      // @ts-expect-error test setup ensures not undef\r\n      const oldRoot = list.root;\r\n      // @ts-expect-error test setup ensures not undef\r\n      list.insertBeginning(new LinkedList.Node<number>(400));\r\n      // @ts-expect-error test setup ensures not undef\r\n      expect(list.root.child).toBe(oldRoot);\r\n    });\r\n    test(\"insertBeginning sets newRoot's child to old root\", () => {\r\n      // @ts-expect-error test setup ensures not undef\r\n      list.insertBeginning(new LinkedList.Node<number>(400));\r\n      // @ts-expect-error test setup ensures not undef\r\n      expect(list.root.data).toBe(400);\r\n    });\r\n  });\r\n  describe(\"with many elements\", () => {\r\n    const list = new LinkedList.List<number>();\r\n    beforeAll(() => {\r\n      list.insertBeginning(new LinkedList.Node<number>(-1));\r\n      let last = list.root!;\r\n      for (let i = 0; i < 999; i++) {\r\n        const next = new LinkedList.Node<number>(i + 1);\r\n        last.child = next;\r\n        last = next;\r\n      }\r\n    });\r\n    test(\"linked list length is correct\", () => {\r\n      expect(list.length).toBe(1000);\r\n    });\r\n    test(\"can iterate through list\", () => {\r\n      const lastFiveItemsData = [];\r\n      for (const item of list) {\r\n        lastFiveItemsData.unshift(item?.data);\r\n        if (lastFiveItemsData.length > 5) {\r\n          lastFiveItemsData.pop();\r\n        }\r\n      }\r\n      expect(lastFiveItemsData).toEqual([999, 998, 997, 996, 995]);\r\n    });\r\n  });\r\n});\r\n"
+    }
+  },
+  "projectRoot": "C:\\Users\\Personal\\Documents\\repos\\TsDataStructuresAndAlgorithms",
+  "config": {
+    "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+    "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information.",
+    "packageManager": "pnpm",
+    "reporters": [
+      "html",
+      "clear-text",
+      "progress"
+    ],
+    "testRunner": "jest",
+    "testRunner_comment": "Take a look at https://stryker-mutator.io/docs/stryker-js/jest-runner for information about the jest plugin.",
+    "coverageAnalysis": "perTest",
+    "plugins": [
+      "@stryker-mutator/jest-runner"
+    ],
+    "incremental": true,
+    "allowConsoleColors": true,
+    "checkers": [],
+    "checkerNodeArgs": [],
+    "commandRunner": {
+      "command": "npm test"
+    },
+    "clearTextReporter": {
+      "allowColor": true,
+      "allowEmojis": false,
+      "logTests": true,
+      "maxTestsToLog": 3,
+      "reportTests": true,
+      "reportMutants": true,
+      "reportScoreTable": true
+    },
+    "dashboard": {
+      "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+      "reportType": "full"
+    },
+    "dryRunOnly": false,
+    "eventReporter": {
+      "baseDir": "reports/mutation/events"
+    },
+    "ignorePatterns": [],
+    "ignoreStatic": false,
+    "incrementalFile": "reports/stryker-incremental.json",
+    "force": false,
+    "fileLogLevel": "off",
+    "inPlace": false,
+    "logLevel": "info",
+    "maxConcurrentTestRunners": 9007199254740991,
+    "maxTestRunnerReuse": 0,
+    "mutate": [
+      "{src,lib}/**/!(*.+(s|S)pec|*.+(t|T)est).+(cjs|mjs|js|ts|mts|cts|jsx|tsx|html|vue|svelte)",
+      "!{src,lib}/**/__tests__/**/*.+(cjs|mjs|js|ts|mts|cts|jsx|tsx|html|vue|svelte)"
+    ],
+    "mutator": {
+      "plugins": null,
+      "excludedMutations": []
+    },
+    "appendPlugins": [],
+    "htmlReporter": {
+      "fileName": "reports/mutation/mutation.html"
+    },
+    "jsonReporter": {
+      "fileName": "reports/mutation/mutation.json"
+    },
+    "disableTypeChecks": true,
+    "symlinkNodeModules": true,
+    "tempDirName": ".stryker-tmp",
+    "cleanTempDir": true,
+    "testRunnerNodeArgs": [],
+    "thresholds": {
+      "high": 80,
+      "low": 60,
+      "break": null
+    },
+    "timeoutFactor": 1.5,
+    "timeoutMS": 5000,
+    "dryRunTimeoutMinutes": 5,
+    "tsconfigFile": "tsconfig.json",
+    "warnings": true,
+    "disableBail": false,
+    "allowEmpty": false,
+    "ignorers": [],
+    "jest": {
+      "projectType": "custom",
+      "enableFindRelatedTests": true
+    }
+  },
+  "framework": {
+    "name": "StrykerJS",
+    "version": "8.2.6",
+    "branding": {
+      "homepageUrl": "https://stryker-mutator.io",
+      "imageUrl": "data:image/svg+xml;utf8,%3Csvg viewBox='0 0 1458 1458' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2'%3E%3Cpath fill='none' d='M0 0h1458v1458H0z'/%3E%3CclipPath id='a'%3E%3Cpath d='M0 0h1458v1458H0z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M1458 729c0 402.655-326.345 729-729 729S0 1131.655 0 729C0 326.445 326.345 0 729 0s729 326.345 729 729' fill='%23e74c3c' fill-rule='nonzero'/%3E%3Cpath d='M778.349 1456.15L576.6 1254.401l233-105 85-78.668v-64.332l-257-257-44-187-50-208 251.806-82.793L1076.6 389.401l380.14 379.15c-19.681 367.728-311.914 663.049-678.391 687.599z' fill-opacity='.3'/%3E%3Cpath d='M753.4 329.503c41.79 0 74.579 7.83 97.925 25.444 23.571 18.015 41.69 43.956 55.167 77.097l11.662 28.679 165.733-58.183-14.137-32.13c-26.688-60.655-64.896-108.61-114.191-144.011-49.329-35.423-117.458-54.302-204.859-54.302-50.78 0-95.646 7.376-134.767 21.542-40.093 14.671-74.09 34.79-102.239 60.259-28.84 26.207-50.646 57.06-65.496 92.701-14.718 35.052-22.101 72.538-22.101 112.401 0 72.536 20.667 133.294 61.165 182.704 38.624 47.255 98.346 88.037 179.861 121.291 42.257 17.475 78.715 33.125 109.227 46.994 27.193 12.361 49.294 26.124 66.157 41.751 15.309 14.186 26.497 30.584 33.63 49.258 7.721 20.214 11.16 45.69 11.16 76.402 0 28.021-4.251 51.787-13.591 71.219-8.832 18.374-20.171 33.178-34.523 44.219-14.787 11.374-31.193 19.591-49.393 24.466-19.68 5.359-39.14 7.993-58.69 7.993-29.359 0-54.387-3.407-75.182-10.747-20.112-7.013-37.144-16.144-51.259-27.486-13.618-11.009-24.971-23.766-33.744-38.279-9.64-15.8-17.272-31.924-23.032-48.408l-10.965-31.376-161.669 60.585 10.734 30.124c10.191 28.601 24.197 56.228 42.059 82.748 18.208 27.144 41.322 51.369 69.525 72.745 27.695 21.075 60.904 38.218 99.481 51.041 37.777 12.664 82.004 19.159 132.552 19.159 49.998 0 95.818-8.321 137.611-24.622 42.228-16.471 78.436-38.992 108.835-67.291 30.719-28.597 54.631-62.103 71.834-100.642 17.263-38.56 25.923-79.392 25.923-122.248 0-54.339-8.368-100.37-24.208-138.32-16.29-38.759-38.252-71.661-65.948-98.797-26.965-26.418-58.269-48.835-93.858-67.175-33.655-17.241-69.196-33.11-106.593-47.533-35.934-13.429-65.822-26.601-89.948-39.525-22.153-11.868-40.009-24.21-53.547-37.309-11.429-11.13-19.83-23.678-24.718-37.664-5.413-15.49-7.98-33.423-7.98-53.577 0-40.883 11.293-71.522 37.086-90.539 28.443-20.825 64.985-30.658 109.311-30.658z' fill='%23f1c40f' fill-rule='nonzero'/%3E%3Cpath d='M720 0h18v113h-18zM1458 738v-18h-113v18h113zM720 1345h18v113h-18zM113 738v-18H0v18h113z'/%3E%3C/g%3E%3C/svg%3E"
+    },
+    "dependencies": {
+      "@stryker-mutator/jest-runner": "8.2.6",
+      "jest": "29.7.0",
+      "typescript": "5.4.3"
+    }
+  }
+}
