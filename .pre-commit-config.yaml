@@ -32,6 +32,6 @@ repos:
         pass_filenames: false
       - id: test
         name: Run tests via pnpm
-        entry: pnpm run test
+        entry: pnpm run jest-only
         language: system
         pass_filenames: false
