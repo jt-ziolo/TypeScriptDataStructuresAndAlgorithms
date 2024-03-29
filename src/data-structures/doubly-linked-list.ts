@@ -1,0 +1,72 @@
+import { LinkedList } from "./linked-list";
+import { DoublyLinkedNode } from "./linked-node";
+
+export class DoublyLinkedList<T> implements LinkedList<T> {
+  root?: DoublyLinkedNode<T>;
+
+  constructor(root?: DoublyLinkedNode<T>) {
+    this.root = root;
+  }
+
+  insertBeginning(newRoot: DoublyLinkedNode<T>) {
+    newRoot.next = this.root;
+    if (this.root !== undefined) {
+      this.root.previous = newRoot;
+    }
+    this.root = newRoot;
+  }
+
+  removeBeginning() {
+    const newRoot = this.root?.next;
+    if (newRoot === undefined) {
+      delete this.root;
+      return;
+    }
+    this.root = newRoot;
+  }
+
+  get length() {
+    let count = 0;
+    let current = this.root;
+    while (current !== undefined) {
+      count += 1;
+      current = current.next;
+    }
+    return count;
+  }
+
+  [Symbol.iterator](): Iterator<DoublyLinkedNode<T>> {
+    let current = this.root;
+    return {
+      next() {
+        if (current === undefined) {
+          return { value: undefined, done: true };
+        }
+        const result = { value: current, done: false };
+        current = current.next;
+        return result;
+      },
+    };
+  }
+
+  insertAfter(node: DoublyLinkedNode<T>, newNode: DoublyLinkedNode<T>) {
+    newNode.next = node.next;
+    if (newNode.next !== undefined) {
+      newNode.next.previous = newNode;
+    }
+    node.next = newNode;
+    newNode.previous = node;
+  }
+
+  removeAfter(node: DoublyLinkedNode<T>) {
+    if (node.next === undefined) {
+      return;
+    }
+    const newNextNode = node.next?.next;
+    delete node.next;
+    node.next = newNextNode;
+    if (newNextNode !== undefined) {
+      newNextNode.previous = node;
+    }
+  }
+}
