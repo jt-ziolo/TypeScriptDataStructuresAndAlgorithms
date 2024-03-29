@@ -1,7 +1,12 @@
+# may stop ignoring coverage files later
+coverage/
+
 .env.local
 .venv
 node_modules
+
 # stryker temp files
 .stryker-tmp
+
 # assuming stryker incremental data is not needed
 reports/stryker-incremental.json

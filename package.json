@@ -1,10 +1,11 @@
 {
   "name": "TsDataStructuresAndAlgorithms",
-  "version": "1.0.0",
-  "description": "",
-  "main": "",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "jest && npx stryker run --incremental",
+    "build": "babel src --out-file dist/bundle.js",
+    "jest-only": "node --expose-gc ./node_modules/jest/bin/jest.js --logHeapUsage",
+    "test": "node --expose-gc ./node_modules/jest/bin/jest.js --logHeapUsage && npx stryker run",
     "lint": "eslint ."
   },
   "keywords": [],
