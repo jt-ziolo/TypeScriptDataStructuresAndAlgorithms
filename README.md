@@ -1,6 +1,6 @@
 # TypeScript Data Structures and Algorithms Exercise
 
-Intended as a personal learning exercise to help knock off some rust with Algorithms and Data Structures while solidifying my knowledge of TypeScript. Work in progress.
+Intended as a personal learning exercise to help knock off some rust with Algorithms, Data Structures, and Big O time/space complexity analysis while solidifying my knowledge of TypeScript and Mutation Testing (via [Stryker](https://stryker-mutator.io/docs/)). Work in progress.
 
 ## Data Structures
 
@@ -9,8 +9,8 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 |---|---|---|---|---|
 | Singly Linked List | O(n) | O(n) | O(1)[^1] | O(1)[^2] |
 
-[^1]: When the node prior to the target position is stored, or is the root node.
-[^2]: When the node to be removed is stored, or is the root node.
+[^1]: When a reference is available to a node which neighbors the insertion point.
+[^2]: When a reference is available to the node being removed, or one of its neighbors.
 
 **Expected-Case Time Complexity**
 (for those data structures where it differs from the worst-case)
