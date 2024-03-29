@@ -1,3 +1,4 @@
+import { deleteObjectProperties } from "../util";
 import { LinkedList } from "./linked-list";
 import { SinglyLinkedNode } from "./linked-node";
 
@@ -16,6 +17,7 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
   removeBeginning() {
     const newRoot = this.root?.next;
     if (newRoot === undefined) {
+      deleteObjectProperties(this.root);
       delete this.root;
       return;
     }
@@ -52,10 +54,8 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
   }
 
   removeAfter(node: SinglyLinkedNode<T>) {
-    if (node.next === undefined) {
-      return;
-    }
     const newNextNode = node.next?.next;
+    deleteObjectProperties(node.next);
     delete node.next;
     node.next = newNextNode;
   }

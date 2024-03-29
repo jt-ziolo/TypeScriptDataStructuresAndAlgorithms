@@ -11,7 +11,7 @@ export const baseLinkedNodeTests = (
   constructNode: (value: number) => LinkedNode<number>,
 ) =>
   describe(`${typeDescription} linked list`, () => {
-    test("default constructor does not assign a root", () => {
+    it("default constructor does not assign a root", () => {
       // Arrange
       const list = constructList();
       // Act/Assert
@@ -19,7 +19,7 @@ export const baseLinkedNodeTests = (
       expect(list.length).toBe(0);
     });
 
-    test("constructor successfully assigns root node when one is provided", () => {
+    it("constructor successfully assigns root node when one is provided", () => {
       // Arrange
       const root = constructNode(10);
       const list = constructList(root);
@@ -29,7 +29,7 @@ export const baseLinkedNodeTests = (
       expect(list.root).toBe(root);
     });
 
-    test("linked list nodes can be connected and traversed", () => {
+    it("linked list nodes can be connected and traversed", () => {
       // Arrange
       const root = constructNode(0);
       let last = undefined;
@@ -55,7 +55,7 @@ export const baseLinkedNodeTests = (
       expect(count).toBe(10);
     });
 
-    test("node data is accessible", () => {
+    it("node data is accessible", () => {
       // Arrange
       const listNode = constructNode(850);
       // Act/Assert
@@ -69,11 +69,11 @@ export const baseLinkedNodeTests = (
         list = constructList();
       });
 
-      test("length is correct", () => {
+      it("length is correct", () => {
         expect(list!.length).toBe(0);
       });
 
-      test("insertBeginning sets newRoot as the root for an empty linked list", () => {
+      it("insertBeginning sets newRoot as the root for an empty linked list", () => {
         // Arrange
         list = list as LinkedList<number>;
         // Act
@@ -84,7 +84,7 @@ export const baseLinkedNodeTests = (
         expect(list.length).toBe(1);
       });
 
-      test("removeBeginning does nothing for an empty linked list", () => {
+      it("removeBeginning does nothing for an empty linked list", () => {
         // Arrange
         list = list as LinkedList<number>;
         // Act
@@ -94,7 +94,7 @@ export const baseLinkedNodeTests = (
         expect(list.length).toBe(0);
       });
 
-      test("empty linked list is not iterable", () => {
+      it("empty linked list is not iterable", () => {
         // Arrange
         list = list as LinkedList<number>;
         // Act
@@ -118,11 +118,11 @@ export const baseLinkedNodeTests = (
         list.insertBeginning(constructNode(randomNodeValue));
       });
 
-      test("length is correct", () => {
+      it("length is correct", () => {
         expect(list!.length).toBe(1);
       });
 
-      test("removeAfter does nothing", () => {
+      it("removeAfter does nothing", () => {
         // Arrange
         list = list as LinkedList<number>;
         // Act
@@ -131,6 +131,16 @@ export const baseLinkedNodeTests = (
         expect(list.root).toBeDefined();
         expect(list.length).toBe(1);
         expect(list.root!.data).toBe(randomNodeValue);
+      });
+
+      it("removeBeginning deletes the root node", () => {
+        // Arrange
+        list = list as LinkedList<number>;
+        // Act
+        list.removeBeginning();
+        // Assert
+        expect(list).not.toHaveProperty("root");
+        expect(list.length).toBe(0);
       });
     });
 
@@ -151,11 +161,11 @@ export const baseLinkedNodeTests = (
         }
       });
 
-      test("linked list length is correct", () => {
+      it("linked list length is correct", () => {
         expect(list!.length).toBe(3);
       });
 
-      test("insertAfter places newNode in correct position", () => {
+      it("insertAfter places newNode in correct position", () => {
         // Arrange
         list = list as LinkedList<number>;
         // Act
@@ -164,7 +174,7 @@ export const baseLinkedNodeTests = (
         expect(list.root!.next!.next!.data).toBe(randomNodeValue);
       });
 
-      test("insertBeginning places newRoot in correct position", () => {
+      it("insertBeginning places newRoot in correct position", () => {
         // Arrange
         list = list as LinkedList<number>;
 
@@ -173,7 +183,7 @@ export const baseLinkedNodeTests = (
         expect(list!.root!.next).toBe(oldRoot);
       });
 
-      test("insertBeginning sets newRoot's child to old root", () => {
+      it("insertBeginning sets newRoot's child to old root", () => {
         // Arrange
         list = list as LinkedList<number>;
 
@@ -181,7 +191,7 @@ export const baseLinkedNodeTests = (
         expect(list.root!.data).toBe(randomNodeValue);
       });
 
-      test("length is reduced by 1 after calling removeAfter", () => {
+      it("length is reduced by 1 after calling removeAfter", () => {
         // Arrange
         list = list as LinkedList<number>;
 
@@ -190,7 +200,7 @@ export const baseLinkedNodeTests = (
         expect(list.length).toBe(2);
       });
 
-      test("removeAfter removes the correct node", () => {
+      it("removeAfter removes the correct node", () => {
         // Arrange
         list = list as LinkedList<number>;
         const target = list.root!.next;
@@ -201,7 +211,7 @@ export const baseLinkedNodeTests = (
         expect(newRootChild).not.toBe(target);
       });
 
-      test("removeBeginning removes the root and replaces it with the child", () => {
+      it("removeBeginning removes the root and replaces it with the child", () => {
         // Arrange
         list = list as LinkedList<number>;
         const oldRoot = list.root!;
@@ -227,11 +237,11 @@ export const baseLinkedNodeTests = (
         }
       });
 
-      test("linked list length is correct", () => {
+      it("linked list length is correct", () => {
         expect(list!.length).toBe(1000);
       });
 
-      test("can iterate through list", () => {
+      it("can iterate through list", () => {
         const lastFiveItemsData = [];
         for (const item of list!) {
           lastFiveItemsData.unshift(item?.data);

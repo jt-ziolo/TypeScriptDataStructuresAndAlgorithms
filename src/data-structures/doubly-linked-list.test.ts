@@ -14,7 +14,7 @@ baseLinkedNodeTests(
 );
 
 describe("doubly linked list, reversed (previous) traversal", () => {
-  test("something", () => {
+  it("something", () => {
     expect(5).toBe(5);
   });
 });
