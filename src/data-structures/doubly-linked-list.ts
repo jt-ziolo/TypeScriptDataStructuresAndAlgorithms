@@ -1,28 +1,52 @@
+import { deleteObjectProperties } from "../util";
 import { LinkedList } from "./linked-list";
-import { DoublyLinkedNode } from "./linked-node";
+import { DoublyLinkedNode, DoublyLinkedRootNode } from "./linked-node";
 
 export class DoublyLinkedList<T> implements LinkedList<T> {
-  root?: DoublyLinkedNode<T>;
+  #root?: DoublyLinkedRootNode<T>;
 
-  constructor(root?: DoublyLinkedNode<T>) {
-    this.root = root;
+  constructor(root?: DoublyLinkedRootNode<T>) {
+    this.#root = root;
   }
 
-  insertBeginning(newRoot: DoublyLinkedNode<T>) {
-    newRoot.next = this.root;
-    if (this.root !== undefined) {
-      this.root.previous = newRoot;
+  insertBeginning(newRoot: DoublyLinkedRootNode<T>) {
+    if (this.#root !== undefined) {
+      const oldRoot = new DoublyLinkedNode<T>(this.#root.data);
+      oldRoot.previous = newRoot;
+      newRoot.next = oldRoot;
     }
-    this.root = newRoot;
+    this.#root = newRoot;
+  }
+
+  insertAfter(node: DoublyLinkedNode<T>, newNode: DoublyLinkedNode<T>) {
+    newNode.next = node.next;
+    if (newNode.next !== undefined) {
+      newNode.next.previous = newNode;
+    }
+    node.next = newNode;
+    newNode.previous = node;
   }
 
   removeBeginning() {
-    const newRoot = this.root?.next;
-    if (newRoot === undefined) {
-      delete this.root;
+    const newRoot = this.#root?.next;
+    deleteObjectProperties(this.#root);
+    this.#root = newRoot;
+  }
+
+  removeAfter(node: DoublyLinkedNode<T>) {
+    if (node.next === undefined) {
       return;
     }
-    this.root = newRoot;
+    const newNextNode = node.next.next;
+    deleteObjectProperties(node.next);
+    node.next = newNextNode;
+    if (newNextNode !== undefined) {
+      newNextNode.previous = node;
+    }
+  }
+
+  get root() {
+    return this.#root;
   }
 
   get length() {
@@ -47,26 +71,5 @@ export class DoublyLinkedList<T> implements LinkedList<T> {
         return result;
       },
     };
-  }
-
-  insertAfter(node: DoublyLinkedNode<T>, newNode: DoublyLinkedNode<T>) {
-    newNode.next = node.next;
-    if (newNode.next !== undefined) {
-      newNode.next.previous = newNode;
-    }
-    node.next = newNode;
-    newNode.previous = node;
-  }
-
-  removeAfter(node: DoublyLinkedNode<T>) {
-    if (node.next === undefined) {
-      return;
-    }
-    const newNextNode = node.next?.next;
-    delete node.next;
-    node.next = newNextNode;
-    if (newNextNode !== undefined) {
-      newNextNode.previous = node;
-    }
   }
 }

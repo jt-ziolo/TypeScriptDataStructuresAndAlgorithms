@@ -3,25 +3,40 @@ import { LinkedList } from "./linked-list";
 import { SinglyLinkedNode } from "./linked-node";
 
 export class SinglyLinkedList<T> implements LinkedList<T> {
-  root?: SinglyLinkedNode<T>;
+  #root?: SinglyLinkedNode<T>;
 
   constructor(root?: SinglyLinkedNode<T>) {
-    this.root = root;
+    this.#root = root;
   }
 
   insertBeginning(newRoot: SinglyLinkedNode<T>) {
-    newRoot.next = this.root;
-    this.root = newRoot;
+    newRoot.next = this.#root;
+    this.#root = newRoot;
+  }
+
+  insertAfter(node: SinglyLinkedNode<T>, newNode: SinglyLinkedNode<T>) {
+    newNode.next = node.next;
+    node.next = newNode;
   }
 
   removeBeginning() {
-    const newRoot = this.root?.next;
+    const newRoot = this.#root?.next;
     if (newRoot === undefined) {
-      deleteObjectProperties(this.root);
-      delete this.root;
+      deleteObjectProperties(this.#root);
+      this.#root = undefined;
       return;
     }
-    this.root = newRoot;
+    this.#root = newRoot;
+  }
+
+  removeAfter(node: SinglyLinkedNode<T>) {
+    const newNextNode = node.next?.next;
+    deleteObjectProperties(node.next);
+    node.next = newNextNode;
+  }
+
+  get root() {
+    return this.#root;
   }
 
   get length() {
@@ -46,17 +61,5 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
         return result;
       },
     };
-  }
-
-  insertAfter(node: SinglyLinkedNode<T>, newNode: SinglyLinkedNode<T>) {
-    newNode.next = node.next;
-    node.next = newNode;
-  }
-
-  removeAfter(node: SinglyLinkedNode<T>) {
-    const newNextNode = node.next?.next;
-    deleteObjectProperties(node.next);
-    delete node.next;
-    node.next = newNextNode;
   }
 }

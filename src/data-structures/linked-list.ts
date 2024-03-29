@@ -1,15 +1,14 @@
 import { LinkedNode } from "./linked-node";
 
 export interface LinkedList<T> {
-  root?: LinkedNode<T>;
+  get root(): LinkedNode<T> | undefined;
 
   insertBeginning(newRoot: LinkedNode<T>): void;
+  insertAfter(node: LinkedNode<T>, newNode: LinkedNode<T>): void;
   removeBeginning(): void;
+  removeAfter(node: LinkedNode<T>): void;
 
   get length(): number;
 
   [Symbol.iterator](): Iterator<LinkedNode<T>>;
-
-  insertAfter(node: LinkedNode<T>, newNode: LinkedNode<T>): void;
-  removeAfter(node: LinkedNode<T>): void;
 }

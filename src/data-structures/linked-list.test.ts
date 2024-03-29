@@ -133,13 +133,14 @@ export const baseLinkedNodeTests = (
         expect(list.root!.data).toBe(randomNodeValue);
       });
 
-      it("removeBeginning deletes the root node", () => {
+      it("removeBeginning deletes the root node's properties", () => {
         // Arrange
         list = list as LinkedList<number>;
         // Act
+        const root = list.root;
         list.removeBeginning();
         // Assert
-        expect(list).not.toHaveProperty("root");
+        expect(root).not.toHaveProperty("next");
         expect(list.length).toBe(0);
       });
     });
@@ -178,9 +179,9 @@ export const baseLinkedNodeTests = (
         // Arrange
         list = list as LinkedList<number>;
 
-        const oldRoot = list!.root!;
+        const oldRootData = list!.root!.data;
         list.insertBeginning(constructNode(randomNodeValue));
-        expect(list!.root!.next).toBe(oldRoot);
+        expect(list!.root!.next!.data).toBe(oldRootData);
       });
 
       it("insertBeginning sets newRoot's child to old root", () => {
