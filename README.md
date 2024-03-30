@@ -63,8 +63,8 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ### Searching and Traversal
 
-- [ ] Linear Search
-- [ ] Binary Search
+- [x] Linear Search
+- [x] Binary Search
 - [ ] Rabin-Karp Substring Search
 - [ ] Depth-First Search on a Graph (recursive and iterative)
 - [ ] Breadth-First Search on a Graph (recursive and iterative)
