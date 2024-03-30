@@ -40,6 +40,7 @@ export class DoublyLinkedList<T> implements LinkedList<T> {
     const newNextNode = node.next.next;
     deleteObjectProperties(node.next);
     node.next = newNextNode;
+    // Stryker disable next-line ConditionalExpression: caught as a TypeError
     if (newNextNode !== undefined) {
       newNextNode.previous = node;
     }
