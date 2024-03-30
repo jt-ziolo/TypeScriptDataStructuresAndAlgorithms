@@ -1,6 +1,7 @@
 # may stop ignoring coverage files later
 coverage/
 
+.vscode
 .env.local
 .venv
 node_modules

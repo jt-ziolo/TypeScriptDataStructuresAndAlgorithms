@@ -7,10 +7,9 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 **Worst-Case Time Complexity**
 | Data Structure | Access | Search | Insert | Remove |
 |---|---|---|---|---|
-| Singly Linked List | O(n) | O(n) | O(1)[^1] | O(1)[^2] |
+| Linked List | O(n) | O(n) | O(1)[^1] | O(1)[^1] |
 
-[^1]: When a reference is available to a node which neighbors the insertion point.
-[^2]: When a reference is available to the node being removed, or one of its neighbors.
+[^1]: Evaluated separately from the search operation
 
 **Expected-Case Time Complexity**
 (for those data structures where it differs from the worst-case)
@@ -47,9 +46,8 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 ### Linked List
 
 - [x] (Singly) Linked List
-- [ ] Doubly Linked List
-- [ ] Skip List
-- [ ] Blockchain
+- [x] Doubly Linked List
+- [ ] Indexable Skip List
 
 ### Set
 
