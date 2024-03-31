@@ -21,7 +21,15 @@ export const orderedCharacters = ` ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs
 export const base = 128;
 
 export const getCodeForCharacter = (char: Character) => {
-  return BigInt(orderedCharacters.indexOf(char));
+  const code = BigInt(orderedCharacters.indexOf(char));
+  // Stryker disable next-line all: prevents assignment of character lookup string to an empty string
+  if (code === BigInt(-1)) {
+    throw new Error(
+      // Stryker disable next-line all
+      "Character code must be positive (the character lookup string must not be empty)",
+    );
+  }
+  return code;
 };
 
 export const getRabinFingerprintHash = (substring: string): Hash => {
@@ -64,6 +72,7 @@ export const rabinKarpSubstringSearch = (
   // store the start indices of substrings with matching hashes as we go
   // these are candidates, since there is a possibility of collisions
   // (note: collisions may not)
+  // Stryker disable next-line ArrayDeclaration: caught as TypeError
   let candidates: Array<Index> = [];
 
   // compute the hash for the first <substring length> letters of the source
