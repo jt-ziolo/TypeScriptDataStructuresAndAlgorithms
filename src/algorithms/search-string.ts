@@ -6,9 +6,9 @@
 import { Index } from "./search-linear-collection";
 
 // Aliased types for clarity (BDD)
-type Character = string;
+export type Character = string;
 // bigint is necessary to store base 128 numbers for long substrings
-type Hash = bigint;
+export type Hash = bigint;
 
 // Based on the most popular letters, numbers, and symbols found on a US standard keyboard:
 // 1 space character
@@ -20,7 +20,7 @@ export const orderedCharacters = ` ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs
 // Max symbol code value is 95, which I'm rounding up to base 128 (2^7)
 export const base = 128;
 
-const getCodeForCharacter = (char: Character) => {
+export const getCodeForCharacter = (char: Character) => {
   return BigInt(orderedCharacters.indexOf(char));
 };
 
@@ -51,19 +51,24 @@ const rollRabinFingerprintHash = (
 export const rabinKarpSubstringSearch = (
   sourceString: string,
   substring: string,
+  generateHashFunction: (substring: string) => Hash = getRabinFingerprintHash,
+  rollHashFunction: (
+    substringLength: number,
+    hash: Hash,
+    startCharacter: Character,
+    endCharacter: Character,
+  ) => Hash = rollRabinFingerprintHash,
 ) => {
-  const targetHash = getRabinFingerprintHash(substring);
+  const targetHash = generateHashFunction(substring);
   const substringLength = substring.length;
   // store the start indices of substrings with matching hashes as we go
   // these are candidates, since there is a possibility of collisions
   // (note: collisions may not)
-  const candidates: Array<Index> = [];
+  let candidates: Array<Index> = [];
 
   // compute the hash for the first <substring length> letters of the source
   // string
-  let hash: Hash = getRabinFingerprintHash(
-    sourceString.slice(0, substringLength),
-  );
+  let hash: Hash = generateHashFunction(sourceString.slice(0, substringLength));
   if (hash === targetHash) {
     // start index of zero if the first substring is a potential match
     candidates.push(0);
@@ -74,7 +79,7 @@ export const rabinKarpSubstringSearch = (
   // last possible match position
   const sourceStringLength = sourceString.length;
   for (let i = 1; i < sourceStringLength - substringLength + 1; i++) {
-    hash = rollRabinFingerprintHash(
+    hash = rollHashFunction(
       substringLength,
       hash,
       startCharacter,
@@ -87,7 +92,7 @@ export const rabinKarpSubstringSearch = (
   }
 
   // filter out candidates which do not match
-  candidates.filter((candidate) => {
+  candidates = candidates.filter((candidate) => {
     const candidateSubstring = sourceString.substring(
       candidate,
       candidate + substringLength,

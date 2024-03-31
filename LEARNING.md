@@ -8,3 +8,7 @@
 ## Linked Lists
 
 - For this implementation, I set up my doubly linked list class in a particular way to make sure that there cannot be a node before the root node (either by the root node having a `previous` property or by other nodes accepting a root node as their `next` property). If I did not do that, then it would have been possible for the root node on the list object to be deleted via `removeAfter` while causing a memory leak, or for the root node to get out of sync with the start of the list.
+
+## Hashing
+
+- Even with a large base, collisions can still occur due to the pigeonhole principle: if you hash more strings than there are possible hash values, some strings must have the same hash value. This is true regardless of the hash function used.

@@ -1,4 +1,9 @@
-import { rabinKarpSubstringSearch } from "./search-string";
+import {
+  rabinKarpSubstringSearch,
+  Hash,
+  getCodeForCharacter,
+  Character,
+} from "./search-string";
 
 // describe("hashing implementation", () => {
 //   it("does not exceed safe integer storage size in JavaScript", () => {
@@ -73,5 +78,33 @@ describe("Rabin-Karp Substring Search", () => {
     const indices = rabinKarpSubstringSearch("I spy something red.", "e");
     expect(indices).toEqual([9, 17]);
     expect(indices.length).toBe(2);
+  });
+  it("checks for false matches", () => {
+    const hashFunctionWithCollisions = (substring: string): Hash => {
+      let hashValue: Hash = BigInt(0);
+      for (let i = 0; i < substring.length; i++) {
+        hashValue += getCodeForCharacter(substring.at(i)!);
+      }
+      return hashValue;
+    };
+    const rollHashFunction = (
+      _substringLength: number,
+      hash: Hash,
+      startCharacter: Character,
+      endCharacter: Character,
+    ): Hash => {
+      let resultHash = hash;
+      resultHash -= getCodeForCharacter(startCharacter);
+      resultHash += getCodeForCharacter(endCharacter);
+      return resultHash;
+    };
+    const indices = rabinKarpSubstringSearch(
+      "CAB BACK CABLE",
+      "BA",
+      hashFunctionWithCollisions,
+      rollHashFunction,
+    );
+    expect(indices).toEqual([4]);
+    expect(indices.length).toBe(1);
   });
 });
