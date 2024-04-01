@@ -67,13 +67,43 @@ export const rabinKarpSubstringSearch = (
     endCharacter: Character,
   ) => Hash = rollRabinFingerprintHash,
 ) => {
+  let candidates = getRabinKarpSearchCandidates(
+    sourceString,
+    substring,
+    generateHashFunction,
+    rollHashFunction,
+  );
+
+  // filter out candidates which do not match
+  candidates = candidates.filter((candidate) => {
+    const candidateSubstring = sourceString.substring(
+      candidate,
+      candidate + substring.length,
+    );
+    return candidateSubstring === substring;
+  });
+
+  return candidates;
+};
+
+export const getRabinKarpSearchCandidates = (
+  sourceString: string,
+  substring: string,
+  generateHashFunction: (substring: string) => Hash = getRabinFingerprintHash,
+  rollHashFunction: (
+    substringLength: number,
+    hash: Hash,
+    startCharacter: Character,
+    endCharacter: Character,
+  ) => Hash = rollRabinFingerprintHash,
+) => {
   const targetHash = generateHashFunction(substring);
   const substringLength = substring.length;
   // store the start indices of substrings with matching hashes as we go
   // these are candidates, since there is a possibility of collisions
   // (note: collisions may not)
   // Stryker disable next-line ArrayDeclaration: caught as TypeError
-  let candidates: Array<Index> = [];
+  const candidates: Array<Index> = [];
 
   // compute the hash for the first <substring length> letters of the source
   // string
@@ -99,15 +129,6 @@ export const rabinKarpSubstringSearch = (
       candidates.push(i);
     }
   }
-
-  // filter out candidates which do not match
-  candidates = candidates.filter((candidate) => {
-    const candidateSubstring = sourceString.substring(
-      candidate,
-      candidate + substringLength,
-    );
-    return candidateSubstring === substring;
-  });
 
   return candidates;
 };

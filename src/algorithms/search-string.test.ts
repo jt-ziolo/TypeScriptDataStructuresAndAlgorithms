@@ -3,6 +3,7 @@ import {
   Hash,
   getCodeForCharacter,
   Character,
+  getRabinKarpSearchCandidates,
 } from "./search-string";
 
 // describe("hashing implementation", () => {
@@ -79,7 +80,8 @@ describe("Rabin-Karp Substring Search", () => {
     expect(indices).toEqual([9, 17]);
     expect(indices.length).toBe(2);
   });
-  it("checks for false matches", () => {
+
+  describe("with simplified hash functions", () => {
     const hashFunctionWithCollisions = (substring: string): Hash => {
       let hashValue: Hash = BigInt(0);
       for (let i = 0; i < substring.length; i++) {
@@ -87,6 +89,7 @@ describe("Rabin-Karp Substring Search", () => {
       }
       return hashValue;
     };
+
     const rollHashFunction = (
       _substringLength: number,
       hash: Hash,
@@ -98,13 +101,38 @@ describe("Rabin-Karp Substring Search", () => {
       resultHash += getCodeForCharacter(endCharacter);
       return resultHash;
     };
-    const indices = rabinKarpSubstringSearch(
-      "CAB BACK CABLE",
-      "BA",
-      hashFunctionWithCollisions,
-      rollHashFunction,
-    );
-    expect(indices).toEqual([4]);
-    expect(indices.length).toBe(1);
+
+    it("checks for false matches", () => {
+      const indices = rabinKarpSubstringSearch(
+        "CAB BACK CABLE",
+        "BA",
+        hashFunctionWithCollisions,
+        rollHashFunction,
+      );
+      expect(indices).toEqual([4]);
+      expect(indices.length).toBe(1);
+    });
+    it("may create false matches prior to performing checks", () => {
+      const sourceString = "CAB BACK CABLE";
+      const substring = "BA";
+
+      const candidates = getRabinKarpSearchCandidates(
+        sourceString,
+        substring,
+        hashFunctionWithCollisions,
+        rollHashFunction,
+      );
+      expect(candidates).toEqual([1, 4, 8, 10]);
+      expect(candidates.length).toBe(4);
+
+      const indices = rabinKarpSubstringSearch(
+        sourceString,
+        substring,
+        hashFunctionWithCollisions,
+        rollHashFunction,
+      );
+      expect(indices).not.toEqual(candidates);
+      expect(indices.length).not.toBe(candidates.length);
+    });
   });
 });
