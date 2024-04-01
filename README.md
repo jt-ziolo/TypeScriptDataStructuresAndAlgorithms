@@ -61,11 +61,20 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ## Algorithms
 
+**Time Complexity**
+| Algorithm | Best-Case | Expected-Case | Worst-Case |
+|---|---|---|---|
+| Linear Search | O(1) | O(n) | O(n) |
+| Binary Search | O(1) | O(log2(n)) | O(log2(n)) |
+| Rabin-Karp Substring Search | O(s+b)[^2] | - | O(s*b)[^2] |
+
+[^2]: Where `s` is the length of the substring, and `b` is the length of the base or source string.
+
 ### Searching and Traversal
 
 - [x] Linear Search
 - [x] Binary Search
-- [ ] Rabin-Karp Substring Search
+- [x] Rabin-Karp Substring Search
 - [ ] Depth-First Search on a Graph (recursive and iterative)
 - [ ] Breadth-First Search on a Graph (recursive and iterative)
 - [ ] Binary Search (Binary Search Tree)
