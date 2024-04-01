@@ -1,5 +1,6 @@
 import { randomInt } from "crypto";
-import { Index, binarySearch, linearSearch } from "./search-linear-collection";
+import { binarySearch, linearSearch } from "./search-linear-collection";
+import { Index } from "../util";
 
 type TestCase = {
   description: string;

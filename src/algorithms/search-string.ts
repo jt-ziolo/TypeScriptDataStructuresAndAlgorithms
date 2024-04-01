@@ -3,7 +3,7 @@
  * indices of all instances of the substring within the string.
  */
 
-import { Index } from "./search-linear-collection";
+import { Index } from "../util";
 
 // Aliased types for clarity (BDD)
 export type Character = string;

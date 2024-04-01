@@ -1,10 +1,9 @@
 /*
- * All algorithms specific to linear collections: arrays, linked lists, stacks,
- * queues, etc.
+ * All search algorithms specific to linear collections: arrays, linked lists,
+ * stacks, queues, etc.
  */
 
-// Defined for clarity (BDD)
-export type Index = number;
+import { Index } from "../util";
 
 /* Simple linear search which iterates over the collection from beginning to
  * end while searching for a value. Returns the index of the element, if found,
