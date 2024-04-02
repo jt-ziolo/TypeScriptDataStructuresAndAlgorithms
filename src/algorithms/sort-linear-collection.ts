@@ -30,12 +30,14 @@ export function selectionSort<ElementType>(
         minimumIndex = j;
         continue;
       }
+      // Stryker disable next-line EqualityOperator: cannot test with immutable elements, not critical
       if (minimum! > next!) {
         minimum = next;
         minimumIndex = j;
         continue;
       }
     }
+    // Stryker disable next-line all: optimization, not critical
     if (minimumIndex === i) {
       // no need for a swap, since the minimum is already in the correct spot
       continue;
