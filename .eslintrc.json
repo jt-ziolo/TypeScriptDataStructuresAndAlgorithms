@@ -4,11 +4,15 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["plugin:@typescript-eslint/recommended"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "@typescript-eslint/no-unused-vars": [
-      "error",
+      "warn",
       {
         "args": "all",
         "argsIgnorePattern": "^_",
