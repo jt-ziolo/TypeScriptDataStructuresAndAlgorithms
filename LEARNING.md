@@ -12,3 +12,7 @@
 ## Hashing
 
 - Even with a large base, collisions can still occur due to the pigeonhole principle: if you hash more strings than there are possible hash values, some strings must have the same hash value. This is true regardless of the hash function used.
+
+## Divide and Conquer Algorithms
+
+- When writing recursive algorithms, always check for possible infinite loops with collections of sizes 0 through 2.

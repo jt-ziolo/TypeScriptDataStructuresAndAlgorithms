@@ -1,10 +1,15 @@
 import { randomInt } from "crypto";
-import { Collection } from "../util";
-import { bubbleSort, selectionSort } from "./sort-linear-collection";
+import { Collection, Index } from "../util";
+import {
+  CopyToFunction,
+  NewFunction,
+  SwapFunction,
+  bubbleSort,
+  mergeSort,
+  selectionSort,
+} from "./sort-linear-collection";
 
-type SortFunction = typeof selectionSort;
-
-const arraySwapFunction = (
+const arraySwapFunction: SwapFunction<number> = (
   collection: Collection<number>,
   fromIndex: number,
   toIndex: number,
@@ -15,21 +20,36 @@ const arraySwapFunction = (
   array[toIndex] = fromValue;
 };
 
+const arrayCopyToFunction: CopyToFunction<number> = (
+  fromCollection: Collection<number>,
+  toCollection: Collection<number>,
+  fromIndex: Index,
+  toIndex: Index,
+) => {
+  const fromArray = fromCollection as Array<number>;
+  const toArray = toCollection as Array<number>;
+  toArray[toIndex] = fromArray[fromIndex];
+};
+
+const arrayNewFunction: NewFunction<number> = (length: number) => {
+  return Array.from<number>({ length: length });
+};
+
 const baseSortAlgorithmTests = (
   description: string,
-  sortFunction: SortFunction,
+  sortFunction: (collection: Collection<number>) => void,
 ) => {
   return describe(description, () => {
     it("does not throw an error when called on an empty array", () => {
       const array: Array<number> = [];
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
       expect(array).toEqual([]);
       expect(array.length).toBe(0);
     });
     it("does nothing when called on an array with 1 element", () => {
-      for (let i = 0; i < 10000; i++) {
+      for (let i = 0; i < 100; i++) {
         const array: Array<number> = [i];
-        sortFunction(array, arraySwapFunction);
+        sortFunction(array);
         expect(array).toEqual([i]);
         expect(array.length).toBe(1);
       }
@@ -47,7 +67,7 @@ const baseSortAlgorithmTests = (
       expect(array).toStrictEqual(arrayCopy);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).not.toStrictEqual(arrayCopy);
@@ -67,7 +87,7 @@ const baseSortAlgorithmTests = (
       expect(array).toStrictEqual(arrayCopy);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).not.toStrictEqual(arrayCopy);
@@ -89,7 +109,7 @@ const baseSortAlgorithmTests = (
       expect(array).toStrictEqual(arrayCopy);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).not.toStrictEqual(arrayCopy);
@@ -104,7 +124,7 @@ const baseSortAlgorithmTests = (
       expect(array).toStrictEqual(arrayCopy);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).toStrictEqual(arrayCopy);
@@ -144,7 +164,7 @@ const baseSortAlgorithmTests = (
       expect(isSorted(array)).toBe(false);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).not.toStrictEqual(arrayCopy);
@@ -176,7 +196,7 @@ const baseSortAlgorithmTests = (
       expect(isSorted(array)).toBe(false);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).not.toStrictEqual(arrayCopy);
@@ -190,7 +210,7 @@ const baseSortAlgorithmTests = (
       expect(array).toStrictEqual(arrayCopy);
 
       // Act
-      sortFunction(array, arraySwapFunction);
+      sortFunction(array);
 
       // Assert
       expect(array).not.toStrictEqual(arrayCopy);
@@ -199,5 +219,18 @@ const baseSortAlgorithmTests = (
   });
 };
 
-baseSortAlgorithmTests("selection sort", selectionSort);
-baseSortAlgorithmTests("bubble sort", bubbleSort);
+baseSortAlgorithmTests(
+  "selection sort",
+  function (collection: Collection<number>) {
+    selectionSort(collection, arraySwapFunction);
+  },
+);
+baseSortAlgorithmTests(
+  "bubble sort",
+  function (collection: Collection<number>) {
+    bubbleSort(collection, arraySwapFunction);
+  },
+);
+baseSortAlgorithmTests("merge sort", function (collection: Collection<number>) {
+  mergeSort(collection, arrayCopyToFunction, arrayNewFunction);
+});

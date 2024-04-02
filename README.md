@@ -7,7 +7,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 **Worst-Case Time Complexity**
 | Data Structure | Access | Search | Insert | Remove |
 |---|---|---|---|---|
-| Linked List | O(n) | O(n) | O(1)[^1] | O(1)[^1] |
+| Linked List[^1] | O(n) | O(n) | O(1) | O(1) |
 
 [^1]: Evaluated separately from the search operation
 
@@ -65,10 +65,11 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 | Algorithm | Best-Case | Expected-Case | Worst-Case |
 |---|---|---|---|
 | Linear Search | O(1) | O(n) | O(n) |
-| Binary Search | O(1) | O(log2(n)) | O(log2(n)) |
-| Rabin-Karp Substring Search | O(s+b)[^2] | - | O(s*b)[^2] |
+| Binary Search | O(1) | O(log(n)) | O(log(n)) |
+| Rabin-Karp Substring Search[^2] | O(s+b) | - | O(s\*b) |
 | Insertion Sort | O(n^2) | - | O(n^2) |
 | Bubble Sort | O(n^2) | - | O(n^2) |
+| Merge Sort | O(n\*log(n)) | - | O(n\*log(n)) |
 
 [^2]: Where `s` is the length of the substring, and `b` is the length of the base or source string.
 

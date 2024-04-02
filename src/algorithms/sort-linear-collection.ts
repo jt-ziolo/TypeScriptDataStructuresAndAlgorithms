@@ -5,6 +5,23 @@
 
 import { Collection, Index } from "../util";
 
+export type SwapFunction<ElementType> = (
+  collection: Collection<ElementType>,
+  fromIndex: Index,
+  toIndex: Index,
+) => void;
+
+export type CopyToFunction<ElementType> = (
+  fromCollection: Collection<ElementType>,
+  toCollection: Collection<ElementType>,
+  fromIndex: Index,
+  toIndex: Index,
+) => void;
+
+export type NewFunction<ElementType> = (
+  length: number,
+) => Collection<ElementType>;
+
 /* Selection Sort: Iterates over the collection from beginning to end, sending
  * the minimum element found per iteration to the beginning before starting the
  * next iteration from the new start index. It repeats this process until it
@@ -12,11 +29,7 @@ import { Collection, Index } from "../util";
  */
 export function selectionSort<ElementType>(
   collection: Collection<ElementType>,
-  swapFunction: (
-    collection: Collection<ElementType>,
-    fromIndex: Index,
-    toIndex: Index,
-  ) => void,
+  swapFunction: SwapFunction<ElementType>,
 ) {
   let minimum: ElementType | undefined;
   let minimumIndex: Index | undefined;
@@ -55,11 +68,7 @@ export function selectionSort<ElementType>(
  */
 export function bubbleSort<ElementType>(
   collection: Collection<ElementType>,
-  swapFunction: (
-    collection: Collection<ElementType>,
-    fromIndex: Index,
-    toIndex: Index,
-  ) => void,
+  swapFunction: SwapFunction<ElementType>,
 ) {
   // Stryker disable ArithmeticOperator, EqualityOperator
   for (let i = collection.length - 1; i > 0; i--) {
@@ -70,4 +79,63 @@ export function bubbleSort<ElementType>(
     }
   }
   // Stryker enable all
+}
+
+/* Merge Sort (Recursive): Recursive algorithm which sorts a list by performing
+ * a sort and merge operation on two halves of a sublist. The sort is applied
+ * by performing a comparison and swapping the position of two elements (two
+ * single-element sublists).
+ */
+export function mergeSort<ElementType>(
+  collection: Collection<ElementType>,
+  copyToFunction: CopyToFunction<ElementType>,
+  newFunction: NewFunction<ElementType>,
+): void {
+  const helper: Collection<ElementType> = newFunction(collection.length);
+
+  function merge(low: Index, middle: Index, high: Index): void {
+    // Overwrite the relevant portion of the helper array (low <= i <= high)
+    // with elements from the input array
+    for (let i = low; i <= high; i++) {
+      copyToFunction(collection, helper, i, i);
+    }
+    let helperLeftLow = low;
+    let helperRightLow = middle + 1;
+    let current = low;
+    // Merge from the helper array into the original array, selecting between
+    // the lowest unmerged elements of each subarray with each iteration.
+    while (helperLeftLow <= middle && helperRightLow <= high) {
+      if (helper.at(helperLeftLow)! <= helper.at(helperRightLow)!) {
+        copyToFunction(helper, collection, helperLeftLow, current);
+        helperLeftLow += 1;
+      } else {
+        copyToFunction(helper, collection, helperRightLow, current);
+        helperRightLow += 1;
+      }
+      current += 1;
+    }
+    // Merge the remaining elements, which will always be from the left subarray
+    // if present, since we are merging from lowest value to highest.
+    const remaining = middle - helperLeftLow;
+    for (let i = 0; i <= remaining; i++) {
+      copyToFunction(helper, collection, helperLeftLow + i, current + i);
+    }
+  }
+
+  function mergeSortInner(low: Index, high: Index): void {
+    if (low >= high) {
+      // 1-element array is already sorted
+      return;
+    }
+    // Divide
+    const middle: Index = low + Math.floor((high - low) / 2);
+    // Conquer
+    mergeSortInner(low, middle);
+    mergeSortInner(middle + 1, high);
+    // Combine
+    merge(low, middle, high);
+  }
+
+  // Initial sort call
+  mergeSortInner(0, collection.length - 1);
 }
