@@ -85,7 +85,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ### Sorting
 
-- [ ] Merge Sort
+- [x] Merge Sort
 - [ ] Quick Sort
 - [ ] Radix Sort
 - [x] Bubble Sort
