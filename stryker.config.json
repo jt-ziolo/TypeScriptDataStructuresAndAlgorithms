@@ -7,6 +7,7 @@
   "testRunner_comment": "Take a look at https://stryker-mutator.io/docs/stryker-js/jest-runner for information about the jest plugin.",
   "testRunnerNodeArgs": ["--expose-gc"],
   "coverageAnalysis": "perTest",
+  "incremental": true,
   "plugins": ["@stryker-mutator/jest-runner"],
   "ignorePatterns": ["dist", ".venv", "coverage"]
 }
