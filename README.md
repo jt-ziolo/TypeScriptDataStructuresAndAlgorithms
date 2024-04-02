@@ -68,6 +68,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 | Binary Search | O(1) | O(log2(n)) | O(log2(n)) |
 | Rabin-Karp Substring Search | O(s+b)[^2] | - | O(s*b)[^2] |
 | Insertion Sort | O(n^2) | - | O(n^2) |
+| Bubble Sort | O(n^2) | - | O(n^2) |
 
 [^2]: Where `s` is the length of the substring, and `b` is the length of the base or source string.
 
@@ -86,7 +87,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 - [ ] Merge Sort
 - [ ] Quick Sort
 - [ ] Radix Sort
-- [ ] Bubble Sort
+- [x] Bubble Sort
 - [x] Selection Sort
 - [ ] Heap Sort
 - [ ] External Sort (of large collections using Double Ended Priority Queue)
