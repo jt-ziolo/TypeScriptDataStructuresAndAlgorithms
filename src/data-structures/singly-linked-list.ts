@@ -1,6 +1,14 @@
 import { deleteObjectProperties } from "../util";
-import { LinkedList } from "./linked-list";
-import { SinglyLinkedNode } from "./linked-node";
+import { LinkedList, LinkedNode } from "./linked-list";
+
+export class SinglyLinkedNode<T> implements LinkedNode<T> {
+  data: T;
+  next?: SinglyLinkedNode<T>;
+
+  constructor(data: T) {
+    this.data = data;
+  }
+}
 
 export class SinglyLinkedList<T> implements LinkedList<T> {
   #root?: SinglyLinkedNode<T>;

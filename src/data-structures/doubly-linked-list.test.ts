@@ -1,7 +1,10 @@
 import { randomInt } from "crypto";
-import { DoublyLinkedList } from "./doubly-linked-list";
+import {
+  DoublyLinkedList,
+  DoublyLinkedNode,
+  DoublyLinkedRootNode,
+} from "./doubly-linked-list";
 import { baseLinkedNodeTests } from "./linked-list.test";
-import { DoublyLinkedNode, DoublyLinkedRootNode } from "./linked-node";
 
 // Repeat singly-linked-list tests that are non-specific to that data structure
 baseLinkedNodeTests(

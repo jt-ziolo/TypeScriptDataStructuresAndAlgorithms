@@ -28,13 +28,9 @@ const generateLongSortedList = (length: number) => {
 };
 
 const shortListCase = generateLongSortedList(10);
-console.log(shortListCase);
 const longListCase = generateLongSortedList(100);
-console.log(longListCase);
 const longerListCase = generateLongSortedList(1000);
-console.log(longerListCase);
 const longestListCase = generateLongSortedList(10000);
-console.log(longestListCase);
 
 const testCases: Array<TestCase> = [
   {

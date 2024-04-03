@@ -1,4 +1,7 @@
-import { LinkedNode } from "./linked-node";
+export interface LinkedNode<T> {
+  data: T;
+  next?: LinkedNode<T>;
+}
 
 export interface LinkedList<T> {
   get root(): LinkedNode<T> | undefined;

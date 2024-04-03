@@ -1,6 +1,24 @@
 import { deleteObjectProperties } from "../util";
-import { LinkedList } from "./linked-list";
-import { DoublyLinkedNode, DoublyLinkedRootNode } from "./linked-node";
+import { LinkedList, LinkedNode } from "./linked-list";
+
+export class DoublyLinkedNode<T> implements LinkedNode<T> {
+  data: T;
+  previous?: DoublyLinkedNode<T> | DoublyLinkedRootNode<T>;
+  next?: DoublyLinkedNode<T>;
+
+  constructor(data: T) {
+    this.data = data;
+  }
+}
+
+export class DoublyLinkedRootNode<T> implements LinkedNode<T> {
+  data: T;
+  next?: DoublyLinkedNode<T>;
+
+  constructor(data: T) {
+    this.data = data;
+  }
+}
 
 export class DoublyLinkedList<T> implements LinkedList<T> {
   #root?: DoublyLinkedRootNode<T>;

@@ -1,7 +1,6 @@
 import { randomInt } from "crypto";
-import { LinkedList } from "./linked-list";
-import { LinkedNode, SinglyLinkedNode } from "./linked-node";
-import { SinglyLinkedList } from "./singly-linked-list";
+import { LinkedList, LinkedNode } from "./linked-list";
+import { SinglyLinkedList, SinglyLinkedNode } from "./singly-linked-list";
 
 // Export these tests as a fixture, allowing for them to be reused
 // for doubly linked list testing
