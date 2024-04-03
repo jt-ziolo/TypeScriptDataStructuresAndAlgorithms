@@ -4,12 +4,15 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ## Data Structures
 
+_Note:_ Certain data structures such as Queues and Stacks are implemented using JavaScript's array type (`Array<>` in TypeScript), which is a dynamic array. The Array entries in the tables below reflects this.
+
 **Worst-Case Time Complexity**
 | Data Structure | Access | Search | Insert | Remove |
 |---|---|---|---|---|
 | Linked List[^1] | O(n) | O(n) | O(1) | O(1) |
+| Array | O(1) | O(n) | O(n) | O(n) |
 
-[^1]: Evaluated separately from the search operation
+[^1]: Insert and remove operations are evaluated separately from the search operation.
 
 **Expected-Case Time Complexity**
 (for those data structures where it differs from the worst-case)
@@ -36,7 +39,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ### Queue and Stack
 
-- [ ] Queue
+- [x] Queue
 - [ ] Double-Ended Queue
 - [ ] Fixed-Sized Queue (Circular Buffer implementation)
 - [ ] Priority Queue
