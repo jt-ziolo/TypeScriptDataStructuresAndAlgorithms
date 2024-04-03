@@ -178,25 +178,18 @@ export const baseSortAlgorithmTests = (
     };
 
     it("successfully sorts a large array containing only unique elements", () => {
-      // TODO
-      for (let i = 0; i < 100; i++) {
-        // Arrange
-        const array: Array<number> = generateUnsortedArrayNoDuplicates(10); // TODO
-        const arrayCopy = structuredClone(array);
-        expect(array).toStrictEqual(arrayCopy);
-        expect(isSorted(array)).toBe(false);
+      // Arrange
+      const array: Array<number> = generateUnsortedArrayNoDuplicates(1000);
+      const arrayCopy = structuredClone(array);
+      expect(array).toStrictEqual(arrayCopy);
+      expect(isSorted(array)).toBe(false);
 
-        // Act
-        sortFunction(array);
+      // Act
+      sortFunction(array);
 
-        // Assert
-        expect(array).not.toStrictEqual(arrayCopy);
-        // TODO
-        if (!isSorted(array)) {
-          console.log(array);
-        }
-        expect(isSorted(array)).toBe(true);
-      }
+      // Assert
+      expect(array).not.toStrictEqual(arrayCopy);
+      expect(isSorted(array)).toBe(true);
     });
 
     const generateUnsortedArrayWithDuplicates = (length: number) => {
@@ -217,25 +210,18 @@ export const baseSortAlgorithmTests = (
     };
 
     it("successfully sorts a large array containing duplicate elements", () => {
-      // TODO
-      for (let i = 0; i < 100; i++) {
-        // Arrange
-        const array: Array<number> = generateUnsortedArrayWithDuplicates(10); // TODO
-        const arrayCopy = structuredClone(array);
-        expect(array).toStrictEqual(arrayCopy);
-        expect(isSorted(array)).toBe(false);
+      // Arrange
+      const array: Array<number> = generateUnsortedArrayWithDuplicates(1000);
+      const arrayCopy = structuredClone(array);
+      expect(array).toStrictEqual(arrayCopy);
+      expect(isSorted(array)).toBe(false);
 
-        // Act
-        sortFunction(array);
+      // Act
+      sortFunction(array);
 
-        // Assert
-        expect(array).not.toStrictEqual(arrayCopy);
-        // TODO
-        if (!isSorted(array)) {
-          console.log(array);
-        }
-        expect(isSorted(array)).toBe(true);
-      }
+      // Assert
+      expect(array).not.toStrictEqual(arrayCopy);
+      expect(isSorted(array)).toBe(true);
     });
   });
 };
