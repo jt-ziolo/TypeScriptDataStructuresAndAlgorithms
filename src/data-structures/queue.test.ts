@@ -32,6 +32,14 @@ const baseQueueTests = (
           expect(queue.first).toBe(randomNum);
         }
       });
+      it("should support duplicate elements", () => {
+        const queue = queueConstructor([1, 2, 3, 3, 3]);
+        expect(queue.remove()).toBe(1);
+        expect(queue.remove()).toBe(2);
+        expect(queue.remove()).toBe(3);
+        expect(queue.remove()).toBe(3);
+        expect(queue.remove()).toBe(3);
+      });
       it("should successfully add an element to the back of a queue containing non-duplicate elements", () => {
         const queue = queueConstructor();
         for (let i = 0; i < 100; i++) {
