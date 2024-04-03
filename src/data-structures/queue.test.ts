@@ -15,6 +15,15 @@ const baseQueueTests = (
       });
     });
     describe("add, remove, first", () => {
+      it("removing elements from an empty queue should not change the length", () => {
+        const queue = queueConstructor();
+        queue.add(1);
+        expect(queue.length).toBe(1);
+        for (let i = 0; i < 10; i++) {
+          queue.remove();
+          expect(queue.length).toBe(0);
+        }
+      });
       it("should successfully add an element to an empty queue", () => {
         for (let i = 0; i < 100; i++) {
           const queue = queueConstructor();
