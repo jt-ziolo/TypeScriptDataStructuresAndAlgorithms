@@ -4,7 +4,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 ## Data Structures
 
-_Note:_ Certain data structures such as Queues and Stacks are implemented using JavaScript's array type (`Array<>` in TypeScript), which is a dynamic array. The Array entries in the tables below reflects this.
+_Note:_ Certain data structures (e.g. Queues and Stacks) are implemented using JavaScript's array type (`Array<>` in TypeScript), which is implemented as a dynamic array.
 
 **Worst-Case Time Complexity**
 | Data Structure | Access | Search | Insert | Remove |
@@ -26,6 +26,14 @@ _Note:_ Certain data structures such as Queues and Stacks are implemented using 
 |---|---|---|---|---|
 |   |   |   |   |   |
 
+### Time Complexity of Stacks and Queues
+
+Stacks and queues are implemented using either JavaScript arrays or Singly Linked Lists. In both cases, the time complexity of the stack and queue operations (`push`, `pop`, `top`/`first` aka peek, `add` aka enqueue, `remove` aka dequeue, `isEmpty`, `length`) are O(1). A counting technique is used across relevant implementations to achieve a `length` method that runs in O(1) time.
+
+There is marginally more memory used in the array implementations compared to the Singly Linked List implementations, because some array space is reserved during insertion operations since JavaScript arrays are dynamic arrays. However, the array implementations may perform better than the linked list implementations for certain hardware setups due to their contiguous memory structure, especially when vast numbers of elements are stored and processed in a complex program while the machine is under significant load.
+
+## Todo List
+
 ### Graph, Tree, and Heap
 
 - [ ] Weighted Graph (Adjacency List and Adjacency Matrix implementations)
@@ -44,7 +52,7 @@ _Note:_ Certain data structures such as Queues and Stacks are implemented using 
 - [ ] Fixed-Sized Queue (Circular Buffer implementation)
 - [ ] Priority Queue
 - [ ] Double-Ended Priority Queue
-- [ ] Stack
+- [x] Stack
 
 ### Linked List
 
