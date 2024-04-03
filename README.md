@@ -70,8 +70,10 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 | Insertion Sort | O(n^2) | - | O(n^2) |
 | Bubble Sort | O(n^2) | - | O(n^2) |
 | Merge Sort | O(n\*log(n)) | - | O(n\*log(n)) |
+| Radix Sort[^3] | O(k\*n) | - | O(k\*n) |
 
 [^2]: Where `s` is the length of the substring, and `b` is the length of the base or source string.
+[^3]: Where `k` is the number of digits (for numbers; more generally it's the length of whatever quantity you are sorting), and `n` is the number of elements.
 
 ### Searching and Traversal
 
@@ -87,7 +89,7 @@ Intended as a personal learning exercise to help knock off some rust with Algori
 
 - [x] Merge Sort
 - [ ] Quick Sort
-- [ ] Radix Sort
+- [x] Radix Sort
 - [x] Bubble Sort
 - [x] Selection Sort
 - [ ] Heap Sort
