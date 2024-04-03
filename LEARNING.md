@@ -16,3 +16,9 @@
 ## Divide and Conquer Algorithms
 
 - When writing recursive algorithms, always check for possible infinite loops with collections of sizes 0 through 2.
+
+## Floating Point Arithmetic and Radix Sort
+
+- When attempting to get a chosen digit of an integer using math functions (division by a power of 10 followed by a floor or rounding operation, etc.), you may get incorrect results for certain input numbers due to floating point errors.
+- JavaScript numbers are double-precision floating point numbers. While BigInt is available, it also has a memory tradeoff and would require a modulo-based approach.
+- The easiest way to get the digit of a number (though not ideal from a performance perspective) is to convert the number to a string and then access the digit using the string indexer, parsing it back into an integer.
