@@ -73,7 +73,7 @@ export class QueueLinkedList<ElementType> implements Queue<ElementType> {
     return value;
   }
   get first() {
-    return this.#list?.root?.data;
+    return this.#list.root?.data;
   }
   get isEmpty() {
     return this.#list.root === undefined;
