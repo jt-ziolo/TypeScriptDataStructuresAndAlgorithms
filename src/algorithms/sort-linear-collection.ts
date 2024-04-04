@@ -5,20 +5,20 @@
 
 import { Collection, Index } from "../util";
 
-export type SwapFunction<ElementType> = (
+export type CollectionSwapFunction<ElementType> = (
   collection: Collection<ElementType>,
   fromIndex: Index,
   toIndex: Index,
 ) => void;
 
-export type CopyToFunction<ElementType> = (
+export type CollectionCopyToFunction<ElementType> = (
   fromCollection: Collection<ElementType>,
   toCollection: Collection<ElementType>,
   fromIndex: Index,
   toIndex: Index,
 ) => void;
 
-export type NewFunction<ElementType> = (
+export type CollectionConstructor<ElementType> = (
   length: number,
 ) => Collection<ElementType>;
 
@@ -29,7 +29,7 @@ export type NewFunction<ElementType> = (
  */
 export function selectionSort<ElementType>(
   collection: Collection<ElementType>,
-  swapFunction: SwapFunction<ElementType>,
+  swapFunction: CollectionSwapFunction<ElementType>,
 ) {
   let minimum: ElementType | undefined;
   let minimumIndex: Index | undefined;
@@ -68,7 +68,7 @@ export function selectionSort<ElementType>(
  */
 export function bubbleSort<ElementType>(
   collection: Collection<ElementType>,
-  swapFunction: SwapFunction<ElementType>,
+  swapFunction: CollectionSwapFunction<ElementType>,
 ) {
   // Stryker disable ArithmeticOperator, EqualityOperator
   for (let i = collection.length - 1; i > 0; i--) {
@@ -88,10 +88,12 @@ export function bubbleSort<ElementType>(
  */
 export function mergeSort<ElementType>(
   collection: Collection<ElementType>,
-  copyToFunction: CopyToFunction<ElementType>,
-  newFunction: NewFunction<ElementType>,
+  copyToFunction: CollectionCopyToFunction<ElementType>,
+  collectionConstructor: CollectionConstructor<ElementType>,
 ): void {
-  const helper: Collection<ElementType> = newFunction(collection.length);
+  const helper: Collection<ElementType> = collectionConstructor(
+    collection.length,
+  );
 
   function merge(low: Index, middle: Index, high: Index): void {
     // Overwrite the relevant portion of the helper array (low <= i <= high)

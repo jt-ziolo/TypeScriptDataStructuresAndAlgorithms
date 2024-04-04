@@ -1,6 +1,6 @@
 import { ExpectedPositiveIntegerError } from "../error";
 import { Collection, Index } from "../util";
-import { CopyToFunction } from "./sort-linear-collection";
+import { CollectionCopyToFunction } from "./sort-linear-collection";
 
 /* Radix Sort: Sorts elements lexicographically by distributing them into
  * "bins". The data must be represented in a way that falls into a fixed set of
@@ -36,7 +36,7 @@ export const getDigit = (value: number, fromRightIdx: Index) => {
 
 export const radixSort = (
   collection: Collection<number>,
-  copyToFunction: CopyToFunction<number>,
+  copyToFunction: CollectionCopyToFunction<number>,
 ): void => {
   // find the maximum number of digits
   let max = 0;

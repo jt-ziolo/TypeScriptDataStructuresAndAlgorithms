@@ -1,15 +1,15 @@
 import { randomInt } from "crypto";
 import { Collection, Index } from "../util";
 import {
-  CopyToFunction,
-  NewFunction,
-  SwapFunction,
+  CollectionCopyToFunction,
+  CollectionConstructor,
+  CollectionSwapFunction,
   bubbleSort,
   mergeSort,
   selectionSort,
 } from "./sort-linear-collection";
 
-const arraySwapFunction: SwapFunction<number> = (
+const arraySwapFunction: CollectionSwapFunction<number> = (
   collection: Collection<number>,
   fromIndex: number,
   toIndex: number,
@@ -20,7 +20,7 @@ const arraySwapFunction: SwapFunction<number> = (
   array[toIndex] = fromValue;
 };
 
-export const arrayCopyToFunction: CopyToFunction<number> = (
+export const arrayCopyToFunction: CollectionCopyToFunction<number> = (
   fromCollection: Collection<number>,
   toCollection: Collection<number>,
   fromIndex: Index,
@@ -31,7 +31,7 @@ export const arrayCopyToFunction: CopyToFunction<number> = (
   toArray[toIndex] = fromArray[fromIndex];
 };
 
-const arrayNewFunction: NewFunction<number> = (length: number) => {
+const arrayNewFunction: CollectionConstructor<number> = (length: number) => {
   return Array.from<number>({ length: length });
 };
 
