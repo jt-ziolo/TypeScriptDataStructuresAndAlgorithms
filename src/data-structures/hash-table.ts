@@ -7,12 +7,13 @@ interface StringConvertible {
 
 // JavaScript implementation of Java string hash function
 // Source: https://stackoverflow.com/a/8831937
-const hash = (item: StringConvertible) => {
+export const hash = (item: StringConvertible) => {
   const str = item.toString();
   let hash = 0;
   for (let i = 0, len = str.length; i < len; i++) {
     const charCode = str.charCodeAt(i);
     // Bitwise left shift
+    // Stryker disable next-line ArithmeticOperator: hashing algorithm detail, not critical
     hash = (hash << 5) - hash + charCode;
     // Convert to 32bit integer using bitwise OR assignment
     hash |= 0;
@@ -32,6 +33,7 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
     initialKeyValuePairs?: Iterable<[KeyType, ValueType]>,
   ) {
     this.#size = size;
+    // Stryker disable next-line ArrayDeclaration: optimization
     this.#array = new Array<SinglyLinkedList<[KeyType, ValueType]>>(size);
     if (initialKeyValuePairs === undefined) {
       return;
@@ -44,6 +46,9 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
   get(key: KeyType) {
     const index = hash(key) % this.#size;
     const list = this.#array[index];
+    if (list === undefined) {
+      throw new KeyNotFoundError(key);
+    }
     for (let node = list.root; node !== undefined; node = node.next) {
       if (node.data[0] === key) {
         return node.data[1];
@@ -78,6 +83,7 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
       if (throwIfNotFound) {
         throw new KeyNotFoundError(key);
       }
+      return;
     }
     const list = this.#array[index];
     // check if the list includes the key being stored and delete the list node
