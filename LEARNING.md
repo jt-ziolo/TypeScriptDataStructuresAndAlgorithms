@@ -22,3 +22,32 @@
 - When attempting to get a chosen digit of an integer using math functions (division by a power of 10 followed by a floor or rounding operation, etc.), you may get incorrect results for certain input numbers due to floating point errors.
 - JavaScript numbers are double-precision floating point numbers. While BigInt is available, it also has a memory tradeoff and would require a modulo-based approach.
 - The easiest way to get the digit of a number (though not ideal from a performance perspective) is to convert the number to a string and then access the digit using the string indexer, parsing it back into an integer.
+
+## For Loop Additional Initialization
+
+- If additional initialized assignments are needed in a for loop (for example, setting the length of a string to be compared against the index in the condition step), you can specify those assignments in comma-separated format prior to the semicolon.
+
+```ts
+// Definition
+for (initialization; condition; afterthought) {
+    statement;
+}
+
+// The following examples are all valid javascript
+for (let i = 0, len = str.length; i < len; i++) {
+    // ...
+}
+
+for (let i = 0; i < 10; i++) {
+    // ...
+}
+
+for (let i = 0; ; i++) {
+    if(i >= 10) {
+        break;
+    }
+}
+
+let iTimesJ = 0;
+for (let i = 0; i < 10; i++, j++, iTimesJ = i * j);
+```

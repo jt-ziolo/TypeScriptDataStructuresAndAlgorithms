@@ -49,8 +49,7 @@ There is marginally more memory used in the array implementations compared to th
 
 - [x] Queue
 - [ ] Double-Ended Queue
-- [ ] Fixed-Sized Queue (Circular Buffer implementation)
-- [ ] Priority Queue
+- [ ] Priority Queue (using Heap)
 - [ ] Double-Ended Priority Queue
 - [x] Stack
 
@@ -63,12 +62,11 @@ There is marginally more memory used in the array implementations compared to th
 ### Set
 
 - [ ] Disjoint-Set
-- [ ] Multiset
+- [ ] Multiset (aka Bag)
 
 ### Map
 
-- [ ] Hash Table
-- [ ] Multimap
+- [x] Hash Table
 
 ## Algorithms
 

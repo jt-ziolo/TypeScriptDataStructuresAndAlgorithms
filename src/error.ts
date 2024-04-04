@@ -9,3 +9,11 @@ export class ExpectedPositiveIntegerError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
+
+export class KeyNotFoundError extends Error {
+  constructor(key: unknown) {
+    super(`Key not found: "${key}".`);
+    this.name = "KeyNotFoundError";
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
