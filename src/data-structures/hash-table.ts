@@ -54,6 +54,9 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
 
   set(key: KeyType, value: ValueType, allowOverwrite = true) {
     const index = hash(key) % this.#size;
+    if (this.#array[index] === undefined) {
+      this.#array[index] = new SinglyLinkedList<[KeyType, ValueType]>();
+    }
     const list = this.#array[index];
     // check if the list already includes the key being stored and overwrite
     // the value if so
@@ -71,6 +74,11 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
 
   delete(key: KeyType, throwIfNotFound = true) {
     const index = hash(key) % this.#size;
+    if (this.#array[index] === undefined) {
+      if (throwIfNotFound) {
+        throw new KeyNotFoundError(key);
+      }
+    }
     const list = this.#array[index];
     // check if the list includes the key being stored and delete the list node
     // if so
