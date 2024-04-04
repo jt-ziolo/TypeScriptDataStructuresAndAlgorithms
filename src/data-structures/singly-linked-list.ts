@@ -70,4 +70,14 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
       },
     };
   }
+
+  // Stryker disable all
+  public toString(): string {
+    const values: Array<string> = [];
+    for (let node = this.#root; node !== undefined; node = node.next) {
+      values.push(`${node.data}`);
+    }
+    return `LinkedList{${values.join("->")}}`;
+  }
+  // Stryker enable all
 }

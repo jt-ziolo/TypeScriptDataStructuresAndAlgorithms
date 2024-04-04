@@ -98,4 +98,9 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
       throw new KeyNotFoundError(key);
     }
   }
+
+  // TODO: needs to be called specifically, won't be inferred
+  public toString(): string {
+    return this.#array.toString();
+  }
 }
