@@ -9,5 +9,5 @@
   "coverageAnalysis": "perTest",
   "incremental": true,
   "plugins": ["@stryker-mutator/jest-runner"],
-  "ignorePatterns": ["dist", ".venv", "coverage"]
+  "ignorePatterns": ["dist", ".venv", "reports"]
 }

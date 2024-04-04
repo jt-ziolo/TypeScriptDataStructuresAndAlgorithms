@@ -6,6 +6,7 @@
     "build": "babel src --out-file dist/bundle.js",
     "jest-only": "node --expose-gc ./node_modules/jest/bin/jest.js --logHeapUsage",
     "test": "node --expose-gc ./node_modules/jest/bin/jest.js --logHeapUsage && npx stryker run",
+    "test-precommit": "node --expose-gc ./node_modules/jest/bin/jest.js --logHeapUsage --coverage=false",
     "lint": "eslint ."
   },
   "keywords": [],
