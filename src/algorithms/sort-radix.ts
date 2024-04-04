@@ -13,9 +13,6 @@ export const getNumberOfDigits = (value: number) => {
   if (!Number.isInteger(value) || value < 0) {
     throw new ExpectedPositiveIntegerError(value);
   }
-  if (value === 10) {
-    return 2;
-  }
   let exp = 1;
   while (10 ** exp <= value) {
     exp += 1;
