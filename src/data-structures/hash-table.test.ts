@@ -7,6 +7,16 @@ describe("hash table", () => {
   beforeEach(() => {
     table = new HashTable<string, number>(1000);
   });
+  describe("defaults", () => {
+    it("by default allows overwrites for the set method", () => {
+      table.set("hello", 1);
+      table.set("hello", 2);
+      expect(table.get("hello")).toBe(2);
+    });
+    it("by default throws an error if a key targeted by delete is not found", () => {
+      expect(() => table.delete("hello")).toThrow(KeyNotFoundError);
+    });
+  });
   describe("hash function", () => {
     it("generates a unique hash across simple inputs", () => {
       const cases = [
@@ -96,6 +106,9 @@ describe("hash table", () => {
         KeyNotFoundError,
       );
     });
+    it("should throw a KeyNotFoundError when called on a table with collisions for a key that doesn't exist in that table", () => {
+      expect(() => table.delete("something", true)).toThrow(KeyNotFoundError);
+    });
     it("should not alter the table if the key is not found", () => {
       const smallTable = new HashTable<string, number>(5);
       smallTable.set("a", 0);
@@ -105,6 +118,22 @@ describe("hash table", () => {
       const originalStr = smallTable.toString();
       smallTable.delete("something", false);
       expect(smallTable.toString()).toStrictEqual(originalStr);
+    });
+    it("should not alter the table if the key is not found, even when the key collides with existing keys", () => {
+      const smallerTable = new HashTable<string, number>(1);
+      for (let i = 0; i < 50; i++) {
+        smallerTable.set(`entry${i}`, i * 2);
+      }
+      const nonexistantKey = "doesn't exist";
+      expect(() => smallerTable.delete(nonexistantKey, true)).toThrow();
+      const checkEntries = () => {
+        for (let i = 0; i < 50; i++) {
+          expect(smallerTable.get(`entry${i}`)).toBe(i * 2);
+        }
+      };
+      checkEntries();
+      smallerTable.delete(nonexistantKey, false);
+      checkEntries();
     });
     it("should successfully delete an entry in the table (no collisions)", () => {
       table.set("a", 0);
@@ -135,6 +164,18 @@ describe("hash table", () => {
         expect(smallerTable.get(`entry${i}`)).toBe(i * 2);
       }
     });
+  });
+  it("should store the initial set of key/value pairs when provided to the constructor", () => {
+    const initialPairs: Array<[string, number]> = [
+      ["0", 1000],
+      ["1", 2345],
+      ["2", 303],
+      ["3", 404],
+    ];
+    const smallerTable = new HashTable<string, number>(10, initialPairs);
+    for (let i = 0; i < 4; i++) {
+      expect(smallerTable.get(i.toString())).toBe(initialPairs.at(i)![1]);
+    }
   });
   it("should be capable of storing two entries with colliding hashes and it should resolve the collision", () => {
     const stringA = "Aa";

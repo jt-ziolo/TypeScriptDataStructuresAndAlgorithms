@@ -88,11 +88,12 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
     const list = this.#array[index];
     // check if the list includes the key being stored and delete the list node
     // if so
+    // Stryker disable next-line OptionalChaining: caught as TypeError
+    if (list.root?.data[0] === key) {
+      list.removeBeginning();
+      return;
+    }
     for (let node = list.root; node !== undefined; ) {
-      if (node === list.root && node.data[0] === key) {
-        list.removeBeginning();
-        return;
-      }
       const nextNode = node.next;
       if (nextNode?.data[0] === key) {
         list.removeAfter(node);
@@ -105,8 +106,10 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
     }
   }
 
-  // TODO: needs to be called specifically, won't be inferred
+  // TODO: needs to be called specifically, is not inferred
+  // Stryker disable all
   public toString(): string {
     return this.#array.toString();
   }
+  // Stryker enable all
 }
