@@ -14,7 +14,7 @@ _Note:_ Certain data structures (e.g. Queues and Stacks) are implemented using J
 | Hash Table[^2] | - | O(n) | O(n) | O(n) |
 
 [^1]: Insert and remove operations are evaluated separately from the search operation.
-[^2]: Assuming a poor hash function and/or too small of a table size, resulting in many collisions (the number of list items per bin is proportional to the total number of items stored in the table).
+[^2]: Assuming a poor hash function and/or too small of a table size, resulting in many collisions (the number of list items per bin is proportional to the total number of items stored in the table). Also assumes that collisions are handled using a Singly Linked List as implemented in the code.
 
 **Expected-Case Time Complexity**
 (for those data structures where it differs from the worst-case)
