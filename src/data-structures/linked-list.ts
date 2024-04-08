@@ -5,13 +5,11 @@ export interface LinkedNode<T> {
   next?: LinkedNode<T>;
 }
 
-export interface LinkedList<T> extends HasLength {
+export interface LinkedList<T> extends HasLength, Iterable<LinkedNode<T>> {
   get root(): LinkedNode<T> | undefined;
 
   insertBeginning(newRoot: LinkedNode<T>): void;
   insertAfter(node: LinkedNode<T>, newNode: LinkedNode<T>): void;
   removeBeginning(): void;
   removeAfter(node: LinkedNode<T>): void;
-
-  [Symbol.iterator](): Iterator<LinkedNode<T>>;
 }
