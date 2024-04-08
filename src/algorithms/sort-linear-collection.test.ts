@@ -1,5 +1,5 @@
 import { randomInt } from "crypto";
-import { Collection, Index } from "../util";
+import { Collection, Index, isSorted } from "../util";
 import {
   CollectionCopyToFunction,
   CollectionConstructor,
@@ -165,17 +165,17 @@ export const baseSortAlgorithmTests = (
       return array;
     };
 
-    const isSorted = (array: Array<number>): boolean => {
-      if (array.length <= 1) {
-        throw new Error("Expected array to have length > 1.");
-      }
-      for (let i = 1; i < array.length; i++) {
-        if (array.at(i)! < array.at(i - 1)!) {
-          return false;
-        }
-      }
-      return true;
-    };
+    // const isSorted = (array: Array<number>): boolean => {
+    //   if (array.length <= 1) {
+    //     throw new Error("Expected array to have length > 1.");
+    //   }
+    //   for (let i = 1; i < array.length; i++) {
+    //     if (array.at(i)! < array.at(i - 1)!) {
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // };
 
     it("successfully sorts a large array containing only unique elements", () => {
       // Arrange
