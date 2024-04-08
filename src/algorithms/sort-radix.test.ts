@@ -1,10 +1,7 @@
 import { randomInt } from "crypto";
 import { getDigit, getNumberOfDigits, radixSort } from "./sort-radix";
-import {
-  arrayCopyToFunction,
-  baseSortAlgorithmTests,
-} from "./sort-linear-collection.test";
-import { Collection } from "../util";
+import { baseSortAlgorithmTests } from "./sort-linear-collection.test";
+import { Collection, arrayCopyToFunction } from "../util";
 
 describe("getNumberOfDigits", () => {
   it("throws an error for non-positive integer input for the value arg", () => {

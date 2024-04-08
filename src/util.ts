@@ -26,3 +26,37 @@ export function isSorted<ElementType>(collection: Collection<ElementType>) {
   }
   return true;
 }
+
+export const arrayCopyToFunction: CollectionCopyToFunction<number> = (
+  fromCollection: Collection<number>,
+  toCollection: Collection<number>,
+  fromIndex: Index,
+  toIndex: Index,
+) => {
+  const fromArray = fromCollection as Array<number>;
+  const toArray = toCollection as Array<number>;
+  toArray[toIndex] = fromArray[fromIndex];
+};
+
+export const arrayEmptyConstructor: CollectionConstructor<number> = (
+  length: number,
+) => {
+  return Array.from<number>({ length: length });
+};
+
+export type CollectionSwapFunction<ElementType> = (
+  collection: Collection<ElementType>,
+  fromIndex: Index,
+  toIndex: Index,
+) => void;
+
+export type CollectionCopyToFunction<ElementType> = (
+  fromCollection: Collection<ElementType>,
+  toCollection: Collection<ElementType>,
+  fromIndex: Index,
+  toIndex: Index,
+) => void;
+
+export type CollectionConstructor<ElementType> = (
+  length: number,
+) => Collection<ElementType>;

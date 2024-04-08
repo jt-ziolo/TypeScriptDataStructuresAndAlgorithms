@@ -3,24 +3,13 @@
  * stacks, queues, etc..
  */
 
-import { Collection, Index } from "../util";
-
-export type CollectionSwapFunction<ElementType> = (
-  collection: Collection<ElementType>,
-  fromIndex: Index,
-  toIndex: Index,
-) => void;
-
-export type CollectionCopyToFunction<ElementType> = (
-  fromCollection: Collection<ElementType>,
-  toCollection: Collection<ElementType>,
-  fromIndex: Index,
-  toIndex: Index,
-) => void;
-
-export type CollectionConstructor<ElementType> = (
-  length: number,
-) => Collection<ElementType>;
+import {
+  Collection,
+  CollectionConstructor,
+  CollectionCopyToFunction,
+  CollectionSwapFunction,
+  Index,
+} from "../util";
 
 /* Selection Sort: Iterates over the collection from beginning to end, sending
  * the minimum element found per iteration to the beginning before starting the

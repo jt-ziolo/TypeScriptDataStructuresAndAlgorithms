@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1712614458443" clover="3.2.0">
-  <project timestamp="1712614458443" name="All files">
-    <metrics statements="341" coveredstatements="326" conditionals="108" coveredconditionals="99" methods="81" coveredmethods="77" elements="530" coveredelements="502" complexity="0" loc="341" ncloc="341" packages="3" files="12" classes="12"/>
+<coverage generated="1712615380820" clover="3.2.0">
+  <project timestamp="1712615380820" name="All files">
+    <metrics statements="347" coveredstatements="341" conditionals="108" coveredconditionals="103" methods="83" coveredmethods="80" elements="538" coveredelements="524" complexity="0" loc="347" ncloc="347" packages="3" files="12" classes="12"/>
     <package name="src">
-      <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+      <metrics statements="21" coveredstatements="20" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="6"/>
       <file name="error.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/error.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="5" count="5" type="stmt"/>
@@ -14,16 +14,22 @@
         <line num="17" count="6" type="stmt"/>
       </file>
       <file name="util.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/util.ts">
-        <metrics statements="9" coveredstatements="8" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
         <line num="12" count="9" type="stmt"/>
-        <line num="13" count="1074" type="stmt"/>
-        <line num="14" count="3120" type="stmt"/>
-        <line num="19" count="35" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="1043" type="stmt"/>
+        <line num="14" count="3022" type="stmt"/>
+        <line num="19" count="37" type="cond" truecount="1" falsecount="1"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="22" count="35" type="stmt"/>
-        <line num="23" count="14036" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="37" type="stmt"/>
+        <line num="23" count="14028" type="cond" truecount="2" falsecount="0"/>
         <line num="24" count="14" type="stmt"/>
-        <line num="27" count="21" type="stmt"/>
+        <line num="27" count="23" type="stmt"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="36" count="86556" type="stmt"/>
+        <line num="37" count="86556" type="stmt"/>
+        <line num="38" count="86556" type="stmt"/>
+        <line num="41" count="9" type="stmt"/>
+        <line num="44" count="216" type="stmt"/>
       </file>
     </package>
     <package name="src.algorithms">
@@ -32,12 +38,12 @@
         <metrics statements="20" coveredstatements="20" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
         <line num="16" count="9" type="stmt"/>
         <line num="17" count="9" type="stmt"/>
-        <line num="18" count="10197" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="5147" type="cond" truecount="2" falsecount="0"/>
         <line num="19" count="8" type="stmt"/>
-        <line num="21" count="10189" type="stmt"/>
+        <line num="21" count="5139" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="36" count="9" type="stmt"/>
-        <line num="37" count="19" type="stmt"/>
+        <line num="37" count="23" type="stmt"/>
         <line num="39" count="9" type="stmt"/>
         <line num="40" count="41" type="stmt"/>
         <line num="43" count="9" type="stmt"/>
@@ -45,9 +51,9 @@
         <line num="46" count="9" type="stmt"/>
         <line num="47" count="41" type="stmt"/>
         <line num="48" count="41" type="cond" truecount="2" falsecount="0"/>
-        <line num="49" count="22" type="stmt"/>
-        <line num="50" count="19" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="11" type="stmt"/>
+        <line num="49" count="18" type="stmt"/>
+        <line num="50" count="23" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="15" type="stmt"/>
         <line num="53" count="8" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
       </file>
@@ -95,90 +101,90 @@
       </file>
       <file name="sort-linear-collection.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/algorithms/sort-linear-collection.ts">
         <metrics statements="43" coveredstatements="43" conditionals="14" coveredconditionals="14" methods="5" coveredmethods="5"/>
-        <line num="36" count="216" type="stmt"/>
-        <line num="37" count="4232" type="stmt"/>
-        <line num="38" count="4232" type="stmt"/>
-        <line num="40" count="4232" type="stmt"/>
-        <line num="41" count="1994342" type="stmt"/>
-        <line num="42" count="1994342" type="cond" truecount="2" falsecount="0"/>
-        <line num="43" count="4232" type="stmt"/>
-        <line num="44" count="4232" type="stmt"/>
-        <line num="45" count="4232" type="stmt"/>
-        <line num="48" count="1990110" type="cond" truecount="2" falsecount="0"/>
-        <line num="49" count="21551" type="stmt"/>
-        <line num="50" count="21551" type="stmt"/>
-        <line num="51" count="21551" type="stmt"/>
-        <line num="55" count="4232" type="cond" truecount="2" falsecount="0"/>
-        <line num="57" count="252" type="stmt"/>
-        <line num="59" count="3980" type="stmt"/>
-        <line num="74" count="216" type="stmt"/>
-        <line num="75" count="4021" type="stmt"/>
-        <line num="76" count="1993099" type="cond" truecount="2" falsecount="0"/>
-        <line num="77" count="995023" type="stmt"/>
-        <line num="94" count="216" type="stmt"/>
-        <line num="101" count="4019" type="stmt"/>
-        <line num="102" count="39919" type="stmt"/>
-        <line num="104" count="4019" type="stmt"/>
-        <line num="105" count="4019" type="stmt"/>
-        <line num="106" count="4019" type="stmt"/>
-        <line num="109" count="4019" type="cond" truecount="2" falsecount="0"/>
-        <line num="110" count="34820" type="cond" truecount="2" falsecount="0"/>
-        <line num="111" count="17577" type="stmt"/>
-        <line num="112" count="17577" type="stmt"/>
-        <line num="114" count="17243" type="stmt"/>
-        <line num="115" count="17243" type="stmt"/>
-        <line num="117" count="34820" type="stmt"/>
-        <line num="121" count="4019" type="stmt"/>
-        <line num="122" count="4019" type="stmt"/>
-        <line num="123" count="2622" type="stmt"/>
-        <line num="128" count="8254" type="cond" truecount="2" falsecount="0"/>
-        <line num="130" count="4235" type="stmt"/>
-        <line num="133" count="4019" type="stmt"/>
-        <line num="135" count="4019" type="stmt"/>
-        <line num="136" count="4019" type="stmt"/>
-        <line num="138" count="4019" type="stmt"/>
-        <line num="142" count="216" type="stmt"/>
+        <line num="25" count="216" type="stmt"/>
+        <line num="26" count="4234" type="stmt"/>
+        <line num="27" count="4234" type="stmt"/>
+        <line num="29" count="4234" type="stmt"/>
+        <line num="30" count="1996336" type="stmt"/>
+        <line num="31" count="1996336" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="4234" type="stmt"/>
+        <line num="33" count="4234" type="stmt"/>
+        <line num="34" count="4234" type="stmt"/>
+        <line num="37" count="1992102" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="21391" type="stmt"/>
+        <line num="39" count="21391" type="stmt"/>
+        <line num="40" count="21391" type="stmt"/>
+        <line num="44" count="4234" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="258" type="stmt"/>
+        <line num="48" count="3976" type="stmt"/>
+        <line num="63" count="216" type="stmt"/>
+        <line num="64" count="4016" type="stmt"/>
+        <line num="65" count="1988120" type="cond" truecount="2" falsecount="0"/>
+        <line num="66" count="980138" type="stmt"/>
+        <line num="83" count="216" type="stmt"/>
+        <line num="90" count="4016" type="stmt"/>
+        <line num="91" count="39886" type="stmt"/>
+        <line num="93" count="4016" type="stmt"/>
+        <line num="94" count="4016" type="stmt"/>
+        <line num="95" count="4016" type="stmt"/>
+        <line num="98" count="4016" type="cond" truecount="2" falsecount="0"/>
+        <line num="99" count="34728" type="cond" truecount="2" falsecount="0"/>
+        <line num="100" count="17451" type="stmt"/>
+        <line num="101" count="17451" type="stmt"/>
+        <line num="103" count="17277" type="stmt"/>
+        <line num="104" count="17277" type="stmt"/>
+        <line num="106" count="34728" type="stmt"/>
+        <line num="110" count="4016" type="stmt"/>
+        <line num="111" count="4016" type="stmt"/>
+        <line num="112" count="2735" type="stmt"/>
+        <line num="117" count="8248" type="cond" truecount="2" falsecount="0"/>
+        <line num="119" count="4232" type="stmt"/>
+        <line num="122" count="4016" type="stmt"/>
+        <line num="124" count="4016" type="stmt"/>
+        <line num="125" count="4016" type="stmt"/>
+        <line num="127" count="4016" type="stmt"/>
+        <line num="131" count="216" type="stmt"/>
       </file>
       <file name="sort-radix.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/algorithms/sort-radix.ts">
         <metrics statements="31" coveredstatements="31" conditionals="16" coveredconditionals="16" methods="4" coveredmethods="4"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="13" count="3121" type="cond" truecount="4" falsecount="0"/>
-        <line num="14" count="2" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="3121" type="cond" truecount="4" falsecount="0"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="3119" type="stmt"/>
         <line num="16" count="3119" type="stmt"/>
-        <line num="17" count="3119" type="stmt"/>
-        <line num="18" count="10453" type="stmt"/>
-        <line num="20" count="3119" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="9237" type="cond" truecount="4" falsecount="0"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="27" count="9235" type="cond" truecount="4" falsecount="0"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="30" count="9234" type="cond" truecount="2" falsecount="0"/>
-        <line num="31" count="238" type="stmt"/>
-        <line num="33" count="8996" type="stmt"/>
-        <line num="34" count="8996" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="17" count="10684" type="stmt"/>
+        <line num="19" count="3119" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="9227" type="cond" truecount="4" falsecount="0"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="26" count="9225" type="cond" truecount="4" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="29" count="9224" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="249" type="stmt"/>
+        <line num="32" count="8975" type="stmt"/>
+        <line num="33" count="8975" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="41" count="107" type="stmt"/>
         <line num="42" count="107" type="stmt"/>
-        <line num="43" count="107" type="stmt"/>
-        <line num="45" count="2118" type="cond" truecount="2" falsecount="0"/>
-        <line num="46" count="123" type="stmt"/>
-        <line num="49" count="107" type="stmt"/>
-        <line num="52" count="107" type="stmt"/>
-        <line num="53" count="210" type="stmt"/>
-        <line num="54" count="2100" type="stmt"/>
-        <line num="57" count="210" type="stmt"/>
-        <line num="58" count="9217" type="stmt"/>
-        <line num="59" count="9217" type="stmt"/>
+        <line num="44" count="2116" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="123" type="stmt"/>
+        <line num="48" count="107" type="stmt"/>
+        <line num="51" count="107" type="stmt"/>
+        <line num="52" count="210" type="stmt"/>
+        <line num="53" count="2100" type="stmt"/>
+        <line num="56" count="210" type="stmt"/>
+        <line num="57" count="9207" type="stmt"/>
+        <line num="58" count="9207" type="stmt"/>
+        <line num="62" count="210" type="stmt"/>
         <line num="63" count="210" type="stmt"/>
-        <line num="64" count="210" type="stmt"/>
-        <line num="65" count="9217" type="stmt"/>
+        <line num="64" count="9207" type="stmt"/>
       </file>
     </package>
     <package name="src.data-structures">
-      <metrics statements="193" coveredstatements="180" conditionals="58" coveredconditionals="53" methods="58" coveredmethods="54"/>
+      <metrics statements="193" coveredstatements="189" conditionals="58" coveredconditionals="57" methods="58" coveredmethods="55"/>
       <file name="doubly-linked-list.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/data-structures/doubly-linked-list.ts">
-        <metrics statements="37" coveredstatements="37" conditionals="10" coveredconditionals="9" methods="11" coveredmethods="11"/>
-        <line num="10" count="6072" type="stmt"/>
+        <metrics statements="37" coveredstatements="37" conditionals="10" coveredconditionals="10" methods="11" coveredmethods="11"/>
+        <line num="10" count="6036" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="27" count="24" type="stmt"/>
         <line num="31" count="19" type="cond" truecount="2" falsecount="0"/>
@@ -186,27 +192,27 @@
         <line num="33" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
         <line num="36" count="19" type="stmt"/>
-        <line num="40" count="5024" type="stmt"/>
-        <line num="41" count="5024" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="1018" type="stmt"/>
-        <line num="44" count="5024" type="stmt"/>
-        <line num="45" count="5024" type="stmt"/>
+        <line num="40" count="4988" type="stmt"/>
+        <line num="41" count="4988" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="981" type="stmt"/>
+        <line num="44" count="4988" type="stmt"/>
+        <line num="45" count="4988" type="stmt"/>
         <line num="49" count="3" type="stmt"/>
         <line num="50" count="3" type="stmt"/>
         <line num="51" count="3" type="stmt"/>
-        <line num="55" count="1021" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="985" type="cond" truecount="2" falsecount="0"/>
         <line num="56" count="1" type="stmt"/>
-        <line num="58" count="1020" type="stmt"/>
-        <line num="59" count="1020" type="stmt"/>
-        <line num="60" count="1020" type="stmt"/>
-        <line num="62" count="1020" type="cond" truecount="1" falsecount="1"/>
-        <line num="63" count="1020" type="stmt"/>
+        <line num="58" count="984" type="stmt"/>
+        <line num="59" count="984" type="stmt"/>
+        <line num="60" count="984" type="stmt"/>
+        <line num="62" count="984" type="cond" truecount="2" falsecount="0"/>
+        <line num="63" count="983" type="stmt"/>
         <line num="68" count="60" type="stmt"/>
         <line num="72" count="19" type="stmt"/>
         <line num="73" count="19" type="stmt"/>
         <line num="74" count="19" type="stmt"/>
-        <line num="75" count="1070" type="stmt"/>
-        <line num="76" count="1070" type="stmt"/>
+        <line num="75" count="1069" type="stmt"/>
+        <line num="76" count="1069" type="stmt"/>
         <line num="78" count="19" type="stmt"/>
         <line num="82" count="2" type="stmt"/>
         <line num="83" count="2" type="stmt"/>
@@ -232,13 +238,13 @@
         <line num="39" count="23" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
         <line num="42" count="4" type="stmt"/>
-        <line num="47" count="182" type="stmt"/>
-        <line num="48" count="182" type="stmt"/>
-        <line num="49" count="182" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="173" type="stmt"/>
+        <line num="48" count="173" type="stmt"/>
+        <line num="49" count="173" type="cond" truecount="2" falsecount="0"/>
         <line num="50" count="1" type="stmt"/>
-        <line num="52" count="181" type="stmt"/>
-        <line num="53" count="2697" type="cond" truecount="2" falsecount="0"/>
-        <line num="54" count="180" type="stmt"/>
+        <line num="52" count="172" type="stmt"/>
+        <line num="53" count="2666" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="171" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
         <line num="61" count="151" type="stmt"/>
         <line num="62" count="151" type="cond" truecount="2" falsecount="0"/>
@@ -251,21 +257,21 @@
         <line num="73" count="2" type="stmt"/>
         <line num="74" count="2" type="stmt"/>
         <line num="77" count="148" type="stmt"/>
-        <line num="81" count="21" type="stmt"/>
-        <line num="82" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="81" count="30" type="stmt"/>
+        <line num="82" count="30" type="cond" truecount="2" falsecount="0"/>
         <line num="83" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="84" count="3" type="stmt"/>
         <line num="86" count="2" type="stmt"/>
-        <line num="88" count="16" type="stmt"/>
-        <line num="92" count="16" type="cond" truecount="2" falsecount="0"/>
-        <line num="93" count="2" type="stmt"/>
-        <line num="94" count="2" type="stmt"/>
-        <line num="96" count="14" type="stmt"/>
-        <line num="97" count="133" type="stmt"/>
-        <line num="98" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="99" count="12" type="stmt"/>
-        <line num="100" count="12" type="stmt"/>
-        <line num="102" count="121" type="stmt"/>
+        <line num="88" count="25" type="stmt"/>
+        <line num="92" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="93" count="7" type="stmt"/>
+        <line num="94" count="7" type="stmt"/>
+        <line num="96" count="18" type="stmt"/>
+        <line num="97" count="143" type="stmt"/>
+        <line num="98" count="143" type="cond" truecount="2" falsecount="0"/>
+        <line num="99" count="16" type="stmt"/>
+        <line num="100" count="16" type="stmt"/>
+        <line num="102" count="127" type="stmt"/>
         <line num="104" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="105" count="1" type="stmt"/>
         <line num="112" count="2" type="stmt"/>
@@ -310,16 +316,16 @@
         <line num="22" count="515" type="stmt"/>
         <line num="26" count="129" type="stmt"/>
         <line num="27" count="129" type="stmt"/>
-        <line num="31" count="270" type="stmt"/>
-        <line num="32" count="270" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="31" type="stmt"/>
-        <line num="34" count="31" type="stmt"/>
-        <line num="35" count="31" type="stmt"/>
-        <line num="37" count="239" type="stmt"/>
-        <line num="41" count="18" type="stmt"/>
-        <line num="42" count="18" type="stmt"/>
-        <line num="43" count="18" type="stmt"/>
-        <line num="47" count="1159" type="stmt"/>
+        <line num="31" count="275" type="stmt"/>
+        <line num="32" count="275" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="32" type="stmt"/>
+        <line num="34" count="32" type="stmt"/>
+        <line num="35" count="32" type="stmt"/>
+        <line num="37" count="243" type="stmt"/>
+        <line num="41" count="22" type="stmt"/>
+        <line num="42" count="22" type="stmt"/>
+        <line num="43" count="22" type="stmt"/>
+        <line num="47" count="1163" type="stmt"/>
         <line num="51" count="26" type="stmt"/>
         <line num="52" count="26" type="stmt"/>
         <line num="53" count="26" type="stmt"/>
@@ -339,27 +345,27 @@
         <line num="80" count="8" type="stmt"/>
       </file>
       <file name="skip-list.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/data-structures/skip-list.ts">
-        <metrics statements="20" coveredstatements="7" conditionals="6" coveredconditionals="2" methods="6" coveredmethods="2"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="42" count="2" type="cond" truecount="2" falsecount="2"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="72" count="1" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
+        <metrics statements="20" coveredstatements="16" conditionals="6" coveredconditionals="5" methods="6" coveredmethods="3"/>
+        <line num="26" count="10" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="44" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="49" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="63" count="8" type="stmt"/>
+        <line num="64" count="8" type="stmt"/>
+        <line num="65" count="8" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="5" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
       </file>
       <file name="stack.ts" path="/home/jt/repos/TypeScriptDataStructuresAndAlgorithms/src/data-structures/stack.ts">
         <metrics statements="23" coveredstatements="23" conditionals="6" coveredconditionals="6" methods="12" coveredmethods="12"/>

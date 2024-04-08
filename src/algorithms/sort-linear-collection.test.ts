@@ -1,13 +1,12 @@
 import { randomInt } from "crypto";
-import { Collection, Index, isSorted } from "../util";
 import {
-  CollectionCopyToFunction,
-  CollectionConstructor,
+  Collection,
   CollectionSwapFunction,
-  bubbleSort,
-  mergeSort,
-  selectionSort,
-} from "./sort-linear-collection";
+  arrayCopyToFunction,
+  arrayEmptyConstructor,
+  isSorted,
+} from "../util";
+import { bubbleSort, mergeSort, selectionSort } from "./sort-linear-collection";
 
 const arraySwapFunction: CollectionSwapFunction<number> = (
   collection: Collection<number>,
@@ -18,21 +17,6 @@ const arraySwapFunction: CollectionSwapFunction<number> = (
   const fromValue = array[fromIndex];
   array[fromIndex] = array[toIndex];
   array[toIndex] = fromValue;
-};
-
-export const arrayCopyToFunction: CollectionCopyToFunction<number> = (
-  fromCollection: Collection<number>,
-  toCollection: Collection<number>,
-  fromIndex: Index,
-  toIndex: Index,
-) => {
-  const fromArray = fromCollection as Array<number>;
-  const toArray = toCollection as Array<number>;
-  toArray[toIndex] = fromArray[fromIndex];
-};
-
-const arrayNewFunction: CollectionConstructor<number> = (length: number) => {
-  return Array.from<number>({ length: length });
 };
 
 export const baseSortAlgorithmTests = (
@@ -239,5 +223,5 @@ baseSortAlgorithmTests(
   },
 );
 baseSortAlgorithmTests("merge sort", function (collection: Collection<number>) {
-  mergeSort(collection, arrayCopyToFunction, arrayNewFunction);
+  mergeSort(collection, arrayCopyToFunction, arrayEmptyConstructor);
 });

@@ -1,6 +1,5 @@
 import { ExpectedPositiveIntegerError } from "../error";
-import { Collection, Index } from "../util";
-import { CollectionCopyToFunction } from "./sort-linear-collection";
+import { Collection, CollectionCopyToFunction, Index } from "../util";
 
 /* Radix Sort: Sorts elements lexicographically by distributing them into
  * "bins". The data must be represented in a way that falls into a fixed set of
