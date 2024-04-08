@@ -1,5 +1,6 @@
 import { randomInt } from "crypto";
 import { SkipList } from "./skip-list";
+import { arrayCopyToFunction, arrayEmptyConstructor } from "../util";
 
 const probabilityFunctions = {
   half() {
@@ -7,18 +8,56 @@ const probabilityFunctions = {
   },
 };
 
+const createCollectionParams = (array: Array<number>) => {
+  return {
+    collection: array,
+    copyToFunction: arrayCopyToFunction,
+    constructor: arrayEmptyConstructor,
+  };
+};
+
 describe("skip list", () => {
   describe("constructor", () => {
-    describe("no parameter passed in", () => {
+    describe("no collection parameter passed in", () => {
       let list: SkipList<number>;
       beforeEach(() => {
         list = new SkipList<number>(probabilityFunctions.half);
       });
+
       it("does not assign a head", () => {
         expect(list.head).toBeUndefined();
       });
+
       it("returns zero length", () => {
         expect(list.length).toBe(0);
+      });
+    });
+    describe("includes collection params", () => {
+      let list: SkipList<number>;
+      const inputArray = [1, 2, 3, 4, 5];
+      beforeEach(() => {
+        list = new SkipList<number>(
+          probabilityFunctions.half,
+          createCollectionParams(inputArray),
+        );
+      });
+
+      it("assigns a head with the correct value", () => {
+        expect(list.head?.data).toBe(1);
+      });
+
+      it("returns the correct length", () => {
+        expect(list.length).toBe(5);
+      });
+
+      it("returns the correct values when traversed", () => {
+        for (
+          let node = list.head, i = 0;
+          node !== undefined;
+          node = node.next, i++
+        ) {
+          expect(node.data).toBe(inputArray.at(i));
+        }
       });
     });
   });

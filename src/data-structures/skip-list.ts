@@ -4,12 +4,14 @@
  * down to the normal lane which contains all elements.
  */
 
+import { mergeSort } from "../algorithms/sort-linear-collection";
 import {
+  Collection,
   CollectionConstructor,
   CollectionCopyToFunction,
-  mergeSort,
-} from "../algorithms/sort-linear-collection";
-import { Collection, HasLength, isSorted } from "../util";
+  HasLength,
+  isSorted,
+} from "../util";
 import { LinkedNode } from "./linked-list";
 
 export type ProbabilityFunction = () => boolean;
