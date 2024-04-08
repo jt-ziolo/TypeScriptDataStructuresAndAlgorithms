@@ -1,8 +1,13 @@
 // Defined for clarity (BDD)
 export type Index = number;
 
+export interface HasLength {
+  get length(): number;
+}
+
 export type Collection<ElementType> = Iterable<ElementType> &
-  RelativeIndexable<ElementType> & { length: number };
+  RelativeIndexable<ElementType> &
+  HasLength;
 
 export const deleteObjectProperties = (obj: object | undefined) => {
   for (const prop in obj) {
