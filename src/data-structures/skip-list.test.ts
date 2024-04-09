@@ -1,5 +1,5 @@
 import { randomInt } from "crypto";
-import { SkipList } from "./skip-list";
+import { SkipList, SkipListNode } from "./skip-list";
 import { arrayCopyToFunction, arrayEmptyConstructor } from "../util";
 
 const probabilityFunctions = {
@@ -53,7 +53,7 @@ describe("skip list", () => {
         expect(list.length).toBe(0);
       });
     });
-    describe("includes collection params", () => {
+    describe("includes fixed collection params", () => {
       let list: SkipList<number>;
       const inputArray = [1, 2, 3, 4, 5];
       beforeEach(() => {
@@ -73,6 +73,21 @@ describe("skip list", () => {
 
       it("returns the correct values for the lowest layer", () => {
         expect(list.values).toStrictEqual([1, 2, 3, 4, 5]);
+      });
+    });
+    describe("includes long collection params", () => {
+      let list: SkipList<number>;
+      let inputArray = Array.from<number>({ length: 1000 });
+      inputArray = inputArray.map((_, index) => index);
+      beforeEach(() => {
+        list = new SkipList<number>(
+          probabilityFunctions.half,
+          createCollectionParams(inputArray),
+        );
+      });
+
+      it("returns the correct length", () => {
+        expect(list.length).toBe(1000);
       });
     });
     describe("includes maxPromotions arg", () => {
@@ -95,5 +110,51 @@ describe("skip list", () => {
       });
     });
   });
-  describe.skip("insert", () => {});
+  describe.skip("search", () => {});
+  describe("insert", () => {
+    let list: SkipList<number>;
+    beforeEach(() => {
+      list = new SkipList<number>(
+        probabilityFunctions.half,
+        createCollectionParams([]),
+      );
+    });
+
+    it("should insert a new head node when called on an empty list", () => {
+      expect(list.head).toBeUndefined();
+      list.insert(123);
+      expect(list.head).toBeDefined();
+      expect(list.head!.data).toBe(123);
+    });
+
+    it("should not alter the list structure when attempting to add duplicate elements", () => {
+      list.insert(1);
+      list.insert(2);
+      list.insert(3);
+      expect(list.length).toBe(3);
+      const initial = list.toString();
+      list.insert(3);
+      expect(list.length).toBe(3);
+      expect(list.toString()).toStrictEqual(initial);
+    });
+
+    it("should trigger random promotions", () => {
+      let previousState = "";
+      for (let i = 0; i < 100; i++) {
+        list = new SkipList<number>(
+          probabilityFunctions.half,
+          createCollectionParams([]),
+        );
+        for (let j = 0; j < 100; j++) {
+          list.insert(j);
+        }
+        const currentState = list.toString();
+        // for the first iteration, this assertion is less important but does
+        // not need to be skipped
+        expect(currentState).not.toStrictEqual(previousState);
+        previousState = currentState;
+      }
+    });
+  });
+  describe.skip("remove", () => {});
 });
