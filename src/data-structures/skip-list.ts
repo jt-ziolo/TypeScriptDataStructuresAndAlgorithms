@@ -45,17 +45,8 @@ export class SkipList<T> implements HasLength {
     this.#probabilityFunction = probabilityFunction;
     this.#maxPromotions = maxPromotions;
     const collection = collectionParams?.collection;
-    if (collection === undefined || collection.length === 0) {
+    if (collection === undefined) {
       return;
-    }
-
-    // ensure the input collection is ordered
-    if (!isSorted(collection)) {
-      mergeSort(
-        collection,
-        collectionParams!.copyToFunction,
-        collectionParams!.constructor,
-      );
     }
 
     for (const item of collection) {
@@ -93,11 +84,12 @@ export class SkipList<T> implements HasLength {
     let node = this.head;
     let previousNode = undefined;
     const descendedNodesByLayer: Array<SkipListNode<T>> = [];
-    while (true) {
+    while (node !== undefined) {
       if (node.data === value) {
         // do not insert duplicate nodes into a skip list
         return;
       }
+      // Stryker disable next-line EqualityOperator: previous clause checks equality
       if (node.data < value) {
         previousNode = node;
         if (node.next !== undefined) {
@@ -117,26 +109,41 @@ export class SkipList<T> implements HasLength {
         }
         continue;
       }
-      // insert before the current node
+      // node.data > value
       if (node === this.head || previousNode === undefined) {
         // insert value as new head
         this.#insertAsHead(value);
         return;
       }
+      // traverse to the bottom layer at the previous node
       while (previousNode.down !== undefined) {
         descendedNodesByLayer.push(previousNode);
         previousNode = previousNode.down;
       }
+      node = previousNode.next!;
+      // find the node that occurs prior to where the new node will be inserted
+      while (node !== undefined && node.data < value) {
+        previousNode = node;
+        node = node.next!;
+      }
+      if (node !== undefined && node.data === value) {
+        // do not insert duplicate nodes into a skip list
+        return;
+      }
       const insertedNode = this.#insertAfter(value, previousNode);
       this.#setupPromotions(insertedNode, descendedNodesByLayer);
+      return;
     }
   }
 
-  #insertAfter(valueToInsert: T, node: SkipListNode<T>): SkipListNode<T> {
-    const lastNext = node.next;
-    node.next = new SkipListNode(valueToInsert);
-    node.next.next = lastNext;
-    return node.next;
+  #insertAfter(
+    valueToInsert: T,
+    previousNode: SkipListNode<T>,
+  ): SkipListNode<T> {
+    const previousNext = previousNode.next;
+    previousNode.next = new SkipListNode(valueToInsert);
+    previousNode.next.next = previousNext;
+    return previousNode.next;
   }
 
   #insertAsHead(value: T) {
