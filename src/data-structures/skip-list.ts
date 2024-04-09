@@ -204,30 +204,48 @@ export class SkipList<T> implements HasLength {
     if (this.head === undefined) {
       return;
     }
-    let node: SkipListNode<T> | undefined;
     if (this.head.data === value) {
-      // remove the head node column
-      node = this.head;
-      this.head = node.next;
-      while (node !== undefined) {
-        const nodeDown: SkipListNode<T> | undefined = node.down;
-        deleteObjectProperties(node);
-        node = nodeDown;
+      const newHeadValue = this.values.at(1);
+      if (newHeadValue === undefined) {
+        // remove the reference to the head node, which is the only node
+        deleteObjectProperties(this.head);
+        this.head = undefined;
+        return;
+      }
+      // change the values of the head node column to match the next value in
+      // the list, and remove the nodes which originally held that value.
+      for (
+        let node: SkipListNode<T> | undefined = this.head;
+        node !== undefined;
+        node = node.down
+      ) {
+        node.data = newHeadValue;
+        const nextNode = node.next;
+        if (nextNode !== undefined && nextNode.data === newHeadValue) {
+          // remove the node
+          node.next = nextNode.next;
+          deleteObjectProperties(nextNode);
+        }
       }
       return;
     }
-    // traverse the list
-    node = this.head.next;
-    let previousNode: SkipListNode<T> = this.head;
-    while (node !== undefined) {
-      if (node.data === value) {
-        previousNode.next = node.next;
-        deleteObjectProperties(node);
-        node = previousNode.down;
-        continue;
+    // traverse each layer, removing nodes with the target value
+    for (
+      let startNode = this.head;
+      startNode !== undefined;
+      startNode = startNode.down!
+    ) {
+      for (
+        let node = startNode.next, previousNode = startNode;
+        node !== undefined;
+        previousNode = node, node = node.next!
+      ) {
+        if (node.data === value) {
+          previousNode.next = node.next;
+          deleteObjectProperties(node);
+          break;
+        }
       }
-      previousNode = node;
-      node = node.next;
     }
   }
 

@@ -75,7 +75,7 @@ describe("skip list", () => {
         expect(list.values).toStrictEqual([1, 2, 3, 4, 5]);
       });
     });
-    describe("includes long collection params", () => {
+    describe("includes long, randomized collection params", () => {
       let list: SkipList<number>;
       let inputArray = Array.from<number>({ length: 1000 });
       inputArray = inputArray.map((_, index) => index);
@@ -156,5 +156,63 @@ describe("skip list", () => {
       }
     });
   });
-  describe.skip("remove", () => {});
+  describe("remove", () => {
+    it("does not change an empty list", () => {
+      const list = new SkipList<number>(probabilityFunctions.half);
+      expect(list.length).toBe(0);
+      const previousState = list.toString();
+      list.remove(0);
+      expect(list.length).toBe(0);
+      expect(list.toString()).toBe(previousState);
+    });
+    describe("short fixed list", () => {
+      let list: SkipList<number>;
+      const inputArray = [1, 2, 3, 4, 5];
+      beforeEach(() => {
+        list = new SkipList<number>(
+          probabilityFunctions.half,
+          createCollectionParams(inputArray),
+        );
+      });
+
+      it("does not change the structure of a list if the list does not contain the target value", () => {
+        expect(list.values).toStrictEqual([1, 2, 3, 4, 5]);
+        const previousState = list.toString();
+        list.remove(6);
+        expect(list.values).toStrictEqual([1, 2, 3, 4, 5]);
+        expect(list.toString()).toStrictEqual(previousState);
+      });
+
+      it("completely removes the correct element from the list", () => {
+        expect(list.values).toStrictEqual([1, 2, 3, 4, 5]);
+        const previousState = list.toString();
+        expect(previousState).toMatch(/4/);
+        list.remove(4);
+        expect(list.values).toStrictEqual([1, 2, 3, 5]);
+        expect(list.toString()).not.toMatch(/4/);
+        expect(list.toString()).not.toStrictEqual(previousState);
+      });
+
+      it("completely removes the head column when targeting the head value", () => {
+        expect(list.values).toStrictEqual([1, 2, 3, 4, 5]);
+        const previousState = list.toString();
+        expect(previousState).toMatch(/1/);
+        list.remove(1);
+        expect(list.values).toStrictEqual([2, 3, 4, 5]);
+        expect(list.toString()).not.toMatch(/1/);
+        expect(list.toString()).not.toStrictEqual(previousState);
+      });
+    });
+    // describe("long randomized list", () => {
+    //   let list: SkipList<number>;
+    //   let inputArray = Array.from<number>({ length: 1000 });
+    //   inputArray = inputArray.map((_, index) => index);
+    //   beforeEach.(() => {
+    //     list = new SkipList<number>(
+    //       probabilityFunctions.half,
+    //       createCollectionParams(inputArray),
+    //     );
+    //   });
+    // });
+  });
 });
