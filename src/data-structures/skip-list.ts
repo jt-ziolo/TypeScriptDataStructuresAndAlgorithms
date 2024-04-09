@@ -249,20 +249,20 @@ export class SkipList<T> implements HasLength {
 
   public toString(): string {
     if (this.head === undefined) {
-      return (SkipList as object).toString();
+      return "SkipList {}";
     }
     let result = "\n";
     for (
-      let startNode = this.head!;
-      startNode.down !== undefined;
-      startNode = startNode.down
+      let startNode = this.head;
+      startNode !== undefined;
+      startNode = startNode.down!
     ) {
       if (startNode !== this.head) {
         result = `${result}\n`;
       }
       result = `  ${result}{`;
       const rowArray: Array<T> = [];
-      for (let node = startNode; node.next !== undefined; node = node.next) {
+      for (let node = startNode; node !== undefined; node = node.next!) {
         rowArray.push(node.data);
       }
       result = `${result}${rowArray.join(" -> ")}}`;
