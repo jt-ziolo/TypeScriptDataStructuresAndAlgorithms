@@ -45,6 +45,10 @@ describe("skip list", () => {
         );
       });
 
+      it("values getter return an empty array for an empty skip list", () => {
+        expect(list.values).toStrictEqual([]);
+      });
+
       it("does not assign a head", () => {
         expect(list.head).toBeUndefined();
       });
@@ -89,6 +93,26 @@ describe("skip list", () => {
       it("returns the correct length", () => {
         expect(list.length).toBe(200);
       });
+
+      it("does not create a list where all nodes are present in all layers", () => {
+        const rowItemCounts: Set<number> = new Set();
+        for (
+          let startNode = list.head;
+          startNode !== undefined;
+          startNode = startNode.down
+        ) {
+          let rowItemCount = 0;
+          for (
+            let node: SkipListNode<number> | undefined = startNode;
+            node !== undefined;
+            node = node.next
+          ) {
+            rowItemCount += 1;
+          }
+          rowItemCounts.add(rowItemCount);
+        }
+        expect(rowItemCounts.size).toBeGreaterThan(1);
+      });
     });
     describe("includes maxPromotions arg", () => {
       let list: SkipList<number>;
@@ -127,13 +151,24 @@ describe("skip list", () => {
       expect(list.head!.data).toBe(123);
     });
 
-    it("should not alter the list structure when attempting to add duplicate elements", () => {
+    it("should not alter the list structure when attempting to add duplicate elements greater than the head", () => {
       list.insert(1);
       list.insert(2);
       list.insert(3);
       expect(list.length).toBe(3);
       const initial = list.toString();
       list.insert(3);
+      expect(list.length).toBe(3);
+      expect(list.toString()).toStrictEqual(initial);
+    });
+
+    it("should not alter the list structure when attempting to add the same value as the head", () => {
+      list.insert(1);
+      list.insert(2);
+      list.insert(3);
+      expect(list.length).toBe(3);
+      const initial = list.toString();
+      list.insert(1);
       expect(list.length).toBe(3);
       expect(list.toString()).toStrictEqual(initial);
     });
@@ -155,6 +190,45 @@ describe("skip list", () => {
         previousState = currentState;
       }
     });
+
+    it("should correctly insert new values between current ones", () => {
+      for (let i = 0; i < 100; i++) {
+        list = new SkipList<number>(
+          probabilityFunctions.half,
+          createCollectionParams([1, 3, 5]),
+        );
+        const previousState = list.toString();
+        expect(list.length).toBe(3);
+        expect(list.values).toStrictEqual([1, 3, 5]);
+        expect(previousState).not.toMatch(/4/);
+        list.insert(4);
+        const currentState = list.toString();
+        expect(list.length).toBe(4);
+        expect(list.values).toStrictEqual([1, 3, 4, 5]);
+        expect(currentState).toMatch(/4/);
+        expect(currentState).not.toStrictEqual(previousState);
+      }
+    });
+    it("should correctly insert a new head value when the value is less than all elements in the list", () => {
+      for (let i = 0; i < 100; i++) {
+        list = new SkipList<number>(
+          probabilityFunctions.half,
+          createCollectionParams([2, 3, 4]),
+        );
+        const previousState = list.toString();
+        expect(list.length).toBe(3);
+        expect(list.head!.data).toBe(2);
+        expect(list.values).toStrictEqual([2, 3, 4]);
+        expect(previousState).not.toMatch(/1/);
+        list.insert(1);
+        const currentState = list.toString();
+        expect(list.length).toBe(4);
+        expect(list.head!.data).toBe(1);
+        expect(list.values).toStrictEqual([1, 2, 3, 4]);
+        expect(currentState).toMatch(/1/);
+        expect(currentState).not.toStrictEqual(previousState);
+      }
+    });
   });
   describe("remove", () => {
     it("does not change an empty list", () => {
@@ -164,6 +238,20 @@ describe("skip list", () => {
       list.remove(0);
       expect(list.length).toBe(0);
       expect(list.toString()).toBe(previousState);
+    });
+    it("correctly removes the head node from a single element skip list", () => {
+      const list = new SkipList<number>(
+        probabilityFunctions.half,
+        createCollectionParams([0]),
+      );
+      const previousState = list.toString();
+      expect(list.length).toBe(1);
+      expect(previousState).toMatch(/0/);
+      list.remove(0);
+      const currentState = list.toString();
+      expect(list.length).toBe(0);
+      expect(currentState).not.toMatch(/4/);
+      expect(currentState).not.toBe(previousState);
     });
     describe("short fixed list", () => {
       let list: SkipList<number>;
