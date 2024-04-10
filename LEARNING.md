@@ -9,6 +9,13 @@
 
 - For this implementation, I set up my doubly linked list class in a particular way to make sure that there cannot be a node before the root node (either by the root node having a `previous` property or by other nodes accepting a root node as their `next` property). If I did not do that, then it would have been possible for the root node on the list object to be deleted via `removeAfter` while causing a memory leak, or for the root node to get out of sync with the start of the list.
 
+## Skip List Operations
+
+- When inserting a new value into a skip list, you must continue the traversal algorithm with each new layer you descend down into.
+- Nodes that were descended from during the insertion operation should be tracked for use during randomized promotion.
+- In general, skip list operations are meant to proceed from the "top left" to the "bottom right", or from the head node to the end of the bottommost layer. Traversal should occur across the row/layer first, descending only when necessary.
+- Skip lists have to be carefully designed to accommodate indexed searching.
+
 ## Hashing
 
 - Even with a large base, collisions can still occur due to the pigeonhole principle: if you hash more strings than there are possible hash values, some strings must have the same hash value. This is true regardless of the hash function used.

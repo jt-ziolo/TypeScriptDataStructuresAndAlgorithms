@@ -12,6 +12,7 @@ _Note:_ Certain data structures (e.g. Queues and Stacks) are implemented using J
 | Linked List[^1] | O(n) | O(n) | O(1) | O(1) |
 | Array | O(1) | O(n) | O(n) | O(n) |
 | Hash Table[^2] | - | O(n) | O(n) | O(n) |
+| Skip List | - | O(n)[^3] | O(n) | O(n) |
 
 [^1]: Insert and remove operations are evaluated separately from the search operation.
 [^2]: Assuming a poor hash function and/or too small of a table size, resulting in many collisions (the number of list items per bin is proportional to the total number of items stored in the table). Also assumes that collisions are handled using a Singly Linked List as implemented in the code.
@@ -20,9 +21,11 @@ _Note:_ Certain data structures (e.g. Queues and Stacks) are implemented using J
 (for those data structures where it differs from the worst-case)
 | Data Structure | Access | Search | Insert | Remove |
 |---|---|---|---|---|
-| Hash Table[^3] | - | O(1) | O(1) | O(1) |
+| Hash Table[^4] | - | O(1) | O(1) | O(1) |
+| Skip List | - | O(log(n))[^3] | O(log(n)) | O(log(n)) |
 
-[^3]: Assuming a good hash function is used with sufficient table size to minimize collisions.
+[^3]: The skip list implementation is currently not indexable; the search operation checks for the presence of a value in the list without returning the position.
+[^4]: Assuming a good hash function is used with sufficient table size to minimize collisions.
 
 ### Time Complexity of Stacks and Queues
 
@@ -55,7 +58,8 @@ There is marginally more memory used in the array implementations compared to th
 
 - [x] (Singly) Linked List
 - [x] Doubly Linked List
-- [ ] Indexable Skip List
+- [x] Skip List (with operation that checks for presence of element in list)
+- [ ] Indexed Skip List (TBD)
 
 ### Set
 
@@ -73,14 +77,14 @@ There is marginally more memory used in the array implementations compared to th
 |---|---|---|---|
 | Linear Search | O(1) | O(n) | O(n) |
 | Binary Search | O(1) | O(log(n)) | O(log(n)) |
-| Rabin-Karp Substring Search[^4] | O(s+b) | - | O(s\*b) |
+| Rabin-Karp Substring Search[^5] | O(s+b) | - | O(s\*b) |
 | Insertion Sort | O(n^2) | - | O(n^2) |
 | Bubble Sort | O(n^2) | - | O(n^2) |
 | Merge Sort | O(n\*log(n)) | - | O(n\*log(n)) |
-| Radix Sort[^5] | O(k\*n) | - | O(k\*n) |
+| Radix Sort[^6] | O(k\*n) | - | O(k\*n) |
 
-[^4]: Where `s` is the length of the substring, and `b` is the length of the base or source string.
-[^5]: Where `k` is the number of digits (for numbers; more generally it's the length of whatever quantity you are sorting), and `n` is the number of elements.
+[^5]: Where `s` is the length of the substring, and `b` is the length of the base or source string.
+[^6]: Where `k` is the number of digits (for numbers; more generally it's the length of whatever quantity you are sorting), and `n` is the number of elements.
 
 ### Searching and Traversal
 
