@@ -1,4 +1,4 @@
-import { deleteObjectProperties } from "./util";
+import { deleteObjectProperties, isSorted } from "./util";
 
 describe("deleteObjectProperties", () => {
   it("successfully deletes all object properties", () => {
@@ -31,5 +31,14 @@ describe("deleteObjectProperties", () => {
     expect(() => {
       deleteObjectProperties(obj);
     }).not.toThrow();
+  });
+});
+
+describe("isSorted", () => {
+  it("returns true for a collection of size 0", () => {
+    expect(isSorted([])).toBe(true);
+  });
+  it("returns true for a collection of size 1", () => {
+    expect(isSorted([123])).toBe(true);
   });
 });

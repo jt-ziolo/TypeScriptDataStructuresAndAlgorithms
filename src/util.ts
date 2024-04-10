@@ -16,9 +16,7 @@ export const deleteObjectProperties = (obj: object | undefined) => {
 };
 
 export function isSorted<ElementType>(collection: Collection<ElementType>) {
-  if (collection.length <= 1) {
-    return true;
-  }
+  // Stryker disable next-line EqualityOperator
   for (let i = 1; i < collection.length; i++) {
     if (collection.at(i)! < collection.at(i - 1)!) {
       return false;
@@ -41,6 +39,7 @@ export const arrayCopyToFunction: CollectionCopyToFunction<number> = (
 export const arrayEmptyConstructor: CollectionConstructor<number> = (
   length: number,
 ) => {
+  // Stryker disable next-line ObjectLiteral: optimization
   return Array.from<number>({ length: length });
 };
 
