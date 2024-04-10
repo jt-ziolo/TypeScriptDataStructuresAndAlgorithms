@@ -79,60 +79,39 @@ export class SkipList<T> implements HasLength {
       this.head = new SkipListNode<T>(value);
       return;
     }
+    if (this.head.data === value) {
+      // do not insert duplicate nodes
+      return;
+    }
+    if (this.head.data > value) {
+      this.#insertAsHead(value);
+      return;
+    }
 
     // traverse the list, tracking the nodes that we descend from as we go
-    let node = this.head;
-    let previousNode = undefined;
     const descendedNodesByLayer: Array<SkipListNode<T>> = [];
-    while (node !== undefined) {
+    let node: SkipListNode<T> = this.head;
+    let nextNode: SkipListNode<T> | undefined = this.head.next;
+    while (true) {
       if (node.data === value) {
-        // do not insert duplicate nodes into a skip list
+        // do not insert duplicate values
         return;
       }
-      // Stryker disable next-line EqualityOperator: previous clause checks equality
-      if (node.data < value) {
-        previousNode = node;
-        if (node.next !== undefined) {
-          // check next node in current layer
-          node = node.next;
-        } else if (node.down !== undefined) {
-          // descend
+      if (nextNode === undefined || nextNode.data > value) {
+        if (node.down !== undefined) {
+          // descend from node
           descendedNodesByLayer.push(node);
           node = node.down;
-          previousNode = undefined;
-        } else {
-          // we are at the end of the list on the bottom layer
-          // insert after the current node
-          const insertedNode = this.#insertAfter(value, node);
-          this.#setupPromotions(insertedNode, descendedNodesByLayer);
-          return;
+          nextNode = node.next;
+          continue;
         }
-        continue;
-      }
-      // node.data > value
-      if (node === this.head || previousNode === undefined) {
-        // insert value as new head
-        this.#insertAsHead(value);
+        // cannot descend, at end of list, insert
+        const insertedNode = this.#insertAfter(value, node);
+        this.#setupPromotions(insertedNode, descendedNodesByLayer);
         return;
       }
-      // traverse to the bottom layer at the previous node
-      while (previousNode.down !== undefined) {
-        descendedNodesByLayer.push(previousNode);
-        previousNode = previousNode.down;
-      }
-      node = previousNode.next!;
-      // find the node that occurs prior to where the new node will be inserted
-      while (node !== undefined && node.data < value) {
-        previousNode = node;
-        node = node.next!;
-      }
-      if (node !== undefined && node.data === value) {
-        // do not insert duplicate nodes into a skip list
-        return;
-      }
-      const insertedNode = this.#insertAfter(value, previousNode);
-      this.#setupPromotions(insertedNode, descendedNodesByLayer);
-      return;
+      node = nextNode;
+      nextNode = node.next;
     }
   }
 
@@ -147,22 +126,17 @@ export class SkipList<T> implements HasLength {
   }
 
   #insertAsHead(value: T) {
-    let formerHeadNode = this.head!;
-    let newHeadNode = new SkipListNode(value);
-    this.head = newHeadNode;
-    while (true) {
-      // point to existing head column nodes until the original head values are re-inserted
-      newHeadNode.next = formerHeadNode;
-      if (formerHeadNode.down === undefined) {
-        break;
-      }
-      newHeadNode.down = new SkipListNode(value);
-      newHeadNode = newHeadNode.down;
-      formerHeadNode = formerHeadNode.down;
+    // change the values of the head node column to match the new head value,
+    // then insert the former head value
+    const formerHeadValue = this.head!.data;
+    for (
+      let node: SkipListNode<T> | undefined = this.head;
+      node !== undefined;
+      node = node.down
+    ) {
+      node.data = value;
     }
-    // remove and re-insert the original head value after the new head value
-    this.remove(formerHeadNode.data);
-    this.#insertAfter(formerHeadNode.data, newHeadNode);
+    this.insert(formerHeadValue);
   }
 
   #setupPromotions(
