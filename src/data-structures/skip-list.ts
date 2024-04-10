@@ -4,14 +4,12 @@
  * down to the normal lane which contains all elements.
  */
 
-import { mergeSort } from "../algorithms/sort-linear-collection";
 import {
   Collection,
   CollectionConstructor,
   CollectionCopyToFunction,
   HasLength,
   deleteObjectProperties,
-  isSorted,
 } from "../util";
 import { LinkedNode } from "./linked-list";
 
@@ -21,7 +19,6 @@ export class SkipListNode<T> implements LinkedNode<T> {
   data: T;
   next?: SkipListNode<T>;
   down?: SkipListNode<T>;
-  nextWidth?: number;
 
   constructor(data: T) {
     this.data = data;
@@ -70,8 +67,30 @@ export class SkipList<T> implements HasLength {
     return count;
   }
 
-  search(value: T) {
-    throw new Error("Not yet implemented.");
+  contains(value: T) {
+    if (this.head === undefined) {
+      return false;
+    }
+    let node: SkipListNode<T> = this.head;
+    let nextNode: SkipListNode<T> | undefined = node.next;
+    while (true) {
+      if (node.data === value) {
+        return true;
+      }
+      if (nextNode === undefined || nextNode.data > value) {
+        if (node.down !== undefined) {
+          // descend
+          node = node.down;
+          nextNode = node.next;
+          continue;
+        }
+        // cannot descend and the next node is either undefined or greater than
+        // the target value, so the target value is not in the skip list
+        return false;
+      }
+      node = nextNode;
+      nextNode = node.next;
+    }
   }
 
   insert(value: T) {

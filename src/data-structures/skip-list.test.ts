@@ -134,7 +134,39 @@ describe("skip list", () => {
       });
     });
   });
-  describe.skip("search", () => {});
+  describe("contains", () => {
+    it("should return false when the list is empty", () => {
+      const list = new SkipList<number>(
+        probabilityFunctions.half,
+        createCollectionParams([]),
+      );
+      expect(list.contains(0)).toBe(false);
+    });
+    it("should return false when the list does not contain the target value", () => {
+      const array = [-2, 1, 5, 7, 9, 10, 15, 19];
+      const list = new SkipList<number>(
+        probabilityFunctions.half,
+        createCollectionParams(array),
+      );
+      for (let i = -5; i < 20; i++) {
+        if (!array.includes(i)) {
+          expect(list.contains(i)).toBe(false);
+        }
+      }
+    });
+    it("should return true when the list contains the target value", () => {
+      const array = [-2, 1, 5, 7, 9, 10, 15, 19];
+      const list = new SkipList<number>(
+        probabilityFunctions.half,
+        createCollectionParams(array),
+      );
+      for (let i = -5; i < 20; i++) {
+        if (array.includes(i)) {
+          expect(list.contains(i)).toBe(true);
+        }
+      }
+    });
+  });
   describe("insert", () => {
     let list: SkipList<number>;
     beforeEach(() => {
