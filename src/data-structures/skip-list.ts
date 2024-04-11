@@ -4,6 +4,7 @@
  * down to the normal lane which contains all elements.
  */
 
+import { MissingIndexError, OutOfBoundsError } from "../error";
 import {
   Collection,
   CollectionConstructor,
@@ -18,6 +19,7 @@ export type ProbabilityFunction = () => boolean;
 export class SkipListNode<T> implements LinkedNode<T> {
   data: T;
   next?: SkipListNode<T>;
+  nextLength?: number;
   down?: SkipListNode<T>;
 
   constructor(data: T) {
@@ -25,7 +27,7 @@ export class SkipListNode<T> implements LinkedNode<T> {
   }
 }
 
-export class SkipList<T> implements HasLength {
+export class SkipList<T> implements HasLength, RelativeIndexable<T> {
   head?: SkipListNode<T>;
   readonly #probabilityFunction: ProbabilityFunction;
   readonly #maxPromotions: number;
@@ -93,6 +95,49 @@ export class SkipList<T> implements HasLength {
     }
   }
 
+  at(index: number): T {
+    /* Traverse while checking the sum of nextLengths
+     * - Case 1: sum(nextLengths) + nextLength === index, return the next
+     *   node's value
+     * - Case 2: sum(nextLengths) + nextLength > index OR no next node, descend
+     * - Case 3: sum(nextLengths) + nextLength < index, add the nextLength to
+     *   the sum and move to the next node
+     */
+    if (index < 0 || this.head === undefined) {
+      throw new OutOfBoundsError(index, this.length);
+    }
+    if (index === 0) {
+      return this.head.data;
+    }
+    let node: SkipListNode<T> = this.head;
+    let nextNode: SkipListNode<T> | undefined = node.next;
+    let sumNextLengths = 0;
+    while (true) {
+      const nextSum = sumNextLengths + (node.nextLength ?? 0);
+      if (nextSum === index) {
+        return nextNode!.data;
+      }
+      if (nextNode === undefined || nextSum > index) {
+        if (node.down !== undefined) {
+          // descend
+          node = node.down;
+          nextNode = node.next;
+          continue;
+        }
+        // cannot descend, two options
+        // if the next node is undefined, then the index is invalid (out of bounds)
+        if (nextNode === undefined) {
+          throw new OutOfBoundsError(index, this.length);
+        }
+        // if the nextLength sum is greater than the index, then there may be an error in the list's construction
+        throw new MissingIndexError(index);
+      }
+      sumNextLengths = nextSum;
+      node = nextNode;
+      nextNode = node.next;
+    }
+  }
+
   insert(value: T) {
     if (this.head === undefined) {
       this.head = new SkipListNode<T>(value);
@@ -110,27 +155,36 @@ export class SkipList<T> implements HasLength {
     }
 
     // traverse the list, tracking the nodes that we descend from as we go
-    const descendedNodesByLayer: Array<SkipListNode<T>> = [];
+    const endNodesByLayer: Array<SkipListNode<T>> = [];
     let node: SkipListNode<T> = this.head;
     let nextNode: SkipListNode<T> | undefined = this.head.next;
+    const lengthToEndNodesByLayer: Array<number> = [];
+    let lengthTraversedCurrentLayer = 0;
     while (true) {
       if (node.data === value) {
         // do not insert duplicate values
         return;
       }
       if (nextNode === undefined || nextNode.data > value) {
+        endNodesByLayer.push(node);
+        lengthToEndNodesByLayer.push(lengthTraversedCurrentLayer);
+        // lengthTraversedCurrentLayer = 0;
         if (node.down !== undefined) {
           // descend from node
-          descendedNodesByLayer.push(node);
           node = node.down;
           nextNode = node.next;
           continue;
         }
-        // at insertion point
+        // cannot descend, at insertion point
         const insertedNode = this.#insertAfter(value, node);
-        this.#setupPromotions(insertedNode, descendedNodesByLayer);
+        this.#setupPromotions(
+          insertedNode,
+          endNodesByLayer,
+          lengthToEndNodesByLayer,
+        );
         return;
       }
+      lengthTraversedCurrentLayer += node.nextLength!;
       node = nextNode;
       nextNode = node.next;
     }
@@ -143,6 +197,8 @@ export class SkipList<T> implements HasLength {
     const previousNext = previousNode.next;
     previousNode.next = new SkipListNode(valueToInsert);
     previousNode.next.next = previousNext;
+    previousNode.next.nextLength = previousNext === undefined ? undefined : 1;
+    previousNode.nextLength = 1;
     return previousNode.next;
   }
 
@@ -162,31 +218,52 @@ export class SkipList<T> implements HasLength {
 
   #setupPromotions(
     insertedNode: SkipListNode<T>,
-    descendedNodesByLayer: Array<SkipListNode<T>>,
+    endNodesByLayer: Array<SkipListNode<T>>,
+    lengthToEndNodesByLayer: Array<number>,
   ) {
     let previousNode = insertedNode;
     let numPromotions = 0;
-    for (let i = descendedNodesByLayer.length - 1; i >= 0; i--) {
+    const totalTraversedNextLength =
+      lengthToEndNodesByLayer[lengthToEndNodesByLayer.length - 1];
+    for (let i = endNodesByLayer.length - 2; i >= 0; i--) {
+      // The final element is intentionally skipped
       // Stryker disable all: randomized outcomes
       if (
         !this.#probabilityFunction() ||
         numPromotions >= this.#maxPromotions
       ) {
+        // update the nextLength values of the remaining end nodes
+        while (i >= 0) {
+          const leftNeighborNode = endNodesByLayer[i];
+          if (leftNeighborNode.nextLength !== undefined) {
+            leftNeighborNode.nextLength += 1;
+          }
+          i--;
+        }
         return;
       }
       // Stryker restore all
       // promote by inserting a node in the layer above the current layer
-      const leftNeighborNode = descendedNodesByLayer[i];
-      const newNode = new SkipListNode<T>(previousNode.data);
+      const leftNeighborNode = endNodesByLayer[i];
+      const newNode = new SkipListNode<T>(insertedNode.data);
       newNode.next = leftNeighborNode.next;
+      const formerNextLengthLeftNode = leftNeighborNode.nextLength;
+      const nextLengthLeftNode =
+        totalTraversedNextLength + 1 - lengthToEndNodesByLayer[i];
+      const nextLengthNewNode =
+        formerNextLengthLeftNode === undefined
+          ? undefined
+          : formerNextLengthLeftNode + 1 - nextLengthLeftNode;
+      newNode.nextLength = nextLengthNewNode;
       leftNeighborNode.next = newNode;
+      leftNeighborNode.nextLength = nextLengthLeftNode;
       newNode.down = previousNode;
       previousNode = newNode;
       // Stryker disable next-line AssignmentOperator: must track accurately for subsequent check
       numPromotions += 1;
     }
     // Stryker disable next-line ConditionalExpression, BlockStatement: caught by state tests
-    if (numPromotions < descendedNodesByLayer.length) {
+    if (numPromotions < endNodesByLayer.length - 1) {
       return;
     }
 
@@ -200,6 +277,7 @@ export class SkipList<T> implements HasLength {
       // promote by inserting a node in the layer above the current layer
       const newNode = new SkipListNode<T>(previousNode.data);
       this.head.next = newNode;
+      this.head.nextLength = totalTraversedNextLength + 1;
       newNode.down = previousNode;
       previousNode = newNode;
       numPromotions += 1;
@@ -211,8 +289,11 @@ export class SkipList<T> implements HasLength {
       return;
     }
     if (this.head.data === value) {
-      const newHeadValue = this.values.at(1);
-      if (newHeadValue === undefined) {
+      // removing the head value
+      let newHeadValue: T;
+      try {
+        newHeadValue = this.at(1);
+      } catch {
         // remove the reference to the head node, which is the only node
         deleteObjectProperties(this.head);
         this.head = undefined;
@@ -227,29 +308,58 @@ export class SkipList<T> implements HasLength {
       ) {
         node.data = newHeadValue;
         const nextNode = node.next;
-        // Stryker disable next-line OptionalChaining: caught as TypeError
-        node.next = nextNode?.next;
-        deleteObjectProperties(nextNode);
+        node.nextLength =
+          node.nextLength === undefined ? undefined : node.nextLength - 1;
+        if (nextNode?.data === newHeadValue) {
+          // remove the next node since it will be a duplicate of the new head node
+          node.next = nextNode?.next;
+          if (nextNode.nextLength === undefined) {
+            node.nextLength = undefined;
+          } else {
+            node.nextLength! += nextNode.nextLength;
+          }
+          deleteObjectProperties(nextNode);
+        }
       }
       return;
     }
-    // traverse each layer, removing nodes with the target value
-    for (
-      let startNode = this.head;
-      startNode !== undefined;
-      startNode = startNode.down!
-    ) {
-      for (
-        let node = startNode.next, previousNode = startNode;
-        node !== undefined;
-        previousNode = node, node = node.next!
-      ) {
-        if (node.data === value) {
-          previousNode.next = node.next;
-          deleteObjectProperties(node);
-          break;
+    // ensure that the list contains the value to be removed
+    if (!this.contains(value)) {
+      return;
+    }
+    // traverse the list
+    let node: SkipListNode<T> = this.head;
+    let nextNode: SkipListNode<T> | undefined = node.next;
+    while (true) {
+      if (nextNode === undefined || nextNode.data > value) {
+        // decrement the nextLength of the node being descended from
+        if (node.nextLength !== undefined) {
+          node.nextLength -= 1;
         }
+        // descend
+        node = node.down!;
+        nextNode = node.next;
+        continue;
       }
+      if (nextNode.data === value) {
+        // remove the node while updating the nextLength of the left neighbor
+        node.next = nextNode.next;
+        if (nextNode.nextLength === undefined) {
+          node.nextLength = undefined;
+        } else {
+          node.nextLength! += nextNode.nextLength - 1;
+        }
+        deleteObjectProperties(nextNode);
+        if (node.down !== undefined) {
+          // descend
+          node = node.down!;
+          nextNode = node.next;
+          continue;
+        }
+        return; // finished
+      }
+      node = nextNode;
+      nextNode = node.next;
     }
   }
 
@@ -284,9 +394,9 @@ export class SkipList<T> implements HasLength {
         result = `${result}\n`;
       }
       result = `  ${result}{`;
-      const rowArray: Array<T> = [];
+      const rowArray: Array<string> = [];
       for (let node = startNode; node !== undefined; node = node.next!) {
-        rowArray.push(node.data);
+        rowArray.push(`${node.data}(${node.nextLength ?? "inf"})`);
       }
       result = `${result}${rowArray.join(" -> ")}}`;
     }
