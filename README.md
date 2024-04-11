@@ -8,12 +8,12 @@ _Note:_ Certain data structures (e.g. Queues and Stacks) are implemented using J
 
 ### Worst-Case Time Complexity
 
-| Data Structure | Access | Search | Insert | Remove |
+| Data Structure | Access (by Index) | Search (by Value) | Insert | Remove |
 |---|---|---|---|---|
 | Linked List[^1] | O(n) | O(n) | O(1) | O(1) |
 | Array | O(1) | O(n) | O(n) | O(n) |
 | Hash Table[^2] | - | O(n) | O(n) | O(n) |
-| Skip List | - | O(n) | O(n) | O(n) |
+| Skip List | O(n) | O(n) | O(n) | O(n) |
 
 [^1]: Insert and remove operations are evaluated separately from the search operation.
 [^2]: Assuming a poor hash function and/or too small of a table size, resulting in many collisions (the number of list items per bin is proportional to the total number of items stored in the table). Also assumes that collisions are handled using a Singly Linked List as implemented in the code.
@@ -22,10 +22,10 @@ _Note:_ Certain data structures (e.g. Queues and Stacks) are implemented using J
 
 _For those data structures where it differs from the worst-case._
 
-| Data Structure | Access | Search | Insert | Remove |
+| Data Structure | Access (by Index) | Search (by Value) | Insert | Remove |
 |---|---|---|---|---|
 | Hash Table[^3] | - | O(1) | O(1) | O(1) |
-| Skip List[^4] | - | O(log(n)) | O(log(n)) | O(log(n)) |
+| Skip List[^4] | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) |
 
 [^3]: Assuming a good hash function is used with sufficient table size to minimize collisions.
 [^4]: Assuming that randomized promotions take place via a probability function.
