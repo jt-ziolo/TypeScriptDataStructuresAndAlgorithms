@@ -11,10 +11,11 @@
 
 ## Skip List Operations
 
-- When inserting a new value into a skip list, you must continue the traversal algorithm with each new layer you descend down into.
+- In hindsight, you should go in thinking that each list operation (insert, remove, at, contains) will require a variant of the skip list traversal algorithm. The traversal method is what allows skip lists to be efficient (averaged time complexity).
+- The length operation is more straightforward, and could be implemented with either a descent to the bottom layer followed by a count or by maintaining a count in an instance variable.
 - Nodes that were descended from during the insertion operation should be tracked for use during randomized promotion.
-- In general, skip list operations are meant to proceed from the "top left" to the "bottom right", or from the head node to the end of the bottommost layer. Traversal should occur across the row/layer first, descending only when necessary.
-- Skip lists have to be carefully designed to accommodate indexed searching.
+- Skip list traversal should proceed from the "top left" to the "bottom right", or from the head node to the end of the bottommost layer. Traversal should occur across the row/layer first, descending only when necessary.
+- Skip list operations have a wide variety of edge cases; especially when implementing indexed skip lists. Multiple examples should be written out and worked through to determine the correct ways to implement operations while updating link widths.
 
 ## Hashing
 
