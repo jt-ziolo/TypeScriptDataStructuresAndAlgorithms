@@ -1,9 +1,5 @@
-import { BinaryTreeNode } from "../data-structures/binary-tree";
-import {
-  inOrderTraversal,
-  postOrderTraversal,
-  preOrderTraversal,
-} from "./binary-search-tree";
+import { BinarySearchTree } from "./binary-search-tree";
+import { BinaryTreeNode } from "./binary-tree";
 
 const createSmallTree = () => {
   /*
@@ -70,12 +66,24 @@ const traversalCase = (
 
 describe("traversal", () => {
   describe("in-order traversal", () => {
-    traversalCase(cases.traversal.inOrder, "in-order", inOrderTraversal);
+    traversalCase(
+      cases.traversal.inOrder,
+      "in-order",
+      BinarySearchTree.inOrderTraversal<number>,
+    );
   });
   describe("pre-order traversal", () => {
-    traversalCase(cases.traversal.preOrder, "pre-order", preOrderTraversal);
+    traversalCase(
+      cases.traversal.preOrder,
+      "pre-order",
+      BinarySearchTree.preOrderTraversal<number>,
+    );
   });
   describe("post-order traversal", () => {
-    traversalCase(cases.traversal.postOrder, "post-order", postOrderTraversal);
+    traversalCase(
+      cases.traversal.postOrder,
+      "post-order",
+      BinarySearchTree.postOrderTraversal<number>,
+    );
   });
 });
