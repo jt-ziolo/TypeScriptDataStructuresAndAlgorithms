@@ -124,12 +124,12 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
           nextNode = node.next;
           continue;
         }
-        // cannot descend, two options
+        // cannot descend
         // if the next node is undefined, then the index is invalid (out of bounds)
         if (nextNode === undefined) {
           throw new OutOfBoundsError(index, this.length);
         }
-        // if the nextLength sum is greater than the index, then there may be an error in the list's construction
+        // undefined behavior
         throw new MissingIndexError(index);
       }
       sumNextLengths = nextSum;

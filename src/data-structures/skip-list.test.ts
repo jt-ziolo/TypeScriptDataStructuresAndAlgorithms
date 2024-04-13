@@ -1,13 +1,20 @@
 import { randomInt } from "crypto";
 import { SkipList, SkipListNode } from "./skip-list";
-import { arrayCopyToFunction, arrayEmptyConstructor } from "../util";
+import {
+  arrayCopyToFunction,
+  arrayEmptyConstructor,
+  deleteObjectProperties,
+} from "../util";
 import { mergeSort } from "../algorithms/sort-linear-collection";
-import { OutOfBoundsError } from "../error";
+import { MissingIndexError, OutOfBoundsError } from "../error";
 
 const probabilityFunctions = {
   always() {
     // will cause an infinite loop if maxPromotions is not set
     return true;
+  },
+  never() {
+    return false;
   },
   half() {
     return randomInt(2) === 0;
@@ -130,6 +137,12 @@ describe("skip list", () => {
 
       it("returns zero length", () => {
         expect(list.length).toBe(0);
+      });
+
+      it("should throw an OutOfBoundsError when called with an invalid index", () => {
+        expect(() => {
+          list.at(0);
+        }).toThrow(OutOfBoundsError);
       });
     });
 
@@ -433,6 +446,34 @@ describe("skip list", () => {
   });
 
   describe("at (indexing)", () => {
+    describe("invalid list", () => {
+      it("should throw a MissingIndexError when 'at' is called for an index that appears to be skipped", () => {
+        for (let k = 0; k < 100; k++) {
+          const list = new SkipList<number>(
+            probabilityFunctions.never,
+            createCollectionParams(simpleInputArray),
+          );
+          // increase the nextLength of the middle node by 1, simulating a skipped index at the next node
+          const middleValue = list.values.at(2);
+          for (
+            let startNode: SkipListNode<number> | undefined = list.head!;
+            startNode !== undefined;
+            startNode = startNode.down
+          ) {
+            for (
+              let node: SkipListNode<number> | undefined = startNode;
+              node !== undefined;
+              node = node.next
+            ) {
+              if (node.data === middleValue) {
+                node.nextLength! += 1;
+              }
+            }
+          }
+          expect(() => list.at(3)).toThrow(MissingIndexError);
+        }
+      });
+    });
     describe("short fixed list", () => {
       let list: SkipList<number>;
       const inputArray = simpleInputArray;

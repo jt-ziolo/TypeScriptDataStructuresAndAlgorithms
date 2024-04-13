@@ -66,6 +66,7 @@ export class QueueLinkedList<ElementType> implements Queue<ElementType> {
     }
     this.#list.insertAfter(previousLast!, node);
   }
+
   remove() {
     const value = this.first;
     this.#list.removeBeginning();

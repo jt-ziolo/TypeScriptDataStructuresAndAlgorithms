@@ -27,15 +27,19 @@ export class StackArray<ElementType> implements Stack<ElementType> {
   push(item: ElementType) {
     this.#array.push(item);
   }
+
   pop() {
     return this.#array.pop();
   }
+
   get top() {
     return this.#array.at(this.#array.length - 1);
   }
+
   get isEmpty() {
     return this.#array.length === 0;
   }
+
   get length() {
     return this.#array.length;
   }
@@ -58,6 +62,7 @@ export class StackLinkedList<ElementType> implements Stack<ElementType> {
     this.#length += 1;
     this.#list.insertBeginning(new SinglyLinkedNode<ElementType>(item));
   }
+
   pop() {
     const value = this.#list.root?.data;
     this.#list.removeBeginning();
