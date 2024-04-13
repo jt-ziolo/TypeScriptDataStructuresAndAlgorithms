@@ -10,6 +10,7 @@ import {
   CollectionConstructor,
   CollectionCopyToFunction,
   HasLength,
+  IsValidFiniteNumber,
   deleteObjectProperties,
 } from "../util";
 import { LinkedNode } from "./linked-list";
@@ -117,6 +118,7 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
       if (nextSum === index) {
         return nextNode!.data;
       }
+      // Stryker disable next-line EqualityOperator: equality is handled by clause above
       if (nextNode === undefined || nextSum > index) {
         if (node.down !== undefined) {
           // descend
@@ -234,9 +236,9 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
       ) {
         // update the nextLength values of the remaining end nodes
         while (i >= 0) {
-          const leftNeighborNode = endNodesByLayer[i];
-          if (leftNeighborNode.nextLength !== undefined) {
-            leftNeighborNode.nextLength += 1;
+          const leftEndNode = endNodesByLayer[i];
+          if (IsValidFiniteNumber(leftEndNode.nextLength)) {
+            leftEndNode.nextLength! += 1;
           }
           i--;
         }
@@ -244,19 +246,20 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
       }
       // Stryker restore all
       // promote by inserting a node in the layer above the current layer
-      const leftNeighborNode = endNodesByLayer[i];
+      const leftEndNode = endNodesByLayer[i];
       const newNode = new SkipListNode<T>(insertedNode.data);
-      newNode.next = leftNeighborNode.next;
-      const formerNextLengthLeftNode = leftNeighborNode.nextLength;
-      const nextLengthLeftNode =
+      newNode.next = leftEndNode.next;
+      const formerNextLengthLeftEndNode = leftEndNode.nextLength;
+      const newNextLengthLeftEndNode =
         totalTraversedNextLength + 1 - lengthToEndNodesByLayer[i];
-      const nextLengthNewNode =
-        formerNextLengthLeftNode === undefined
-          ? undefined
-          : formerNextLengthLeftNode + 1 - nextLengthLeftNode;
+      const nextLengthNewNode = !IsValidFiniteNumber(
+        formerNextLengthLeftEndNode,
+      )
+        ? undefined
+        : formerNextLengthLeftEndNode! + 1 - newNextLengthLeftEndNode;
       newNode.nextLength = nextLengthNewNode;
-      leftNeighborNode.next = newNode;
-      leftNeighborNode.nextLength = nextLengthLeftNode;
+      leftEndNode.next = newNode;
+      leftEndNode.nextLength = newNextLengthLeftEndNode;
       newNode.down = previousNode;
       previousNode = newNode;
       // Stryker disable next-line AssignmentOperator: must track accurately for subsequent check
@@ -301,26 +304,7 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
       }
       // change the values of the head node column to match the next value in
       // the list, and remove the nodes which originally held that value.
-      for (
-        let node: SkipListNode<T> | undefined = this.head;
-        node !== undefined;
-        node = node.down
-      ) {
-        node.data = newHeadValue;
-        const nextNode = node.next;
-        node.nextLength =
-          node.nextLength === undefined ? undefined : node.nextLength - 1;
-        if (nextNode?.data === newHeadValue) {
-          // remove the next node since it will be a duplicate of the new head node
-          node.next = nextNode?.next;
-          if (nextNode.nextLength === undefined) {
-            node.nextLength = undefined;
-          } else {
-            node.nextLength! += nextNode.nextLength;
-          }
-          deleteObjectProperties(nextNode);
-        }
-      }
+      this.#shiftToNewHead(newHeadValue);
       return;
     }
     // ensure that the list contains the value to be removed
@@ -333,8 +317,9 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
     while (true) {
       if (nextNode === undefined || nextNode.data > value) {
         // decrement the nextLength of the node being descended from
-        if (node.nextLength !== undefined) {
-          node.nextLength -= 1;
+        // Stryker disable next-line ConditionalExpression: prevents NaN assignment
+        if (IsValidFiniteNumber(node.nextLength)) {
+          node.nextLength! -= 1;
         }
         // descend
         node = node.down!;
@@ -342,14 +327,8 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
         continue;
       }
       if (nextNode.data === value) {
-        // remove the node while updating the nextLength of the left neighbor
-        node.next = nextNode.next;
-        if (nextNode.nextLength === undefined) {
-          node.nextLength = undefined;
-        } else {
-          node.nextLength! += nextNode.nextLength - 1;
-        }
-        deleteObjectProperties(nextNode);
+        // remove the node while updating the nextLength of the left end node
+        this.#removeNextNode(node, nextNode);
         if (node.down !== undefined) {
           // descend
           node = node.down!;
@@ -361,6 +340,41 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
       node = nextNode;
       nextNode = node.next;
     }
+  }
+
+  #shiftToNewHead(newHeadValue: T) {
+    for (
+      let node: SkipListNode<T> | undefined = this.head;
+      node !== undefined;
+      node = node.down
+    ) {
+      node.data = newHeadValue;
+      const nextNode = node.next;
+      node.nextLength = !IsValidFiniteNumber(node.nextLength)
+        ? undefined
+        : node.nextLength! - 1;
+      // Stryker disable next-line OptionalChaining: caught as TypeError
+      // Stryker disable next-line ConditionalExpression: optimization
+      if (nextNode?.data === newHeadValue) {
+        // remove the next node since it will be a duplicate of the new head
+        // node
+        this.#removeNextNode(node, nextNode);
+        // undo the decrementing of node.nextLength, since we are removing a
+        // duplicate node
+        node.nextLength! += 1;
+      }
+    }
+  }
+
+  #removeNextNode(node: SkipListNode<T>, nextNode: SkipListNode<T>) {
+    node.next = nextNode.next;
+    // Stryker disable next-line ConditionalExpression: prevents NaN assignment
+    if (!IsValidFiniteNumber(nextNode.nextLength)) {
+      node.nextLength = undefined;
+    } else {
+      node.nextLength! += nextNode.nextLength! - 1;
+    }
+    deleteObjectProperties(nextNode);
   }
 
   get values(): ReadonlyArray<T> {

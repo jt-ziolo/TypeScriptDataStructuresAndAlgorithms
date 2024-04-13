@@ -1,3 +1,24 @@
+## JavaScript/TypeScript Special Types null, undefined, NaN, infinity values
+
+### Undefined vs. Null
+
+- In JS/TS, `undefined` is the default type and value when an argument is not passed to an optional parameter. I chose to replace  the typical `null` checking I'd perform when coding in other languages with checks against `undefined` for this reason.
+- Following the [MDN definition](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null), I chose to use `null` only when I needed to indicate the deliberate absence of a value (which is rare). Unlike `undefined`, type checking prevents `null` from appearing as an argument in a function call unless it is explicitly allowed.
+
+### Not-A-Number (NaN)
+
+- When performing numeric calculations and comparisons with variables that may be undefined, extra care needs to be taken to check that the value is neither `undefined` nor `NaN`. When a numeric calculation fails to evaluate to a number, `NaN` is returned instead of `undefined`. Unfortunately, `NaN` cannot be compared to `undefined` and `(variable with value NaN) === undefined` will evaluate to false. `x === undefined`, `isNaN(x)`, and `Number.isNaN(x)` will all fail in one way or another to detect that `x` is either `undefined` or `NaN`; instead, `isNaN(Number(x))` must be used.
+
+### Infinity and -Infinity
+
+- `isNaN(Number(x))` will return `false` for `x === Infinity` and `x === -Infinity`. In contexts where infinity and negative infinity are possible values from a calculation (`(non-zero number) / 0`, `log(0)`, extremely large numbers), you can check that `x !== Infinity && x !== -Infinity && !isNaN(x)` using `Number.isFinite(x)` (note, this is not the same as `Number.isFinite(Number(x))` in TypeScript).
+- `Number.isFinite(Number(x))` covers everything, checking that `x` is not `Infinity`, `-Infinity`, `undefined`, and `NaN`.
+- In the context that you are storing `number | undefined` in some variable, and would like the sum of that variable and a number to equal `undefined` if the variable is already `undefined`, it's possible to simplify the expression and remove the need for an `undefined` check by using `Infinity` instead, since `Infinity + (any finite number) === Infinity`. However, it may not be immediately obvious to other programmers what you are doing.
+
+### My Approach
+
+For cases where I need to enforce that a number `x` is neither `undefined` nor `NaN`, I'm opting to use `Number.isFinite(Number(x))`, unless `Infinity` and `-Infinity` are explicitly allowed, in which case I will use `!isNaN(Number(x))`. For the purpose of maintaining clean, readable, and maintainable code, I have implemented these checks into utility functions with better names.
+
 ## JavaScript/TypeScript memory management and the delete keyword
 
 1. Setting the value of a property to undefined is not the same as calling `delete` on that property.

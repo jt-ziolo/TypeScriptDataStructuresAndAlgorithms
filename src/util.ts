@@ -15,6 +15,10 @@ export const deleteObjectProperties = (obj: object | undefined) => {
   }
 };
 
+export function IsValidFiniteNumber(value: number | undefined) {
+  return Number.isFinite(Number(value));
+}
+
 export function isSorted<ElementType>(collection: Collection<ElementType>) {
   // Stryker disable next-line EqualityOperator
   for (let i = 1; i < collection.length; i++) {

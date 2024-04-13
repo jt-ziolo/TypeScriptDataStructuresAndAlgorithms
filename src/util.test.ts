@@ -1,4 +1,4 @@
-import { deleteObjectProperties, isSorted } from "./util";
+import { IsValidFiniteNumber, deleteObjectProperties, isSorted } from "./util";
 
 describe("deleteObjectProperties", () => {
   it("successfully deletes all object properties", () => {
@@ -40,5 +40,23 @@ describe("isSorted", () => {
   });
   it("returns true for a collection of size 1", () => {
     expect(isSorted([123])).toBe(true);
+  });
+});
+
+describe("undefined/NaN detection without null detection", () => {
+  it("should return true for NaN", () => {
+    expect(IsValidFiniteNumber(NaN)).toBe(false);
+  });
+  it("should return true for undefined", () => {
+    expect(IsValidFiniteNumber(undefined)).toBe(false);
+  });
+  it("should return true for infinity", () => {
+    expect(IsValidFiniteNumber(Infinity)).toBe(false);
+  });
+  it("should return true for negative infinity", () => {
+    expect(IsValidFiniteNumber(-Infinity)).toBe(false);
+  });
+  it("should return false for a defined number", () => {
+    expect(IsValidFiniteNumber(5)).toBe(true);
   });
 });
