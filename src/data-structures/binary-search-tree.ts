@@ -1,7 +1,68 @@
+import { isSorted } from "../util";
 import { BinaryTreeNode } from "./binary-tree";
+import { QueueArray } from "./queue";
+
+const isDefinedNumber = (value: unknown) => {
+  if (
+    value === undefined ||
+    (typeof value === "number" && isNaN(Number(value)))
+  ) {
+    return false;
+  }
+  return true;
+};
 
 export class BinarySearchTree<T> {
-  root?: BinaryTreeNode<T>;
+  root: BinaryTreeNode<T>;
+
+  constructor(root: BinaryTreeNode<T>) {
+    this.root = root;
+  }
+
+  isValidBinarySearchTree(): boolean {
+    // For each node n, (values of left descendants) <= (node value) < (values
+    // of right descendants) with the additional restriction that values cannot
+    // be undefined and numbers cannot be NaN (but -Infinity and Infinity are
+    // allowed).
+
+    // Will build an array from an in-order traversal and check that items are
+    // in increasing order, allowing duplicates
+    const array = new Array<T>();
+    let allDefined = true;
+    BinarySearchTree.inOrderTraversal<T>((node) => {
+      if (!isDefinedNumber(node.data)) {
+        allDefined = false;
+        return;
+      }
+      array.push(node.data);
+    }, this.root);
+
+    if (!allDefined) {
+      return false;
+    }
+
+    return isSorted(array);
+  }
+
+  lacksDuplicates(): boolean {
+    // Will maintain a reference to the previous node value during an in-order
+    // traversal and check that no two neighboring items are the same
+    let previousNodeValue: T | null = null;
+    let allUnique = true;
+    BinarySearchTree.inOrderTraversal<T>((node) => {
+      if (node.data === previousNodeValue) {
+        allUnique = false;
+        return;
+      }
+      previousNodeValue = node.data;
+    }, this.root);
+
+    if (!allUnique) {
+      return false;
+    }
+
+    return true;
+  }
 
   isBalanced(): boolean {
     throw new Error("Not implemented");
@@ -19,7 +80,7 @@ export class BinarySearchTree<T> {
     throw new Error("Not implemented");
   }
 
-  /* Binary search tree traversals implemented in a "composite-like" way
+  /* Binary search tree traversals implemented recursively
    * - In-Order
    * - Pre-Order
    * - Post-Order
