@@ -2,7 +2,7 @@ import { isSorted } from "../util";
 import { BinaryTreeNode } from "./binary-tree";
 import { QueueArray } from "./queue";
 
-const isDefinedNumber = (value: unknown) => {
+const isDefinedAndNotNaN = (value: unknown) => {
   if (
     value === undefined ||
     (typeof value === "number" && isNaN(Number(value)))
@@ -30,7 +30,7 @@ export class BinarySearchTree<T> {
     const array = new Array<T>();
     let allDefined = true;
     BinarySearchTree.inOrderTraversal<T>((node) => {
-      if (!isDefinedNumber(node.data)) {
+      if (!isDefinedAndNotNaN(node.data)) {
         allDefined = false;
         return;
       }
@@ -64,12 +64,35 @@ export class BinarySearchTree<T> {
     return true;
   }
 
-  isBalanced(): boolean {
-    throw new Error("Not implemented");
+  isComplete(): boolean {
+    return this.#isCompleteInternal(
+      this.root,
+      0,
+      BinarySearchTree.countNodes<T>(this.root),
+    );
   }
 
-  isComplete(): boolean {
-    throw new Error("Not implemented");
+  #isCompleteInternal(
+    node: BinaryTreeNode<T> | undefined,
+    index: number,
+    totalNodes: number,
+  ): boolean {
+    if (node === undefined) {
+      // base case: an empty tree is complete
+      return true;
+    }
+
+    if (index >= totalNodes) {
+      // a property of a complete tree is that when all nodes have indices
+      // assigned using 2n+1 (left) and 2n+2 (right), each node's index will be
+      // less than the total number of nodes in the tree
+      return false;
+    }
+
+    return (
+      this.#isCompleteInternal(node.left, 2 * index + 1, totalNodes) &&
+      this.#isCompleteInternal(node.right, 2 * index + 2, totalNodes)
+    );
   }
 
   isFull(): boolean {
@@ -123,5 +146,26 @@ export class BinarySearchTree<T> {
     BinarySearchTree.postOrderTraversal(visit, node.left);
     BinarySearchTree.postOrderTraversal(visit, node.right);
     visit(node);
+  }
+
+  static depthAwareInOrderTraversal<T>(
+    visit: (node: BinaryTreeNode<T>, depth: number) => void,
+    node?: BinaryTreeNode<T>,
+    depth: number = 0,
+  ) {
+    if (node === undefined) {
+      return;
+    }
+    // In-Order: the node's left child, then the node, then the node's right child
+    BinarySearchTree.depthAwareInOrderTraversal(visit, node.left, depth + 1);
+    visit(node, depth);
+    BinarySearchTree.depthAwareInOrderTraversal(visit, node.right, depth + 1);
+  }
+
+  static countNodes<T>(node?: BinaryTreeNode<T>): number {
+    if (node === undefined) {
+      return 0;
+    }
+    return 1 + this.countNodes<T>(node.left) + this.countNodes<T>(node.right);
   }
 }

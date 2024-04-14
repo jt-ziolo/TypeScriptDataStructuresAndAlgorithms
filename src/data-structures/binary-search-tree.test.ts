@@ -6,7 +6,7 @@ const createSingleNodeTree = (value: number) => {
   return new BinarySearchTree(root);
 };
 
-const createSmallTree = () => {
+const createSmallIncompleteTree = () => {
   /*
    * 8
    * L=4            R=10
@@ -80,15 +80,15 @@ const cases = {
     // [tree, result array]
     inOrder: [
       [createSingleNodeTree(123), [123]],
-      [createSmallTree(), [2, 4, 6, 8, 10, 20]],
+      [createSmallIncompleteTree(), [2, 4, 6, 8, 10, 20]],
     ],
     preOrder: [
       [createSingleNodeTree(123), [123]],
-      [createSmallTree(), [8, 4, 2, 6, 10, 20]],
+      [createSmallIncompleteTree(), [8, 4, 2, 6, 10, 20]],
     ],
     postOrder: [
       [createSingleNodeTree(123), [123]],
-      [createSmallTree(), [2, 6, 4, 20, 10, 8]],
+      [createSmallIncompleteTree(), [2, 6, 4, 20, 10, 8]],
     ],
   },
 };
@@ -143,19 +143,23 @@ describe("traversal", () => {
 
 describe("tree qualities", () => {
   describe("isValidBinarySearchTree", () => {
-    const valid = createSmallTree();
+    const valid = createSmallIncompleteTree();
     const invalid = createInvalidSmallTree();
     expect(valid.isValidBinarySearchTree()).toBe(true);
     expect(invalid.isValidBinarySearchTree()).toBe(false);
   });
   describe("lacksDuplicates", () => {
-    const noDuplicates = createSmallTree();
+    const noDuplicates = createSmallIncompleteTree();
     const hasDuplicates = createSmallPerfectTreeWithDuplicates();
     expect(noDuplicates.lacksDuplicates()).toBe(true);
     expect(hasDuplicates.lacksDuplicates()).toBe(false);
   });
-  describe.skip("isBalanced", () => {});
-  describe.skip("isComplete", () => {});
+  describe("isComplete", () => {
+    const incomplete = createSmallIncompleteTree();
+    const complete = createSmallPerfectTreeWithDuplicates();
+    expect(incomplete.isComplete()).toBe(false);
+    expect(complete.isComplete()).toBe(true);
+  });
   describe.skip("isFull", () => {});
   describe.skip("isPerfect", () => {});
 });
