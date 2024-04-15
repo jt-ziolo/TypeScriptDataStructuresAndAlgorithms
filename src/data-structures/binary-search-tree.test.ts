@@ -6,11 +6,11 @@ const createSingleNodeTree = (value: number) => {
   return new BinarySearchTree(root);
 };
 
-const createSmallIncompleteTree = () => {
-  /*
+const createTree = () => {
+  /* Not complete, not full, not perfect
    * 8
    * L=4            R=10
-   * L=2    R=6     L=undef.  R=20
+   * L=2    R=6             R=20
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -28,11 +28,33 @@ const createSmallIncompleteTree = () => {
   return new BinarySearchTree(root);
 };
 
-const createInvalidSmallTree = () => {
-  /*
+const createTreeDuplicates = () => {
+  /* Not complete, not full, not perfect, has duplicates
    * 8
    * L=4            R=10
-   * L=2    R=12    L=undef.  R=20
+   * L=4    R=6             R=20
+   */
+  const root = new BinaryTreeNode<number>(8);
+
+  let next = root;
+  next.left = new BinaryTreeNode<number>(4);
+  next.right = new BinaryTreeNode<number>(10);
+
+  next = next.left;
+  next.left = new BinaryTreeNode<number>(4);
+  next.right = new BinaryTreeNode<number>(6);
+
+  next = root.right!;
+  next.right = new BinaryTreeNode<number>(20);
+
+  return new BinarySearchTree(root);
+};
+
+const createTreeInvalid = () => {
+  /* Not valid
+   * 8
+   * L=4            R=10
+   * L=2    R=12           R=20
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -50,11 +72,11 @@ const createInvalidSmallTree = () => {
   return new BinarySearchTree(root);
 };
 
-const createSmallPerfectTreeWithDuplicates = () => {
-  /*
+const createTreePerfect = () => {
+  /* Complete, full, perfect
    * 8
    * L=4            R=10
-   * L=4    R=6     L=10  R=20
+   * L=2    R=6     L=9    R=20
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -63,32 +85,136 @@ const createSmallPerfectTreeWithDuplicates = () => {
   next.right = new BinaryTreeNode<number>(10);
 
   next = next.left;
-  next.left = new BinaryTreeNode<number>(4);
+  next.left = new BinaryTreeNode<number>(2);
   next.right = new BinaryTreeNode<number>(6);
 
   next = root.right!;
-  next.left = new BinaryTreeNode<number>(10);
+  next.left = new BinaryTreeNode<number>(9);
   next.right = new BinaryTreeNode<number>(20);
 
   return new BinarySearchTree(root);
 };
 
+const createTreeCompleteOnly = () => {
+  /* Complete only
+   * 8
+   * L=4            R=10
+   * L=2    R=6     L=9
+   */
+  const root = new BinaryTreeNode<number>(8);
+
+  let next = root;
+  next.left = new BinaryTreeNode<number>(4);
+  next.right = new BinaryTreeNode<number>(10);
+
+  next = next.left;
+  next.left = new BinaryTreeNode<number>(2);
+  next.right = new BinaryTreeNode<number>(6);
+
+  next = root.right!;
+  next.left = new BinaryTreeNode<number>(9);
+
+  return new BinarySearchTree(root);
+};
+
+const createTreeFullOnly = () => {
+  /* Full only
+   * 8
+   * L=4            R=10
+   *                L=9    R=20
+   */
+  const root = new BinaryTreeNode<number>(8);
+
+  let next = root;
+  next.left = new BinaryTreeNode<number>(4);
+  next.right = new BinaryTreeNode<number>(10);
+
+  next = root.right!;
+  next.left = new BinaryTreeNode<number>(9);
+  next.right = new BinaryTreeNode<number>(20);
+
+  return new BinarySearchTree(root);
+};
+
+const createTreeCompleteAndFull = () => {
+  /* Complete, full, but not perfect
+   * 8
+   * L=4            R=10
+   * L=2    R=6
+   */
+  const root = new BinaryTreeNode<number>(8);
+
+  let next = root;
+  next.left = new BinaryTreeNode<number>(4);
+  next.right = new BinaryTreeNode<number>(10);
+
+  next = next.left;
+  next.left = new BinaryTreeNode<number>(2);
+  next.right = new BinaryTreeNode<number>(6);
+
+  return new BinarySearchTree(root);
+};
+
 type TraversalCaseSet = (BinarySearchTree<number> | number[])[][];
+type CheckCaseSet = BinarySearchTree<number>[];
 
 const cases = {
   traversal: {
     // [tree, result array]
     inOrder: [
       [createSingleNodeTree(123), [123]],
-      [createSmallIncompleteTree(), [2, 4, 6, 8, 10, 20]],
+      [createTree(), [2, 4, 6, 8, 10, 20]],
     ],
     preOrder: [
       [createSingleNodeTree(123), [123]],
-      [createSmallIncompleteTree(), [8, 4, 2, 6, 10, 20]],
+      [createTree(), [8, 4, 2, 6, 10, 20]],
     ],
     postOrder: [
       [createSingleNodeTree(123), [123]],
-      [createSmallIncompleteTree(), [2, 6, 4, 20, 10, 8]],
+      [createTree(), [2, 6, 4, 20, 10, 8]],
+    ],
+  },
+  checks: {
+    // [[trees matching check], [trees not matching check]]
+    isValid: [
+      createSingleNodeTree(123),
+      createTreeCompleteAndFull(),
+      createTreeCompleteOnly(),
+      createTreeDuplicates(),
+      createTreeFullOnly(),
+      createTreePerfect(),
+      createTree(),
+    ],
+    isNotValid: [createTreeInvalid()],
+    hasDuplicates: [createTreeDuplicates()],
+    hasNoDuplicates: [
+      createSingleNodeTree(123),
+      createTreeCompleteAndFull(),
+      createTreeCompleteOnly(),
+      createTreeFullOnly(),
+      createTreePerfect(),
+      createTree(),
+    ],
+    isComplete: [
+      createSingleNodeTree(123),
+      createTreeCompleteAndFull(),
+      createTreeCompleteOnly(),
+      createTreePerfect(),
+    ],
+    isNotComplete: [createTree(), createTreeFullOnly()],
+    isFull: [
+      createSingleNodeTree(123),
+      createTreeCompleteAndFull(),
+      createTreeFullOnly(),
+      createTreePerfect(),
+    ],
+    isNotFull: [createTree(), createTreeCompleteOnly()],
+    isPerfect: [createTreePerfect()],
+    isNotPerfect: [
+      createTreeCompleteAndFull(),
+      createTreeCompleteOnly(),
+      createTreeFullOnly(),
+      createTree(),
     ],
   },
 };
@@ -141,25 +267,47 @@ describe("traversal", () => {
   });
 });
 
+const checkCase = (
+  caseSet: CheckCaseSet,
+  checkDescription: string,
+  checkFunction: (tree: BinarySearchTree<number>) => boolean,
+) =>
+  it.each(caseSet)(
+    `given binary tree %p, returns ${checkDescription}`,
+    (tree) => {
+      expect(checkFunction(tree)).toBe(true);
+    },
+  );
+
 describe("tree qualities", () => {
-  describe("isValidBinarySearchTree", () => {
-    const valid = createSmallIncompleteTree();
-    const invalid = createInvalidSmallTree();
-    expect(valid.isValidBinarySearchTree()).toBe(true);
-    expect(invalid.isValidBinarySearchTree()).toBe(false);
-  });
-  describe("lacksDuplicates", () => {
-    const noDuplicates = createSmallIncompleteTree();
-    const hasDuplicates = createSmallPerfectTreeWithDuplicates();
-    expect(noDuplicates.lacksDuplicates()).toBe(true);
-    expect(hasDuplicates.lacksDuplicates()).toBe(false);
-  });
-  describe("isComplete", () => {
-    const incomplete = createSmallIncompleteTree();
-    const complete = createSmallPerfectTreeWithDuplicates();
-    expect(incomplete.isComplete()).toBe(false);
-    expect(complete.isComplete()).toBe(true);
-  });
-  describe.skip("isFull", () => {});
-  describe.skip("isPerfect", () => {});
+  checkCase(cases.checks.hasDuplicates, "hasDuplicates === true", (tree) =>
+    tree.hasDuplicates(),
+  );
+  checkCase(
+    cases.checks.hasNoDuplicates,
+    "hasDuplicates === false",
+    (tree) => !tree.hasDuplicates(),
+  );
+  checkCase(cases.checks.isComplete, "isComplete === true", (tree) =>
+    tree.isComplete(),
+  );
+  checkCase(
+    cases.checks.isNotComplete,
+    "isComplete === false",
+    (tree) => !tree.isComplete(),
+  );
+  checkCase(cases.checks.isFull, "isFull === true", (tree) => tree.isFull());
+  checkCase(
+    cases.checks.isNotFull,
+    "isFull === false",
+    (tree) => !tree.isFull(),
+  );
+  checkCase(cases.checks.isPerfect, "isPerfect === true", (tree) =>
+    tree.isPerfect(),
+  );
+  // checkCase(
+  //   cases.checks.isNotPerfect,
+  //   "isPerfect === false",
+  //   (tree) => !tree.isPerfect(),
+  // );
 });

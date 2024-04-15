@@ -44,7 +44,7 @@ export class BinarySearchTree<T> {
     return isSorted(array);
   }
 
-  lacksDuplicates(): boolean {
+  hasDuplicates(): boolean {
     // Will maintain a reference to the previous node value during an in-order
     // traversal and check that no two neighboring items are the same
     let previousNodeValue: T | null = null;
@@ -58,10 +58,10 @@ export class BinarySearchTree<T> {
     }, this.root);
 
     if (!allUnique) {
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   }
 
   isComplete(): boolean {
@@ -96,11 +96,41 @@ export class BinarySearchTree<T> {
   }
 
   isFull(): boolean {
-    throw new Error("Not implemented");
+    // in a full binary tree, all nodes have either zero or two children
+    return this.#isFullInternal(this.root);
+  }
+
+  #isFullInternal(node?: BinaryTreeNode<T>): boolean {
+    // perform an in-order traversal, returning false if any node has only one child
+    if (node === undefined) {
+      return true;
+    }
+    if (
+      (node.left !== undefined && node.right === undefined) ||
+      (node.right !== undefined && node.left === undefined)
+    ) {
+      return false;
+    }
+    return this.#isFullInternal(node.left) && this.#isFullInternal(node.right);
   }
 
   isPerfect(): boolean {
-    throw new Error("Not implemented");
+    const count = BinarySearchTree.countNodes<T>(this.root);
+    let maxDepth = 0;
+    BinarySearchTree.depthAwareInOrderTraversal((node, depth) => {
+      if (depth > maxDepth) {
+        maxDepth = depth;
+      }
+    }, this.root);
+    return count === Math.pow(2, maxDepth + 1) - 1;
+  }
+
+  public toString(): string {
+    const array: Array<T> = [];
+    BinarySearchTree.inOrderTraversal<T>((node) => {
+      array.push(node.data);
+    }, this.root);
+    return array.toString();
   }
 
   /* Binary search tree traversals implemented recursively
