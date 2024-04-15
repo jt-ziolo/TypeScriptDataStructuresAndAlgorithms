@@ -1,9 +1,9 @@
-import { BinarySearchTree } from "./binary-search-tree";
+import { BinaryTree } from "./binary-search-tree";
 import { BinaryTreeNode } from "./binary-tree";
 
 const createSingleNodeTree = (value: number) => {
   const root = new BinaryTreeNode<number>(value);
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTree = () => {
@@ -25,7 +25,7 @@ const createTree = () => {
   next = root.right!;
   next.right = new BinaryTreeNode<number>(20);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTreeDuplicates = () => {
@@ -47,7 +47,7 @@ const createTreeDuplicates = () => {
   next = root.right!;
   next.right = new BinaryTreeNode<number>(20);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTreeInvalid = () => {
@@ -69,7 +69,7 @@ const createTreeInvalid = () => {
   next = root.right!;
   next.right = new BinaryTreeNode<number>(20);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTreePerfect = () => {
@@ -92,7 +92,7 @@ const createTreePerfect = () => {
   next.left = new BinaryTreeNode<number>(9);
   next.right = new BinaryTreeNode<number>(20);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTreeCompleteOnly = () => {
@@ -114,7 +114,7 @@ const createTreeCompleteOnly = () => {
   next = root.right!;
   next.left = new BinaryTreeNode<number>(9);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTreeFullOnly = () => {
@@ -133,7 +133,7 @@ const createTreeFullOnly = () => {
   next.left = new BinaryTreeNode<number>(9);
   next.right = new BinaryTreeNode<number>(20);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
 const createTreeCompleteAndFull = () => {
@@ -152,11 +152,11 @@ const createTreeCompleteAndFull = () => {
   next.left = new BinaryTreeNode<number>(2);
   next.right = new BinaryTreeNode<number>(6);
 
-  return new BinarySearchTree(root);
+  return new BinaryTree(root);
 };
 
-type TraversalCaseSet = (BinarySearchTree<number> | number[])[][];
-type CheckCaseSet = BinarySearchTree<number>[];
+type TraversalCaseSet = (BinaryTree<number> | number[])[][];
+type CheckCaseSet = BinaryTree<number>[];
 
 const cases = {
   traversal: {
@@ -185,7 +185,7 @@ const cases = {
       createTreePerfect(),
       createTree(),
     ],
-    isNotValid: [createTreeInvalid()],
+    isNotValid: [createTreeInvalid(), createSingleNodeTree(NaN)],
     hasDuplicates: [createTreeDuplicates()],
     hasNoDuplicates: [
       createSingleNodeTree(123),
@@ -237,7 +237,7 @@ const traversalCase = (
         (node) => {
           testArray.push(node.data);
         },
-        (tree as BinarySearchTree<number>).root,
+        (tree as BinaryTree<number>).root,
       );
       expect(testArray).toStrictEqual(expectedArray);
     },
@@ -248,21 +248,21 @@ describe("traversal", () => {
     traversalCase(
       cases.traversal.inOrder,
       "in-order",
-      BinarySearchTree.inOrderTraversal<number>,
+      BinaryTree.inOrderTraversal<number>,
     );
   });
   describe("pre-order traversal", () => {
     traversalCase(
       cases.traversal.preOrder,
       "pre-order",
-      BinarySearchTree.preOrderTraversal<number>,
+      BinaryTree.preOrderTraversal<number>,
     );
   });
   describe("post-order traversal", () => {
     traversalCase(
       cases.traversal.postOrder,
       "post-order",
-      BinarySearchTree.postOrderTraversal<number>,
+      BinaryTree.postOrderTraversal<number>,
     );
   });
 });
@@ -270,7 +270,7 @@ describe("traversal", () => {
 const checkCase = (
   caseSet: CheckCaseSet,
   checkDescription: string,
-  checkFunction: (tree: BinarySearchTree<number>) => boolean,
+  checkFunction: (tree: BinaryTree<number>) => boolean,
 ) =>
   it.each(caseSet)(
     `given binary tree %p, returns ${checkDescription}`,

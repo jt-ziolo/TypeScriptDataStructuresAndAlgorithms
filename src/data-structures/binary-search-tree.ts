@@ -1,47 +1,11 @@
-import { isSorted } from "../util";
+import { isDefinedAndNotNaN, isSorted } from "../util";
 import { BinaryTreeNode } from "./binary-tree";
-import { QueueArray } from "./queue";
 
-const isDefinedAndNotNaN = (value: unknown) => {
-  if (
-    value === undefined ||
-    (typeof value === "number" && isNaN(Number(value)))
-  ) {
-    return false;
-  }
-  return true;
-};
-
-export class BinarySearchTree<T> {
+export class BinaryTree<T> {
   root: BinaryTreeNode<T>;
 
   constructor(root: BinaryTreeNode<T>) {
     this.root = root;
-  }
-
-  isValidBinarySearchTree(): boolean {
-    // For each node n, (values of left descendants) <= (node value) < (values
-    // of right descendants) with the additional restriction that values cannot
-    // be undefined and numbers cannot be NaN (but -Infinity and Infinity are
-    // allowed).
-
-    // Will build an array from an in-order traversal and check that items are
-    // in increasing order, allowing duplicates
-    const array = new Array<T>();
-    let allDefined = true;
-    BinarySearchTree.inOrderTraversal<T>((node) => {
-      if (!isDefinedAndNotNaN(node.data)) {
-        allDefined = false;
-        return;
-      }
-      array.push(node.data);
-    }, this.root);
-
-    if (!allDefined) {
-      return false;
-    }
-
-    return isSorted(array);
   }
 
   hasDuplicates(): boolean {
@@ -49,7 +13,7 @@ export class BinarySearchTree<T> {
     // traversal and check that no two neighboring items are the same
     let previousNodeValue: T | null = null;
     let allUnique = true;
-    BinarySearchTree.inOrderTraversal<T>((node) => {
+    BinaryTree.inOrderTraversal<T>((node) => {
       if (node.data === previousNodeValue) {
         allUnique = false;
         return;
@@ -68,7 +32,7 @@ export class BinarySearchTree<T> {
     return this.#isCompleteInternal(
       this.root,
       0,
-      BinarySearchTree.countNodes<T>(this.root),
+      BinaryTree.countNodes<T>(this.root),
     );
   }
 
@@ -115,9 +79,9 @@ export class BinarySearchTree<T> {
   }
 
   isPerfect(): boolean {
-    const count = BinarySearchTree.countNodes<T>(this.root);
+    const count = BinaryTree.countNodes<T>(this.root);
     let maxDepth = 0;
-    BinarySearchTree.depthAwareInOrderTraversal((node, depth) => {
+    BinaryTree.depthAwareInOrderTraversal((_, depth) => {
       if (depth > maxDepth) {
         maxDepth = depth;
       }
@@ -127,7 +91,7 @@ export class BinarySearchTree<T> {
 
   public toString(): string {
     const array: Array<T> = [];
-    BinarySearchTree.inOrderTraversal<T>((node) => {
+    BinaryTree.inOrderTraversal<T>((node) => {
       array.push(node.data);
     }, this.root);
     return array.toString();
@@ -147,9 +111,9 @@ export class BinarySearchTree<T> {
       return;
     }
     // In-Order: the node's left child, then the node, then the node's right child
-    BinarySearchTree.inOrderTraversal(visit, node.left);
+    BinaryTree.inOrderTraversal(visit, node.left);
     visit(node);
-    BinarySearchTree.inOrderTraversal(visit, node.right);
+    BinaryTree.inOrderTraversal(visit, node.right);
   }
 
   static preOrderTraversal<T>(
@@ -161,8 +125,8 @@ export class BinarySearchTree<T> {
     }
     // Pre-Order: the node, then the node's left child, then the node's right child
     visit(node);
-    BinarySearchTree.preOrderTraversal(visit, node.left);
-    BinarySearchTree.preOrderTraversal(visit, node.right);
+    BinaryTree.preOrderTraversal(visit, node.left);
+    BinaryTree.preOrderTraversal(visit, node.right);
   }
 
   static postOrderTraversal<T>(
@@ -173,8 +137,8 @@ export class BinarySearchTree<T> {
       return;
     }
     // Post-Order: the node's left child, then the node's right child, then the node
-    BinarySearchTree.postOrderTraversal(visit, node.left);
-    BinarySearchTree.postOrderTraversal(visit, node.right);
+    BinaryTree.postOrderTraversal(visit, node.left);
+    BinaryTree.postOrderTraversal(visit, node.right);
     visit(node);
   }
 
@@ -187,9 +151,9 @@ export class BinarySearchTree<T> {
       return;
     }
     // In-Order: the node's left child, then the node, then the node's right child
-    BinarySearchTree.depthAwareInOrderTraversal(visit, node.left, depth + 1);
+    BinaryTree.depthAwareInOrderTraversal(visit, node.left, depth + 1);
     visit(node, depth);
-    BinarySearchTree.depthAwareInOrderTraversal(visit, node.right, depth + 1);
+    BinaryTree.depthAwareInOrderTraversal(visit, node.right, depth + 1);
   }
 
   static countNodes<T>(node?: BinaryTreeNode<T>): number {
@@ -197,5 +161,32 @@ export class BinarySearchTree<T> {
       return 0;
     }
     return 1 + this.countNodes<T>(node.left) + this.countNodes<T>(node.right);
+  }
+}
+
+export class BinarySearchTree<T> extends BinaryTree<T> {
+  isValidBinarySearchTree(): boolean {
+    // For each node n, (values of left descendants) <= (node value) < (values
+    // of right descendants) with the additional restriction that values cannot
+    // be undefined and numbers cannot be NaN (but -Infinity and Infinity are
+    // allowed).
+
+    // Will build an array from an in-order traversal and check that items are
+    // in increasing order, allowing duplicates
+    const array = new Array<T>();
+    let allDefined = true;
+    BinaryTree.inOrderTraversal<T>((node) => {
+      if (!isDefinedAndNotNaN(node.data)) {
+        allDefined = false;
+        return;
+      }
+      array.push(node.data);
+    }, this.root);
+
+    if (!allDefined) {
+      return false;
+    }
+
+    return isSorted(array);
   }
 }

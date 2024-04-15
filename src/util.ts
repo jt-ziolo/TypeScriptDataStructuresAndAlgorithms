@@ -19,6 +19,16 @@ export function IsValidFiniteNumber(value: number | undefined) {
   return Number.isFinite(Number(value));
 }
 
+export const isDefinedAndNotNaN = (value: unknown) => {
+  if (
+    value === undefined ||
+    (typeof value === "number" && isNaN(Number(value)))
+  ) {
+    return false;
+  }
+  return true;
+};
+
 export function isSorted<ElementType>(collection: Collection<ElementType>) {
   // Stryker disable next-line EqualityOperator
   for (let i = 1; i < collection.length; i++) {
