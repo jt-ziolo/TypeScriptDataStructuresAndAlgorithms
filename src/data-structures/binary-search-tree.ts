@@ -17,7 +17,6 @@ export class BinaryTree<T> {
     // Will build an array from an in-order traversal and check that items are
     // in increasing order, allowing duplicates
 
-    // Stryker disable next-line ArrayDeclaration: caught as TypeError
     const array = new Array<T>();
     let allDefined = true;
     BinaryTree.inOrderTraversal<T>((node) => {

@@ -88,7 +88,6 @@ export class HashTable<KeyType extends StringConvertible, ValueType> {
     const list = this.#array[index];
     // check if the list includes the key being stored and delete the list node
     // if so
-    // Stryker disable next-line OptionalChaining: caught as TypeError
     if (list.root?.data[0] === key) {
       list.removeBeginning();
       return;

@@ -20,6 +20,9 @@ devDependencies:
   '@stryker-mutator/jest-runner':
     specifier: ^8.2.6
     version: 8.2.6(@stryker-mutator/core@8.2.6)
+  '@stryker-mutator/typescript-checker':
+    specifier: ^8.2.6
+    version: 8.2.6(@stryker-mutator/core@8.2.6)(typescript@5.4.3)
   '@types/jest':
     specifier: ^29.5.12
     version: 29.5.12
@@ -1913,6 +1916,20 @@ packages:
       '@stryker-mutator/util': 8.2.6
       semver: 7.6.0
       tslib: 2.6.2
+    dev: true
+
+  /@stryker-mutator/typescript-checker@8.2.6(@stryker-mutator/core@8.2.6)(typescript@5.4.3):
+    resolution: {integrity: sha512-8VJj/m96WCqyDr4YOgJvrO417geoE//zSdZeK+VJhDQBc3ZVE+lEGRowPG+XhgCPGWC1/400VTRvD5RyEqa8LA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@stryker-mutator/core': ~8.2.0
+      typescript: '>=3.6'
+    dependencies:
+      '@stryker-mutator/api': 8.2.6
+      '@stryker-mutator/core': 8.2.6
+      '@stryker-mutator/util': 8.2.6
+      semver: 7.6.0
+      typescript: 5.4.3
     dev: true
 
   /@stryker-mutator/util@8.2.6:

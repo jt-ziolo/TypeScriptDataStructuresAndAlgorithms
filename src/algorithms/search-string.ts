@@ -102,7 +102,6 @@ export const getRabinKarpSearchCandidates = (
   // store the start indices of substrings with matching hashes as we go
   // these are candidates, since there is a possibility of collisions
   // (note: collisions may not)
-  // Stryker disable next-line ArrayDeclaration: caught as TypeError
   const candidates: Array<Index> = [];
 
   // compute the hash for the first <substring length> letters of the source

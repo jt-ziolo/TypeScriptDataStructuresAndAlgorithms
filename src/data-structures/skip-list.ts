@@ -353,7 +353,6 @@ export class SkipList<T> implements HasLength, RelativeIndexable<T> {
       node.nextLength = !IsValidFiniteNumber(node.nextLength)
         ? undefined
         : node.nextLength! - 1;
-      // Stryker disable next-line OptionalChaining: caught as TypeError
       // Stryker disable next-line ConditionalExpression: optimization
       if (nextNode?.data === newHeadValue) {
         // remove the next node since it will be a duplicate of the new head

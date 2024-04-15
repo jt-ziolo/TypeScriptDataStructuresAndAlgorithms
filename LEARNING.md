@@ -26,6 +26,11 @@ For cases where I need to enforce that a number `x` is neither `undefined` nor `
 3. The garbage collector will only collect objects which have no references to any other objects.
 4. In the situation that Object A is linked to Object B by a property (e.g. `A.prop = B`) and then you delete that property (`delete A.prop`), Object B is only guaranteed to be garbage collected if it lacks any references to other objects (if all of its properties are deleted).
 
+## Setting up StrykerJS with Jest and TypeScript
+
+- In TypeScript projects, StrykerJS will not detect TypeScript compilation errors and will erroneously show mutants that do not actually survive compilation unless the [Stryker TypeScript Checker plugin](https://stryker-mutator.io/docs/stryker-js/typescript-checker/) is installed.
+- StrykerJS seems to be more likely to report false mutants when Jest's `it.each()` testing method is used. (#TODO)
+
 ## Linked Lists
 
 - For this implementation, I set up my doubly linked list class in a particular way to make sure that there cannot be a node before the root node (either by the root node having a `previous` property or by other nodes accepting a root node as their `next` property). If I did not do that, then it would have been possible for the root node on the list object to be deleted via `removeAfter` while causing a memory leak, or for the root node to get out of sync with the start of the list.
