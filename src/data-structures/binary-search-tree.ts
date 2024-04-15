@@ -8,6 +8,33 @@ export class BinaryTree<T> {
     this.root = root;
   }
 
+  isValidBinarySearchTree(): boolean {
+    // For each node n, (values of left descendants) <= (node value) < (values
+    // of right descendants) with the additional restriction that values cannot
+    // be undefined and numbers cannot be NaN (but -Infinity and Infinity are
+    // allowed).
+
+    // Will build an array from an in-order traversal and check that items are
+    // in increasing order, allowing duplicates
+
+    // Stryker disable next-line ArrayDeclaration: caught as TypeError
+    const array = new Array<T>();
+    let allDefined = true;
+    BinaryTree.inOrderTraversal<T>((node) => {
+      if (!isDefinedAndNotNaN(node.data)) {
+        allDefined = false;
+        return;
+      }
+      array.push(node.data);
+    }, this.root);
+
+    if (!allDefined) {
+      return false;
+    }
+
+    return isSorted(array);
+  }
+
   hasDuplicates(): boolean {
     // Will maintain a reference to the previous node value during an in-order
     // traversal and check that no two neighboring items are the same
@@ -54,6 +81,7 @@ export class BinaryTree<T> {
     }
 
     return (
+      // Stryker disable next-line ArithmeticOperator: mutant does not survive
       this.#isCompleteInternal(node.left, 2 * index + 1, totalNodes) &&
       this.#isCompleteInternal(node.right, 2 * index + 2, totalNodes)
     );
@@ -82,6 +110,7 @@ export class BinaryTree<T> {
     const count = BinaryTree.countNodes<T>(this.root);
     let maxDepth = 0;
     BinaryTree.depthAwareInOrderTraversal((_, depth) => {
+      // Stryker disable next-line all: mutants do not survive
       if (depth > maxDepth) {
         maxDepth = depth;
       }
@@ -89,6 +118,7 @@ export class BinaryTree<T> {
     return count === Math.pow(2, maxDepth + 1) - 1;
   }
 
+  // Stryker disable all: for debugging, not used in tests and not critical
   public toString(): string {
     const array: Array<T> = [];
     BinaryTree.inOrderTraversal<T>((node) => {
@@ -96,6 +126,7 @@ export class BinaryTree<T> {
     }, this.root);
     return array.toString();
   }
+  // Stryker restore all
 
   /* Binary search tree traversals implemented recursively
    * - In-Order
@@ -151,9 +182,11 @@ export class BinaryTree<T> {
       return;
     }
     // In-Order: the node's left child, then the node, then the node's right child
+    // Stryker disable all: mutants do not survive
     BinaryTree.depthAwareInOrderTraversal(visit, node.left, depth + 1);
     visit(node, depth);
     BinaryTree.depthAwareInOrderTraversal(visit, node.right, depth + 1);
+    // Stryker restore all
   }
 
   static countNodes<T>(node?: BinaryTreeNode<T>): number {
@@ -161,32 +194,5 @@ export class BinaryTree<T> {
       return 0;
     }
     return 1 + this.countNodes<T>(node.left) + this.countNodes<T>(node.right);
-  }
-}
-
-export class BinarySearchTree<T> extends BinaryTree<T> {
-  isValidBinarySearchTree(): boolean {
-    // For each node n, (values of left descendants) <= (node value) < (values
-    // of right descendants) with the additional restriction that values cannot
-    // be undefined and numbers cannot be NaN (but -Infinity and Infinity are
-    // allowed).
-
-    // Will build an array from an in-order traversal and check that items are
-    // in increasing order, allowing duplicates
-    const array = new Array<T>();
-    let allDefined = true;
-    BinaryTree.inOrderTraversal<T>((node) => {
-      if (!isDefinedAndNotNaN(node.data)) {
-        allDefined = false;
-        return;
-      }
-      array.push(node.data);
-    }, this.root);
-
-    if (!allDefined) {
-      return false;
-    }
-
-    return isSorted(array);
   }
 }

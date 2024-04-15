@@ -117,6 +117,32 @@ const createTreeCompleteOnly = () => {
   return new BinaryTree(root);
 };
 
+const createTreeNotCompleteMutantCheck = () => {
+  /* Complete only
+   * 8
+   * L=4            R=10
+   * L=2    R=6     L=9
+   * L=1
+   */
+  const root = new BinaryTreeNode<number>(8);
+
+  let next = root;
+  next.left = new BinaryTreeNode<number>(4);
+  next.right = new BinaryTreeNode<number>(10);
+
+  next = next.left;
+  next.left = new BinaryTreeNode<number>(2);
+  next.right = new BinaryTreeNode<number>(6);
+
+  next = next.left;
+  next.left = new BinaryTreeNode<number>(1);
+
+  next = root.right!;
+  next.left = new BinaryTreeNode<number>(9);
+
+  return new BinaryTree(root);
+};
+
 const createTreeFullOnly = () => {
   /* Full only
    * 8
@@ -201,20 +227,29 @@ const cases = {
       createTreeCompleteOnly(),
       createTreePerfect(),
     ],
-    isNotComplete: [createTree(), createTreeFullOnly()],
+    isNotComplete: [
+      createTree(),
+      createTreeFullOnly(),
+      createTreeNotCompleteMutantCheck(),
+    ],
     isFull: [
       createSingleNodeTree(123),
       createTreeCompleteAndFull(),
       createTreeFullOnly(),
       createTreePerfect(),
     ],
-    isNotFull: [createTree(), createTreeCompleteOnly()],
+    isNotFull: [
+      createTree(),
+      createTreeCompleteOnly(),
+      createTreeNotCompleteMutantCheck(),
+    ],
     isPerfect: [createTreePerfect()],
     isNotPerfect: [
       createTreeCompleteAndFull(),
       createTreeCompleteOnly(),
       createTreeFullOnly(),
       createTree(),
+      createTreeNotCompleteMutantCheck(),
     ],
   },
 };
@@ -305,9 +340,17 @@ describe("tree qualities", () => {
   checkCase(cases.checks.isPerfect, "isPerfect === true", (tree) =>
     tree.isPerfect(),
   );
-  // checkCase(
-  //   cases.checks.isNotPerfect,
-  //   "isPerfect === false",
-  //   (tree) => !tree.isPerfect(),
-  // );
+  checkCase(
+    cases.checks.isNotPerfect,
+    "isPerfect === false",
+    (tree) => !tree.isPerfect(),
+  );
+  checkCase(cases.checks.isValid, "isValidBinarySearchTree === true", (tree) =>
+    tree.isValidBinarySearchTree(),
+  );
+  checkCase(
+    cases.checks.isNotValid,
+    "isValidBinarySearchTree === false",
+    (tree) => !tree.isValidBinarySearchTree(),
+  );
 });
