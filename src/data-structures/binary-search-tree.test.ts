@@ -1,5 +1,5 @@
 import { BinaryTree } from "./binary-search-tree";
-import { BinaryTreeNode } from "./binary-tree";
+import { BinaryTreeNode } from "./binary-tree-node";
 
 const createSingleNodeTree = (value: number) => {
   const root = new BinaryTreeNode<number>(value);
@@ -8,9 +8,11 @@ const createSingleNodeTree = (value: number) => {
 
 const createTree = () => {
   /* Not complete, not full, not perfect
-   * 8
-   * L=4            R=10
-   * L=2    R=6             R=20
+   *               ____________( 8 )____________
+   *              /                             \
+   *       ____( 4 )____                       (10)____
+   *      /             \                              \
+   *   ( 2 )           ( 6 )                          (20)
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -30,9 +32,11 @@ const createTree = () => {
 
 const createTreeDuplicates = () => {
   /* Not complete, not full, not perfect, has duplicates
-   * 8
-   * L=4            R=10
-   * L=4    R=6             R=20
+   *               ____________( 8 )____________
+   *              /                             \
+   *       ____( 4 )____                       (10)____
+   *      /             \                              \
+   *   ( 4 )           ( 6 )                          (20)
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -52,9 +56,11 @@ const createTreeDuplicates = () => {
 
 const createTreeInvalid = () => {
   /* Not valid
-   * 8
-   * L=4            R=10
-   * L=2    R=12           R=20
+   *               ____________( 8 )____________
+   *              /                             \
+   *       ____( 4 )____                       (10)____
+   *      /             \                              \
+   *   ( 2 )           ( 12 )                          (20)
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -74,9 +80,11 @@ const createTreeInvalid = () => {
 
 const createTreePerfect = () => {
   /* Complete, full, perfect
-   * 8
-   * L=4            R=10
-   * L=2    R=6     L=9    R=20
+   *               ____________( 8 )____________
+   *              /                             \
+   *       ____( 4 )____                   ____(10)____
+   *      /             \                 /            \
+   *   ( 2 )           ( 6 )           ( 9 )          (20)
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -97,9 +105,11 @@ const createTreePerfect = () => {
 
 const createTreeCompleteOnly = () => {
   /* Complete only
-   * 8
-   * L=4            R=10
-   * L=2    R=6     L=9
+   *               ____________( 8 )____________
+   *              /                             \
+   *       ____( 4 )____                   ____(10)
+   *      /             \                 /
+   *   ( 2 )           ( 6 )           ( 9 )
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -118,11 +128,15 @@ const createTreeCompleteOnly = () => {
 };
 
 const createTreeNotCompleteMutantCheck = () => {
-  /* Complete only
-   * 8
-   * L=4            R=10
-   * L=2    R=6     L=9
-   * L=1
+  /* Not complete, checks edge case of completeness algorithm
+   *                      ____________( 8 )____________
+   *                     /                             \
+   *              ____( 4 )____                   ____(10)
+   *             /             \                 /
+   *      ____( 2 )           ( 6 )           ( 9 )
+   *     /
+   *  ( 1 )
+   *
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -145,9 +159,11 @@ const createTreeNotCompleteMutantCheck = () => {
 
 const createTreeFullOnly = () => {
   /* Full only
-   * 8
-   * L=4            R=10
-   *                L=9    R=20
+   *        ____________( 8 )____________
+   *       /                             \
+   *    ( 4 )                       ____(10)_____
+   *                               /             \
+   *                            ( 9 )           (20)
    */
   const root = new BinaryTreeNode<number>(8);
 
@@ -164,9 +180,11 @@ const createTreeFullOnly = () => {
 
 const createTreeCompleteAndFull = () => {
   /* Complete, full, but not perfect
-   * 8
-   * L=4            R=10
-   * L=2    R=6
+   *               ____________( 8 )____________
+   *              /                             \
+   *       ____( 4 )____                       (10)
+   *      /             \
+   *   ( 2 )           ( 6 )
    */
   const root = new BinaryTreeNode<number>(8);
 

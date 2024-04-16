@@ -1,5 +1,5 @@
 import { isDefinedAndNotNaN, isSorted } from "../util";
-import { BinaryTreeNode } from "./binary-tree";
+import { BinaryTreeNode } from "./binary-tree-node";
 
 export class BinaryTree<T> {
   root: BinaryTreeNode<T>;
@@ -193,5 +193,12 @@ export class BinaryTree<T> {
       return 0;
     }
     return 1 + this.countNodes<T>(node.left) + this.countNodes<T>(node.right);
+  }
+}
+export type AVLTreeNodeDataWrapper<T> = { innerData: T; height: number };
+
+export class AVLTree<T> extends BinaryTree<{ innerData: T; height: number }> {
+  static getBalance<T>(node: BinaryTreeNode<{ innerData: T; height: number }>) {
+    return (node.left?.data.height ?? 0) - (node.right?.data.height ?? 0);
   }
 }
