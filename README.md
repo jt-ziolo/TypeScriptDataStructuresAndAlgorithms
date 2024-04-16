@@ -133,3 +133,4 @@ There is marginally more memory used in the array implementations compared to th
 
 - McDowell, Gayle Laakmann. Cracking the Coding Interview: 150 Programming Questions and Solutions. 6th ed., CareerCup, LLC, 2020.
 - [W3Schools Data Structures and Algorithms (DSA) Tutorial](https://www.w3schools.com/dsa/index.php)
+- [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
