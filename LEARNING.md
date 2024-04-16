@@ -31,6 +31,10 @@ For cases where I need to enforce that a number `x` is neither `undefined` nor `
 - In TypeScript projects, StrykerJS will not detect TypeScript compilation errors and will erroneously show mutants that do not actually survive compilation unless the [Stryker TypeScript Checker plugin](https://stryker-mutator.io/docs/stryker-js/typescript-checker/) is installed.
 - StrykerJS seems to be more likely to report false mutants when Jest's `it.each()` testing method is used. (#TODO)
 
+## Jest Tests
+
+- Prefer the `it.each(...)` approach for multiple test cases with the same format (shared "arrange/act/assert" steps). When using this approach, avoid putting the test cases into separate objects and referencing them. Doing so requires additional type checking and seems to reduce the test code's maintainability, all while not providing much benefit over specifying the test cases within the `each` call.
+
 ## Linked Lists
 
 - For this implementation, I set up my doubly linked list class in a particular way to make sure that there cannot be a node before the root node (either by the root node having a `previous` property or by other nodes accepting a root node as their `next` property). If I did not do that, then it would have been possible for the root node on the list object to be deleted via `removeAfter` while causing a memory leak, or for the root node to get out of sync with the start of the list.
