@@ -1,4 +1,8 @@
-import { AVLTree, AVLTreeNodeDataWrapper } from "./binary-search-tree";
+import {
+  AVLTree,
+  AVLTreeNodeDataWrapper,
+  BinaryTree,
+} from "./binary-search-tree";
 import { BinaryTreeNode } from "./binary-tree-node";
 
 type AVLTreeNode = AVLTreeNodeDataWrapper<number>;
@@ -129,11 +133,34 @@ describe("AVL tree", () => {
       [createLeftLeftShapeAVLTree(), 2],
       [createLeftRightShapeAVLTree(), 2],
       [createRightLeftShapeAVLTree(), -2],
-    ])(
-      `given binary tree %p, returns balance of %p`,
-      (tree, expectedBalance) => {
-        expect(AVLTree.getBalance(tree.root)).toBe(expectedBalance);
+    ])(`given AVL tree %p, returns balance of %p`, (tree, expectedBalance) => {
+      expect(AVLTree.getBalance(tree.root)).toBe(expectedBalance);
+    });
+  });
+  describe("rotateRight", () => {
+    it.each([[createLeftLeftShapeAVLTree(), createBalancedAVLTree()]])(
+      `given AVL tree %p, rotating right returns AVL tree %p`,
+      (tree, expectedTree) => {
+        const originalTreeArray: Array<number> = [];
+        BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
+          originalTreeArray.push(node.data.innerData);
+        }, tree.root);
+
+        const expectedTreeArray: Array<number> = [];
+        BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
+          expectedTreeArray.push(node.data.innerData);
+        }, expectedTree.root);
+
+        const rotatedTreeArray: Array<number> = [];
+        tree.rotateRight();
+        BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
+          rotatedTreeArray.push(node.data.innerData);
+        }, tree.root);
+
+        expect(originalTreeArray).not.toStrictEqual(rotatedTreeArray);
+        expect(rotatedTreeArray).toStrictEqual(expectedTreeArray);
       },
     );
   });
+  describe.skip("rotateLeft", () => {});
 });
