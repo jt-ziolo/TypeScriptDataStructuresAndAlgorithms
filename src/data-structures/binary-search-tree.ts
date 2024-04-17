@@ -202,6 +202,10 @@ export class AVLTree<T> extends BinaryTree<{ innerData: T; height: number }> {
     this.root = AVLTree.rotateRightAroundNode<T>(this.root);
   }
 
+  rotateLeft() {
+    this.root = AVLTree.rotateLeftAroundNode<T>(this.root);
+  }
+
   static rotateRightAroundNode<T>(
     node: BinaryTreeNode<{ innerData: T; height: number }>,
   ) {
@@ -213,6 +217,20 @@ export class AVLTree<T> extends BinaryTree<{ innerData: T; height: number }> {
     const newRootOriginalRight = newRoot.right;
     newRoot.right = originalRoot;
     originalRoot.left = newRootOriginalRight;
+    return newRoot;
+  }
+
+  static rotateLeftAroundNode<T>(
+    node: BinaryTreeNode<{ innerData: T; height: number }>,
+  ) {
+    // 1. The right node becomes the root
+    // 2. The original root becomes the left subtree of the new root
+    // 3. The new root's original left subtree becomes the right subtree of the original root
+    const originalRoot = node;
+    const newRoot = node.right!;
+    const newRootOriginalLeft = newRoot.left;
+    newRoot.left = originalRoot;
+    originalRoot.right = newRootOriginalLeft;
     return newRoot;
   }
 
