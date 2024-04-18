@@ -32,6 +32,7 @@ const createBalancedAVLTree = () => {
   next.left = new BinaryTreeNode<AVLTreeNode>({ innerData: 25, height: 1 });
   next.right = new BinaryTreeNode<AVLTreeNode>({ innerData: 35, height: 1 });
 
+  AVLTree.updateHeights(root);
   return new AVLTree(root);
 };
 
@@ -62,6 +63,7 @@ const createLeftRightShapeAVLTree = () => {
   next.left = new BinaryTreeNode<AVLTreeNode>({ innerData: 15, height: 1 });
   next.right = new BinaryTreeNode<AVLTreeNode>({ innerData: 25, height: 1 });
 
+  AVLTree.updateHeights(root);
   return new AVLTree(root);
 };
 
@@ -93,6 +95,7 @@ const createLeftLeftShapeAVLTree = () => {
   next.left = new BinaryTreeNode<AVLTreeNode>({ innerData: 5, height: 1 });
   next.right = new BinaryTreeNode<AVLTreeNode>({ innerData: 15, height: 1 });
 
+  AVLTree.updateHeights(root);
   return new AVLTree(root);
 };
 
@@ -123,6 +126,7 @@ const createRightLeftShapeAVLTree = () => {
   next.left = new BinaryTreeNode<AVLTreeNode>({ innerData: 15, height: 1 });
   next.right = new BinaryTreeNode<AVLTreeNode>({ innerData: 25, height: 1 });
 
+  AVLTree.updateHeights(root);
   return new AVLTree(root);
 };
 
@@ -154,6 +158,7 @@ const createRightRightShapeAVLTree = () => {
   next.left = new BinaryTreeNode<AVLTreeNode>({ innerData: 25, height: 1 });
   next.right = new BinaryTreeNode<AVLTreeNode>({ innerData: 35, height: 1 });
 
+  AVLTree.updateHeights(root);
   return new AVLTree(root);
 };
 
@@ -164,13 +169,33 @@ describe("AVL tree", () => {
       [createLeftLeftShapeAVLTree(), 2],
       [createLeftRightShapeAVLTree(), 2],
       [createRightLeftShapeAVLTree(), -2],
-    ])(`given AVL tree %p, returns balance of %p`, (tree, expectedBalance) => {
+    ])(`given %s, returns balance of %s`, (tree, expectedBalance) => {
       expect(AVLTree.getBalance(tree.root)).toBe(expectedBalance);
     });
   });
+  describe("updateHeights", () => {
+    it.each([
+      [createBalancedAVLTree(), [1, 1, 2, 1, 1, 2, 4]],
+      [createLeftLeftShapeAVLTree(), [1, 1, 2, 1, 3, 1, 4]],
+      [createLeftRightShapeAVLTree(), [1, 1, 1, 2, 3, 1, 4]],
+      [createRightLeftShapeAVLTree(), [1, 1, 1, 2, 1, 3, 4]],
+      [createRightRightShapeAVLTree(), [1, 1, 1, 1, 2, 3, 4]],
+    ])(
+      `given %s, heights produced by post-order traversal are %s`,
+      (tree, expectedHeights) => {
+        const heights: Array<number> = [];
+
+        BinaryTree.postOrderTraversal<AVLTreeNode>((node) => {
+          heights.push(node.data.height);
+        }, tree.root);
+
+        expect(heights).toStrictEqual(expectedHeights);
+      },
+    );
+  });
   describe("rotateRight", () => {
     it.each([[createLeftLeftShapeAVLTree(), createBalancedAVLTree()]])(
-      `given AVL tree %p, rotating right returns AVL tree %p`,
+      `given %s, rotating right returns %s`,
       (tree, expectedTree) => {
         const originalTreeArray: Array<number> = [];
         BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
@@ -195,7 +220,7 @@ describe("AVL tree", () => {
   });
   describe("rotateLeft", () => {
     it.each([[createRightRightShapeAVLTree(), createBalancedAVLTree()]])(
-      `given AVL tree %p, rotating left returns AVL tree %p`,
+      `given %s, rotating left returns %s`,
       (tree, expectedTree) => {
         const originalTreeArray: Array<number> = [];
         BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
@@ -215,6 +240,38 @@ describe("AVL tree", () => {
 
         expect(originalTreeArray).not.toStrictEqual(rotatedTreeArray);
         expect(rotatedTreeArray).toStrictEqual(expectedTreeArray);
+      },
+    );
+  });
+  describe("balance", () => {
+    it.each([
+      [createLeftRightShapeAVLTree(), "Left Right", createBalancedAVLTree()],
+      [createLeftLeftShapeAVLTree(), "Left Left", createBalancedAVLTree()],
+      [createRightLeftShapeAVLTree(), "Right Left", createBalancedAVLTree()],
+      [createRightRightShapeAVLTree(), "Right Right", createBalancedAVLTree()],
+    ])(
+      `given %s (%s), balancing returns %s which is balanced`,
+      (tree, _, expectedTree) => {
+        const originalTreeArray: Array<number> = [];
+        BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
+          originalTreeArray.push(node.data.innerData);
+        }, tree.root);
+
+        const expectedTreeArray: Array<number> = [];
+        BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
+          expectedTreeArray.push(node.data.innerData);
+        }, expectedTree.root);
+
+        const balancedTreeArray: Array<number> = [];
+        tree.balance(tree.root);
+        BinaryTree.preOrderTraversal<AVLTreeNode>((node) => {
+          balancedTreeArray.push(node.data.innerData);
+          expect(AVLTree.getBalance(node)).toBeGreaterThanOrEqual(-1);
+          expect(AVLTree.getBalance(node)).toBeLessThanOrEqual(1);
+        }, tree.root);
+
+        expect(originalTreeArray).not.toStrictEqual(balancedTreeArray);
+        expect(balancedTreeArray).toStrictEqual(expectedTreeArray);
       },
     );
   });

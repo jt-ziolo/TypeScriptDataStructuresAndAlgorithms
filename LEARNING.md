@@ -1,3 +1,9 @@
+## JavaScript/TypeScript toString overrides in custom classes
+
+- In order for toString overrides to appear in jest tests and `console.log(...)` calls, the `get [Symbol.toStringTag]() {...}` getter should be implemented.
+- Implementing `public toString: string() {...}` does not work in many cases.
+- When using Jest's `it.each(...)(name, fn, timeout)` test approach, the `name` argument is parsed using [printf formatting](https://jestjs.io/docs/api#1-describeeachtablename-fn-timeout). To show the output of the `get [Symbol.toStringTag]() {...}` getter, `%s` should be substituted into the `name` argument (not `%p`).
+
 ## JavaScript/TypeScript Special Types null, undefined, NaN, infinity values
 
 ### Undefined vs. Null
