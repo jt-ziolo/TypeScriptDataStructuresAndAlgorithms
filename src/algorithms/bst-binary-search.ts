@@ -9,6 +9,7 @@ export function binarySearch<T>(
   if (startNode === undefined) {
     return null;
   }
+  // Stryker disable EqualityOperator: covered by === clause
   if (startNode.data === searchValue) {
     return startNode;
   } else if (startNode.data < searchValue) {
@@ -17,4 +18,5 @@ export function binarySearch<T>(
     // startNode.data > searchValue
     return binarySearch(startNode.left, searchValue);
   }
+  // Stryker restore EqualityOperator
 }
