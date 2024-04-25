@@ -1,4 +1,4 @@
-import { BinaryTree } from "./binary-search-tree";
+import { BinaryTree } from "./binary-tree";
 import { BinaryTreeNode } from "./binary-tree-node";
 
 const createSingleNodeTree = (value: number) => {

@@ -1,8 +1,5 @@
-import {
-  AVLTree,
-  AVLTreeNodeDataWrapper,
-  BinaryTree,
-} from "./binary-search-tree";
+import { BinaryTree } from "./binary-tree";
+import { AVLTree, AVLTreeNodeDataWrapper } from "./avl-tree";
 import { BinaryTreeNode } from "./binary-tree-node";
 
 type AVLTreeNode = AVLTreeNodeDataWrapper<number>;
