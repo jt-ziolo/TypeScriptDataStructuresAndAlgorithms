@@ -110,7 +110,7 @@ There is marginally more memory used in the array implementations compared to th
 - [x] Rabin-Karp Substring Search
 - [ ] Depth-First Search on a Graph (recursive and iterative)
 - [ ] Breadth-First Search on a Graph (recursive and iterative)
-- [ ] Binary Search (Binary Search Tree)
+- [x] Binary Search (Binary Search Tree)
 - [x] Binary Tree Traversal: In-Order, Post-Order, and Pre-Order
 
 ### Sorting
