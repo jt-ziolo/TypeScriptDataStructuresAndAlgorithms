@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/data-structures/stack.ts</title>
+    <title>Code coverage report for src/data-structures/red-black-tree.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/data-structures</a> stack.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/data-structures</a> red-black-tree.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">81.39% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/23</span>
+                <span class='fraction'>35/43</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">81.57% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>31/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">81.39% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/23</span>
+                <span class='fraction'>35/43</span>
             </div>
         
             
@@ -146,7 +146,35 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,152 +192,208 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">108x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">108x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">43x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">43x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">222x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">131x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">104x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">108x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">108x</span>
-<span class="cline-any cline-yes">108x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">233x</span>
-<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">131x</span>
-<span class="cline-any cline-yes">131x</span>
-<span class="cline-any cline-yes">131x</span>
-<span class="cline-any cline-yes">122x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">131x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">104x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { SinglyLinkedList, SinglyLinkedNode } from "./singly-linked-list";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { isDefinedAndNotNaN, isSorted } from "../util";
+import { BinaryTree } from "./binary-tree";
+import { BinaryTreeNode } from "./binary-tree-node";
 &nbsp;
-/* Queue: A last-in-first-out (LIFO) collection interface implemented using an array.
- *   - push(item): add an item to the top of the stack
- *   - pop(): remove the bottom item in the stack and return it
- *   - top (aka peek) getter: return the top item in the stack without removing it
- *   - isEmpty getter: return true iff the stack is empty
- *   - length getter: return the length of - or number of elements within - the stack
+export type RedBlackTreeNodeDataWrapper&lt;T&gt; = {
+  innerData: T;
+  isRed: boolean;
+  nBlackOrUndefinedChildrenPerPath?: number;
+};
+&nbsp;
+/* Red-Black Tree, a self-balancing binary tree. Has the properties:
+ * 1. Every node is either red or black
+ * 2. The root is black
+ * 3. Every leaf is a NULL node, and every leaf is black.
+ * 4. Every red node must have exactly two black child nodes.
+ * 5. Every path from a node to its leaves must have the same number of black
+ * child nodes.
+ *
+ * Instead of creating null nodes, I am opting to leave the value of unoccupied
+ * left and right nodes as undefined and will account for those undefined leafs
+ * in the balancing methods.
  */
-export interface Stack&lt;ElementType&gt; {
-  push(item: ElementType): void;
-  pop(): ElementType | undefined;
-  get top(): ElementType | undefined;
-  get isEmpty(): boolean;
-  get length(): number;
-}
-&nbsp;
-export class StackArray&lt;ElementType&gt; implements Stack&lt;ElementType&gt; {
-  #array: Array&lt;ElementType&gt; = [];
-&nbsp;
-  constructor(iterable?: Iterable&lt;ElementType&gt;) {
-    if (iterable) {
-      this.#array = Array.from(iterable);
-    }
-  }
-&nbsp;
-  push(item: ElementType) {
-    this.#array.push(item);
-  }
-&nbsp;
-  pop() {
-    return this.#array.pop();
-  }
-&nbsp;
-  get top() {
-    return this.#array.at(this.#array.length - 1);
-  }
-&nbsp;
-  get isEmpty() {
-    return this.#array.length === 0;
-  }
-&nbsp;
-  get length() {
-    return this.#array.length;
-  }
-}
-&nbsp;
-export class StackLinkedList&lt;ElementType&gt; implements Stack&lt;ElementType&gt; {
-  #list: SinglyLinkedList&lt;ElementType&gt;;
-  #length: number = 0;
-&nbsp;
-  constructor(iterable?: Iterable&lt;ElementType&gt;) {
-    this.#list = new SinglyLinkedList&lt;ElementType&gt;();
-    if (iterable) {
-      for (const item of iterable) {
-        this.push(item);
+export class RedBlackTree&lt;T&gt; extends BinaryTree&lt;
+  RedBlackTreeNodeDataWrapper&lt;T&gt;
+&gt; {
+  isValidBinarySearchTree(): boolean {
+    // TODO: figure out a nice way to handle reuse with TypeScript
+    const array = new Array&lt;T&gt;();
+    let allDefined = true;
+    BinaryTree.inOrderTraversal&lt;RedBlackTreeNodeDataWrapper&lt;T&gt;&gt;((node) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!isDefinedAndNotNaN(node.data.innerData)) {
+<span class="cstat-no" title="statement not covered" >        allDefined = false;</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
       }
+      array.push(node.data.innerData);
+    }, this.root);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!allDefined) {
+<span class="cstat-no" title="statement not covered" >      return false;</span>
     }
+&nbsp;
+    return isSorted(array);
   }
 &nbsp;
-  push(item: ElementType) {
-    this.#length += 1;
-    this.#list.insertBeginning(new SinglyLinkedNode&lt;ElementType&gt;(item));
+  isValidRedBlackTree(): boolean {
+    if (!this.isValidBinarySearchTree()) {
+      return false;
+    }
+    // Check properties #2, 4, and 5
+    // The root must be black
+    if (this.root.data.isRed) {
+      return false;
+    }
+    // Every red node must have two black child nodes
+    let propertyHolds = true;
+    RedBlackTree.inOrderTraversal((node) =&gt; {
+      if (!node.data.isRed || !propertyHolds) {
+        return;
+      }
+      propertyHolds = RedBlackTree.nBlackOrUndefinedChildren(node) === 2;
+    }, this.root);
+    if (!propertyHolds) {
+      return false;
+    }
+    // Every path from a node to its leaves must have the same number of black child nodes.
+    // Use a post-order traversal to visit all leaves first, and track that
+    // n(left,total) === n(right,total) all the way up the tree.
+    // No need to reset the nBlackOrUndefinedChildrenPerPath property, since
+    // the leaf nodes are undefined and it will be overwritten on the way up
+    // the tree.
+    RedBlackTree.postOrderTraversal((node) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!propertyHolds) {
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+      let nLeft = node.left?.data.nBlackOrUndefinedChildrenPerPath ?? 1;
+      nLeft += node.left?.data.isRed ? 0 : 1;
+      let nRight = node.right?.data.nBlackOrUndefinedChildrenPerPath ?? 1;
+      nRight += node.right?.data.isRed ? 0 : 1;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (nLeft !== nRight) {
+<span class="cstat-no" title="statement not covered" >        propertyHolds = false;</span>
+      }
+      node.data.nBlackOrUndefinedChildrenPerPath = nLeft;
+    }, this.root);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!propertyHolds) {
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+&nbsp;
+    return true;
   }
 &nbsp;
-  pop() {
-    const value = this.#list.root?.data;
-    this.#list.removeBeginning();
-    if (value !== undefined) {
-      this.#length -= 1;
+<span class="fstat-no" title="function not covered" >  in</span>sert(value: T) {
+    // insert at the appropriate leaf; use post-order traversal
+<span class="cstat-no" title="statement not covered" >    throw new Error("Not implemented");</span>
+  }
+&nbsp;
+  static nBlackOrUndefinedChildren&lt;T&gt;(
+    node: BinaryTreeNode&lt;RedBlackTreeNodeDataWrapper&lt;T&gt;&gt; | undefined,
+  ) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (node === undefined) {
+<span class="cstat-no" title="statement not covered" >      return 0;</span>
     }
-    return value;
-  }
-  get top() {
-    return this.#list.root?.data;
-  }
-  get isEmpty() {
-    return this.#list.root === undefined;
-  }
-  get length() {
-    return this.#length;
+    let count = 0;
+    if (node.left === undefined || !node.left.data.isRed) {
+      count++;
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (node.right === undefined || !node.right.data.isRed) {
+      count++;
+    }
+    return count;
   }
 }
 &nbsp;</pre></td></tr></table></pre>
