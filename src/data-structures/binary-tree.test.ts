@@ -1,12 +1,12 @@
 import { BinaryTree } from "./binary-tree";
 import { BinaryTreeNode } from "./binary-tree-node";
 
-const createSingleNodeTree = (value: number) => {
+export const createSingleNodeTree = (value: number) => {
   const root = new BinaryTreeNode<number>(value);
   return new BinaryTree(root);
 };
 
-const createTree = () => {
+export const createTree = () => {
   /* Not complete, not full, not perfect
    *               ____________( 8 )____________
    *              /                             \
@@ -30,7 +30,7 @@ const createTree = () => {
   return new BinaryTree(root);
 };
 
-const createTreeDuplicates = () => {
+export const createTreeDuplicates = () => {
   /* Not complete, not full, not perfect, has duplicates
    *               ____________( 8 )____________
    *              /                             \
@@ -78,7 +78,7 @@ const createTreeInvalid = () => {
   return new BinaryTree(root);
 };
 
-const createTreePerfect = () => {
+export const createTreePerfect = () => {
   /* Complete, full, perfect
    *               ____________( 8 )____________
    *              /                             \
@@ -103,7 +103,7 @@ const createTreePerfect = () => {
   return new BinaryTree(root);
 };
 
-const createTreeCompleteOnly = () => {
+export const createTreeCompleteOnly = () => {
   /* Complete only
    *               ____________( 8 )____________
    *              /                             \
@@ -127,7 +127,7 @@ const createTreeCompleteOnly = () => {
   return new BinaryTree(root);
 };
 
-const createTreeNotCompleteMutantCheck = () => {
+export const createTreeNotCompleteMutantCheck = () => {
   /* Not complete, checks edge case of completeness algorithm
    *                      ____________( 8 )____________
    *                     /                             \
@@ -157,7 +157,7 @@ const createTreeNotCompleteMutantCheck = () => {
   return new BinaryTree(root);
 };
 
-const createTreeFullOnly = () => {
+export const createTreeFullOnly = () => {
   /* Full only
    *        ____________( 8 )____________
    *       /                             \
@@ -178,7 +178,7 @@ const createTreeFullOnly = () => {
   return new BinaryTree(root);
 };
 
-const createTreeCompleteAndFull = () => {
+export const createTreeCompleteAndFull = () => {
   /* Complete, full, but not perfect
    *               ____________( 8 )____________
    *              /                             \
@@ -219,7 +219,7 @@ const cases = {
     ],
   },
   checks: {
-    // [[trees matching check], [trees not matching check]]
+    // [[trees matching check]
     isValid: [
       createSingleNodeTree(123),
       createTreeCompleteAndFull(),

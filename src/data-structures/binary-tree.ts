@@ -116,7 +116,7 @@ export class BinaryTree<T> {
     }, this.root);
     return count === Math.pow(2, maxDepth + 1) - 1;
   }
-
+  
   // Stryker disable all: for debugging, not used in tests and not critical
   get [Symbol.toStringTag]() {
     const array: Array<T> = [];
@@ -126,7 +126,7 @@ export class BinaryTree<T> {
     return array.toString();
   }
   // Stryker restore all
-
+  
   /* Binary search tree traversals implemented recursively
    * - In-Order
    * - Pre-Order
